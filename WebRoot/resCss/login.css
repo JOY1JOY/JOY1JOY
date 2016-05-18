@@ -1,0 +1,31 @@
+.login-wrap {
+ 
+    border: 1px solid #bcbcc4;
+    padding: 25px 25px;
+    background-color: #fff;
+    overflow: hidden;
+    margin: 0 auto 20px;
+    max-width: 360px;
+}
+
+
+	.login-wrap hr {
+    margin: 15px 0;
+    border: 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #fff;
+}
+
+
+.tip_reg {
+    background: #ccc;
+  
+    padding: 5px 0;
+}
+
+.tip_reg p {
+    margin: 0 10px;
+    color: #000;
+    line-height: 24px;
+    font-size: 0.9em;
+}

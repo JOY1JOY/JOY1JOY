@@ -1,0 +1,76 @@
+.user-atten {
+    float: right !important;
+}
+
+.user-atten .avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+}
+.user-atten .avatar {
+    background-color: #FFFFFF;
+    z-index: 3;
+}
+
+.user-atten .box div {
+    float: left;
+    position: relative;
+    border: 2px solid #f7f7f7;
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+}
+
+.user-atten .article-praise {
+    z-index: 2;
+    background-image: -moz-linear-gradient(top, #66c195, #7dc16e);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #66c195), color-stop(1, #7dc16e));
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#66c195', endColorstr='#7dc16e', GradientType='0');
+}
+
+.user-atten .discuss-praise {
+    z-index: 1;
+    background-image: -moz-linear-gradient(top, #a3cf6f, #c1cf6f);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #a3cf6f), color-stop(1, #c1cf6f));
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a3cf6f', endColorstr='#c1cf6f', GradientType='0');
+}
+
+.user-atten .color-block {
+    margin-left: -30px;
+    padding-left: 37px;
+    padding-top: 28px;
+    text-align: left;
+    transition: 0.8s cubic-bezier(0.175, 0.885, 0.1, 0.98) all !important;
+}
+
+ .user-atten .text {
+    font-size: 12px;
+    color: white;
+}
+
+.user-atten .number {
+    font-size: 24px;
+    letter-spacing: -2px;
+    line-height: 1;
+    color: white;
+}
+
+.user-info .fans a {
+    font-size: 14px;
+    color: #666;
+}
+
+.user-info .fans a span {
+    margin: 0 6px;
+    color: #82b64a;
+}
+.thumImages{
+	max-width: 180px;
+	max-height: 180px;
+	margin: 20px;
+}
+
+.thumImages>img{
+	max-width: 180px;
+	max-height: 180px;
+}

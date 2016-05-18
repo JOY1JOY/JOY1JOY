@@ -1,0 +1,41 @@
+.cate {
+	
+    margin-bottom: 20px;
+    color: #999;
+    font-size: 12px;
+}
+
+.cate span{
+    margin-left: 10px;
+    font-size: 14px;
+    color: #666;
+}
+
+span.cate-items {
+    margin-left: 10px;
+    font-size: 14px;
+    color: #666;
+}
+
+.tag {
+    display: inline-block;
+    padding: 4px 8px;
+    margin-top: 5px;
+    background: #cde3fa;
+    font-size: 12px;
+    border-radius: 5px;
+    white-space: nowrap;
+    line-height: 1;
+    margin-left: 10px;
+    font-size: 13px;
+}
+.alltitle{
+	  margin-bottom: 30px;
+}
+
+.cate-on {
+    color: #666;
+    font-size: 14px;
+    margin-left: 10px
+}
+

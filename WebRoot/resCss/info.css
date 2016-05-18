@@ -1,0 +1,95 @@
+.item-c {
+    padding-right: 166px;
+    padding-top: 20px;
+    margin-bottom: 20px;
+    border-top: 1px solid #e7ebed;
+    position: relative;
+}
+.item-c .author {
+    height: 40px;
+    line-height: 30px;
+    color: #999;
+    font-size: 16px;
+}
+.author img {
+    float: left;
+    margin-right: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+}
+
+.item-c .author span.date {
+    font-size: 14px;
+    float: right;
+}
+
+.item-c h3 {
+    margin: 8px 0 6px;
+    height: 62px;
+    line-height: 30px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+.item-c h3 a {
+    font-size: 22px;
+    line-height: 22px;
+    color: #5c6066;
+}
+.item-c > img {
+    position: absolute;
+    top: 20px;
+    right: 0;
+    width: 140px;
+    height: 140px;
+    border: 1px solid #e7ebed;
+    border-radius: 2px;
+    box-sizing: border-box;
+}
+.item-c .partakes label {
+    float: left;
+    display: block;
+    box-sizing: border-box;
+    line-height: 26px;
+    width: 100px;
+    padding-left: 22px;
+    color: #bababa;
+    font-size: 12px;
+    position: relative;
+    font-weight: normal;
+}
+
+.item-c {
+    padding-right: 166px;
+    padding-top: 20px;
+    margin-bottom: 20px;
+    border-top: 1px solid #e7ebed;
+    position: relative;
+}
+
+.post-nav li a {
+    display: inline-block;
+    padding: 8px 20px;
+    border: 1px solid #dbdbdb;
+    margin-right: 10px;
+    border-radius: 2px;
+    color: #7d7d7d;
+    font-size: 12px;
+}
+.post-nav {
+    margin-bottom: -20px;
+}
+.post-nav li {
+    float: left;
+    margin-bottom: 20px;
+}
+ul {
+
+    list-style: none;
+}
+
+.post-nav {
+    margin-bottom: -20px;
+}
+
+
