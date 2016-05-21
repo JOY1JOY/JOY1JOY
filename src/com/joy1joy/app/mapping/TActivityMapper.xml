@@ -45,7 +45,7 @@
 		description,
 		attention, caution, fee, joy_fee, gqr, autoSMS,
 		smsContent, cuid,
-		cdatetime, audi_datetime
+		cdatetime, audi_datetime, thumbnail
 	</sql>
 	<insert id="insertActivity" useGeneratedKeys="true" keyProperty="id"
 		parameterType="TActiviity">
@@ -61,7 +61,9 @@
 		#{smsContent},
 		#{cuid},
 		#{cdatetime},
-		#{audiDatetime})
+		#{audiDatetime},
+		#{thumbnail}
+		)
 	</insert>
 	<update id="updateActivity">
 		update t_activities set name=#{name},
@@ -104,6 +106,15 @@
 			and t1.type
 			like CONCAT('%',#{type},'%')
 		</if>
+		<if test="status!=null and status!=-100">
+		    and t1.status =#{status}
+		</if>
+		<if test="status==-100">
+		    <![CDATA[
+		    and t1.status in (
+				select f.dkey from t_dict f where f.dtype ='at_status'
+			)]]>
+		</if>
 		<if test="minJoyFee!=null and minJoyFee>=0 and maxJoyFee!=0">
 			<![CDATA[and t1.joy_fee > #{minJoyFee}]]>
 		</if>
@@ -119,12 +130,20 @@
 			test="minJoyFee!=null and maxJoyFee!=null and maxJoyFee==-1 and minJoyFee==-1">
 			and t1.joy_fee=0
 		</if>
-		<if test="time!=null and time>0">
-			and DAYOFWEEK(t1.stime)=#{time}
+		
+		
+		<if test="time!=null and time==1">
+			 <![CDATA[and t1.stime > sysdate() and  t1.stime <= date_add( sysdate() , interval 7 day)]]>
 		</if>
-		<if test="time!=null and time==-1">
-			and DAYOFWEEK(t1.stime) not in(1,7)
+		
+		<if test="time!=null and time==2">
+			 <![CDATA[and t1.stime > date_add( sysdate() , interval 7 day) and  t1.stime <= date_add( sysdate() , interval 15 day)]]>
 		</if>
+		<if test="time!=null and time==3">
+			 <![CDATA[and t1.stime > date_add( sysdate() , interval 15 day) and  t1.stime <= date_add( sysdate() , interval 30 day)]]>
+		</if>		
+		
+		
 		<if test="keyWord!=null and keyWord!=''">
 			and (t1.name like CONCAT('%',#{keyWord},'%') or
 			t1.description like CONCAT('%',#{keyWord},'%') or t1.attention like

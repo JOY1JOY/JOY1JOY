@@ -44,6 +44,8 @@ public class TActivity {
 
 	private int partNum;
 	private String cuserIcon;
+	
+	private String thumbnail;
 
 	public int getId() {
 		return id;
@@ -251,6 +253,15 @@ public class TActivity {
 
 	public void setCuserIcon(String cuserIcon) {
 		this.cuserIcon = cuserIcon;
+	}
+	
+	
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
+	}
+	
+	public String getThumbnail() {
+		return thumbnail;
 	}
 
 }

@@ -67,7 +67,8 @@ function pageselectCallback(page_index, jq) {
 //					html += '<p class="gray">' + obj.cdatetime + '</p>';
 //					html += '<p class="blank">' + obj.content + '</p>';
 //					html += '</li>';
-					var html = '<div class="item-c col-sm-12 col-md-8 col-lg-8"';
+					var html ='<div class="row">';
+					html += '<div class="item-c col-sm-12 col-md-8 col-lg-8"';
 					if(i==0){
 					html += 'style="border-top: 0;">';
 					}
@@ -91,6 +92,7 @@ function pageselectCallback(page_index, jq) {
 					html +='<label class="lab-discuss">评论&nbsp;14</label>';
 					html +='</div>';
 					html +='<img src="../images/22.jpg">';
+				    html +='</div>';
 				    html +='</div>';
 					$("#topicList").append(html);
 				});

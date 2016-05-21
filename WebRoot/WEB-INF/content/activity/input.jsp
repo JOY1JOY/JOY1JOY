@@ -15,6 +15,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
 		<meta charset="utf-8">
 		<title>动一动 JOY1JOY.COM</title>
 		<meta name="keywork" value="动一动，白领，户外活动，学习，周末无聊，周末干嘛,有趣">
@@ -234,19 +235,19 @@
 
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-4 col-md-2">
-								<button type="submit" class="btn btn-default btn-info btn-block" id="at_submit1">
+								<button type="button" class="btn btn-default btn-info btn-block" id="at_submit1">
 									发布
 								</button>
 							</div>
 
 							<div class=" col-sm-4 col-md-2">
-								<button type="submit" class="btn btn-default btn-info btn-block" id="at_submit2">
+								<button type="button" class="btn btn-default btn-info btn-block" id="at_submit2">
 									保存草稿
 								</button>
 							</div>
 
 							<div class=" col-sm-4 col-md-2">
-								<button type="submit" class="btn btn-default btn-info btn-block">
+								<button type="button" class="btn btn-default btn-info btn-block" id="at_submit3">
 									预览
 								</button>
 							</div>
@@ -262,10 +263,10 @@
 
 
 		<jsp:include page="../base/joy1joy_footer.jsp"></jsp:include>
-		
+
 		<script type="text/javascript"
 			src="<%=path%>resJs/bootstrap-datetimepicker.min.js"></script>
-			<script type="text/javascript"
+		<script type="text/javascript"
 			src="<%=path%>resJs/bootstrap-datetimepicker.zh-CN.js"></script>
 		<script type="text/javascript" src="<%=path%>resJs/webuploader.js"></script>
 		<script type="text/javascript" src="<%=path%>resJs/upload.js"></script>

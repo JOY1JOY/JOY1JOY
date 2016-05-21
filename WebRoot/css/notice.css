@@ -22,3 +22,11 @@ padding-left:20px;}
 .gray{ color:afa39e; font-size:12px; margin-top:6px;}
 .blank{ color:#333; font-size:14px;}
 
+.author img {
+    float: left;
+    margin-right: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+}
+

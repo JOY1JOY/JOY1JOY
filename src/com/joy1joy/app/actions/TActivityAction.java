@@ -35,6 +35,7 @@ import com.joy1joy.app.service.ITActivity;
 import com.joy1joy.app.service.ITAtUsersService;
 import com.joy1joy.app.service.ITDictService;
 import com.joy1joy.utils.DateTool;
+import com.joy1joy.utils.ImageUtil;
 import com.opensymphony.xwork2.ActionContext;
 
 /**
@@ -361,7 +362,14 @@ public class TActivityAction extends BaseAction {
 	@Action(value = "atlist", results = { @Result(name = C_INPUT, location = "/WEB-INF/content/activity/list.jsp") })
 	public String list_input() {
 		List<TDict> dtypes = iDict.selectAllSubOptions(DICT_AT_TYPE);
+		List<TDict> dstatus = iDict.selectAllSubOptions(DICT_STATUS);
+		List<TDict> dtime = iDict.selectAllSubOptions(DICT_TIME);
+		
 		ActionContext.getContext().put("dtypes", dtypes);
+		ActionContext.getContext().put("dstatus", dstatus);
+		ActionContext.getContext().put("dtime", dtime);
+		
+		
 		return C_INPUT;
 	}
 
@@ -502,6 +510,11 @@ public class TActivityAction extends BaseAction {
 
 		activity.setCuid(getLoginUserId());
 		activity.setCdatetime(DateTool.getCurrentDate());
+		
+		String thumbnailPath=processThumbnail(activity.getPoster());
+		
+		activity.setThumbnail(thumbnailPath);
+		//activity.setStatus(0);
 		int i = this.iTActivity.insertActivity(activity);
 		if (i > 0) {
 			code = 0;
@@ -514,6 +527,28 @@ public class TActivityAction extends BaseAction {
 		ActionContext.getContext().put(JSON_DATA,
 				this.jsonData(code, msg, null));
 		return C_SUCCESS;
+	}
+	
+	
+	private String processThumbnail(String poster){
+		
+		String os = System.getProperty("os.name");  
+        String uploadPath="/opt/";
+        if(os.toLowerCase().startsWith("win")){  
+        	uploadPath="D:";
+        } 
+		
+		File originalFile=new File( uploadPath+poster );
+		String destFilePath=uploadPath+File.separator+"thumbnail"+File.separator+originalFile.getName();
+		File destFile = new File(destFilePath);
+		
+		try {
+			ImageUtil.resize(originalFile, destFile, 320, 0.7f);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return destFilePath;
 	}
 
 	@LoginAccess
@@ -583,6 +618,7 @@ public class TActivityAction extends BaseAction {
 		page.setMinJoyFee(minJoyFee);
 		page.setMaxJoyFee(maxJoyFee);
 		page.setKeyWord(keyWord);
+		page.setStatus(status);
 
 		logger.debug("类型:" + type);
 		try {

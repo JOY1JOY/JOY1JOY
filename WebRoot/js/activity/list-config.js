@@ -8,6 +8,7 @@ var at = {
 	psize : 9,
 	minJoyFee : 0,
 	maxJoyFee : 0,
+	status: -100,
 	time : 0,
 	type : "all"
 };

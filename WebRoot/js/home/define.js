@@ -33,6 +33,9 @@ home.get_newest_activities = function() {
 					objtemp=$("<div class='row'></div>");
 				}
 				
+				if(o.list.length==ik){
+					$("#home_activities").append(objtemp);
+				}
 				ik++;
 			});
 			ik=1;

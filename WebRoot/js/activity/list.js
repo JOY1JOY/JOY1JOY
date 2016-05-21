@@ -4,11 +4,7 @@
  */
 
 $(function() {
-	at.get_activities();
-	
-	
-
-	
+	at.get_activities();	
 	
 	// 时间
 	$("#at_time a").on("click", function(e) {
@@ -39,19 +35,27 @@ $(function() {
 	// 分类
 	$(".cate-items a").on("click", function(e){
 		
+		var $self = $(this);
+		
 		e.preventDefault();
-		$(this).addClass(JOY_CLASS_ITEM_SELECTED);
-		$(this).removeClass(JOY_CLASS_ITEM_UNSELECTED);
+		
+		$self.addClass(JOY_CLASS_ITEM_SELECTED);
+		$self.removeClass(JOY_CLASS_ITEM_UNSELECTED);
+		
 		var fobj = this;
-		$(".cate-items a").each(function() {
+		
+		var $all= $self.siblings();
+		
+		$all.each(function() {
 			if (fobj != this) {
 				$(this).removeClass(JOY_CLASS_ITEM_SELECTED);
 				$(this).addClass(JOY_CLASS_ITEM_UNSELECTED);
 			}
 		});
 		
-		//alert("click");
-		//at.search_handler(0, this);
+		var val=$self.parent().attr("data");
+		
+		at.search_handler(val, $self);
 		
 	});
 	

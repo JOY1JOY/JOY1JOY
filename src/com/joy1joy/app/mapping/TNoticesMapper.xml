@@ -52,7 +52,7 @@
 	</select>
 	<select id="selectTNoticesById" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
-		select * from t_notices where id =
+		select m.*,n.userid, n.icon from t_notices  m left join t_users n on m.cuid=n.uid where m.id =
 		#{id,jdbcType=INTEGER}
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">

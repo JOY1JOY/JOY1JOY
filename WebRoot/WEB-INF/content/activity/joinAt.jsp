@@ -73,8 +73,40 @@
 
 
 			<div class="container person-wrap">
-				<div class="row">
-					<div class="col-sm-8 col-md-4 col-md-2 bs-docs-sidebar">
+
+					<div class="col-sm-12 col-md-10 col-md-8 ">
+					<div class="row">
+										<div class="col-sm-12 col-md-4 col-md-4 thumImages">
+											<img alt="140x140" src="../images/22.jpg" />
+										</div>
+										<div class="col-sm-12 col-md-10 col-md-8">
+											<h3>
+												h3. 这是一套可视化布局系统.
+											</h3>
+											<p>
+												<em>Git</em>2016-04-12
+											</p>
+										</div>
+							</div>
+
+									<div class="row">
+										<div class="col-sm-12 col-md-4 col-md-4 thumImages">
+											<img alt="140x140" src="../images/22.jpg" />
+										</div>
+										<div class="col-sm-12 col-md-10 col-md-8">
+											<h3>
+												h3. 这是一套可视化布局系统.
+											</h3>
+											<p>
+												<em>Git</em>是一个分布式的版本控制系统，最初由
+												<strong>Linus Torvalds</strong>编写，用作Linux内核代码的管理。
+											</p>
+										</div>
+									
+								</div>
+								</div>
+								
+											<div class="col-sm-8 col-md-4 col-md-4 bs-docs-sidebar">
 						<ul class="nav nav-list bs-docs-sidenav">
 							<li>
 								<a href="<%=path%>at/joinAt.action"><i
@@ -90,56 +122,18 @@
 
 						</ul>
 					</div>
-
-
-
-					<div class="col-sm-12 col-md-10 col-md-8 ">
-
-						<div class="container-fluid">
-							<div class="row-fluid">
-
-								<div class="container">
-
-									<div class="col-sm-12 col-md-12 col-md-12">
-										<div class="col-sm-12 col-md-4 col-md-4 thumImages">
-											<img alt="140x140" src="../images/22.jpg" />
-										</div>
-										<div class="col-sm-12 col-md-10 col-md-8">
-											<h3>
-												h3. 这是一套可视化布局系统.
-											</h3>
-											<p>
-												<em>Git</em>2016-04-12
-											</p>
-										</div>
-									</div>
-
-									<div class="col-sm-12 col-md-12 col-md-12">
-										<div class="col-sm-12 col-md-4 col-md-4 thumImages">
-											<img alt="140x140" src="../images/22.jpg" />
-										</div>
-										<div class="col-sm-12 col-md-10 col-md-8">
-											<h3>
-												h3. 这是一套可视化布局系统.
-											</h3>
-											<p>
-												<em>Git</em>是一个分布式的版本控制系统，最初由
-												<strong>Linus Torvalds</strong>编写，用作Linux内核代码的管理。
-											</p>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+					
 					</div>
-				</div>
+					
+			
+		
 			</div>
-		</div>
+
 
 
 		<input type="hidden" id="totalPages" value="${totalPages}">
 
-		<div class="footer-placeholder"></div>
+
 
 		<jsp:include page="../base/joy1joy_footer.jsp"></jsp:include>
 	</body>

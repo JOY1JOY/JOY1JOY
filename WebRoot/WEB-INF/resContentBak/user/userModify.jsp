@@ -46,7 +46,7 @@
 				</a>
 				</div>
 				<div>
-				<a href="javascript:void(0);" style="position:relative;display:inline-block;width:21px;height:21px;">
+				<a href="javascript:void(0);" style="position:relative;display:inline-block;width:60px;height:60px;">
 				<img alt="更换头像" src="<%=path%>/images/icon-edit.png" id="changeHead"/>
 				<input type="file" onchange="previewImage(this)" name="myFile" id="imgOne"/>
 				</a> 

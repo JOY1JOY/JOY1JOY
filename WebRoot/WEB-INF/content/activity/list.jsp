@@ -38,28 +38,39 @@
 			<div class="fetature container">
 
 
-				<div class="cate">
+				<div class="cate" >
 					<span class="cate-label">类&emsp;别:</span>
-					<span class="cate-items">
-					 
-					<a data-value="all" class="cate-on">所有</a>
-					<s:iterator var="t" value="dtypes">
-					    <a href="#"  class="tag" data-value="${t.dkey}">${t.dvalue}</a>
-				    </s:iterator>	
+					<span class="cate-items" data="type_sw">
+						<a class="cate-on" data-value="all">所有</a>
+						<s:iterator var="t" value="dtypes">
+						    <a href="#"  class="tag" data-value="${t.dkey}">${t.dvalue}</a>
+					    </s:iterator>	
 					</span>
 
 				</div>
 				
-					<div class="cate">
+				<div class="cate" >
 					<span class="cate-label">状&emsp;态:</span>
-					<span class="cate-items"><span class="cate-on">不限</span><a
-						href="/package/cate/1" class="tag">报名中</a><a href="/package/cate/2"
-						class="tag">已关闭</a>
+					<span class="cate-items" data="status_sw">
+						<a class="cate-on" data-value="-100">所有</a>
+						<s:iterator var="t" value="dstatus">
+							<a href="#" class="tag" data-value="${t.dkey}">${t.dvalue}</a>
+						</s:iterator>
 					</span>
 
 				</div>
 
+				<div class="cate" >
+					<span class="cate-label">时&emsp;间:</span>
+					<span class="cate-items" data="time_sw">
+						<a class="cate-on" data-value="0">所有</a>
+						<s:iterator var="t" value="dtime">
+							<a href="#" class="tag" data-value="${t.dkey}">${t.dvalue}</a>
+						</s:iterator>
+					</span>
 
+				</div>
+				
 				<div class="alltitle text-center">
 					<p>
 						<h2>

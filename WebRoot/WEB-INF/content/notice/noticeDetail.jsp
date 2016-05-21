@@ -2,17 +2,25 @@
 	pageEncoding="utf-8"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <%
-	String path = request.getContextPath();
+		String path = request.getContextPath();
+	if (!"".equals(path)) {
+		if (!path.endsWith("/")) {
+			path = path + "/";
+		}
+	} else {
+		path = "/";
+	}
 	//System.out.println(path + "************");
 %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
 <title>动一动</title>
 <jsp:include page="../base/base_import_jquery1.11.2.jsp" />
-<link href="<%=path%>/css/style.css" rel="stylesheet"/>
-<link href="<%=path%>/css/notice.css" rel="stylesheet"/>
+<link href="<%=path%>css/style.css" rel="stylesheet"/>
+<link href="<%=path%>css/notice.css" rel="stylesheet"/>
 <style type="text/css">
 .m-input-text {
 	display:block;
@@ -27,29 +35,11 @@
 	border-radius:4px;
 	color:#737069
 }
+ul li{
+list-style: none;
+}
 </style>
-<script type="text/javascript">
-$(function(){
-	var paths="<%=path%>";
-	var types="${tnotice.type}";
-	if(types=="activity")
-	{
-		$("#hType").html("活动公告");
-		$("#activity").addClass("selected");
-	}
-	if(types=="knowledge")
-	{
-		$("#hType").html("户外知识");
-		$("#knowledge").addClass("selected");
-	}
-	$("#knowledge").click(function(){
-		window.location.href=paths+"/notice/findNoticeList.action?noticeType=knowledge";
-	});
-	$("#activity").click(function(){
-		window.location.href=paths+"/notice/findNoticeList.action?noticeType=activity";
-	});
-})
-</script>
+
 
 </head>
 
@@ -58,32 +48,25 @@ $(function(){
 	
 	<div class="main wrap">
 
-<!--
-    <div class="topic-block"> </div>
-    -->
 <div class="notice_bar">
     <div class="notice_inner">
     <div id="usual2" class="usual"> 
-      <ul class="tab1"> 
-        <li><a href="javascript:void(0);" id="knowledge">户外知识</a></li> 
-        <li><a href="javascript:void(0);"  id="activity" >活动公告</a></li> 
-      </ul>
+   
       <div class="clear"></div>
-      <div id="tabs1">
-        <div class="n_list">
+  
             <h3 id="hType"></h3>
             <ul>
                 <li>
-                    <a href="javascript:void(0);">${tnotice.title}</a>
-                    <p class="gray"><s:date name="#tnotice.cdatetime" format="yyyy.MM.dd"/></p>
-                    <p class="blank">${tnotice.content}</p>
+                <div class="author"><a href="#"> <img src="${tnotice.icon}"></img> ${tnotice.userid}</a>
+                </div>
+                <p></p>
+                <p class="gray"><s:date name="#tnotice.cdatetime" format="yyyy.MM.dd"/></p>
+                <a href="javascript:void(0);">${tnotice.title}</a>
+                   
+                  <p class="blank">${tnotice.content}</p>
                 </li>
                 
             </ul>
-        </div>
-      
-      </div> 
-    
       </div> 
     </div> 
  

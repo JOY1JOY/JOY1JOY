@@ -444,6 +444,58 @@ public class TUsersAction extends BaseAction {
 		return C_SUCCESS;
 	}
 
+	
+	
+	@LoginAccess
+	@Action(value = "updateUserImg", results = {
+			@Result(name = "success", type = "redirectAction", location = "jumpUserDetail.action"),
+			@Result(name = "error", location = "/WEB-INF/content/user/register.jsp") })
+	public String updateUserImg() {
+		try {
+			TUsers user = (TUsers) session.get("users");
+			user.setUid(user.getUid());
+			user.setUserid(userId);
+		
+			if (fileName != null && !fileName.equals("")) {
+				String imageFileName = new Date().getTime()
+						+ getExtention(fileName);
+				// add by duansy 20150913
+				 String os = System.getProperty("os.name");  
+			     String uploadPath="/opt/images/userHeadImg";
+			     if(os.toLowerCase().startsWith("win")){  
+			        	uploadPath="D:/images/userHeadImg";
+			        } 
+			     // end by duansy 20150913
+			//	String uploadPath = ServletActionContext.getServletContext().getRealPath("images/userHeadImg");   //设置保存目录  
+		        File folder=new File(uploadPath);
+				if(!folder.exists()&& !folder .isDirectory())
+				{
+					folder.mkdir();
+				}
+				File imageFile = new File(uploadPath
+						+ "/" + imageFileName);
+				String filecopy = copy(myFile, imageFile);
+				if (filecopy.equals("1")) {
+					user.setIcon("/images/userHeadImg/" + imageFileName);
+				}
+			}
+
+			boolean res=this.userService.updateUsers(user);
+			if(res)
+			{
+				session.remove("users");
+				session.put("users", user);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error("更新用户失败!");
+			return C_ERROR;
+		}
+		return C_SUCCESS;
+	}
+	
+	
 	private String copy(File src, File dst) {
 		try {
 			InputStream in = null;

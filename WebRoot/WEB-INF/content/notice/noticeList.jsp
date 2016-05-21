@@ -35,7 +35,7 @@
 
 
 
-		<div class="container info-wrap">
+		<div class="container info-wrap" >
 			<div class="row">
 				<div class="col-sm-12 col-md-8 col-lg-8">
 					<ul class="post-nav" id="post-nav">
@@ -53,7 +53,7 @@
 				</div>
              </div>
              
-             	<div class="row" id="topicList">
+             	<div class="container" id="topicList">
 			    </div>
                    	<div class="row">
               <div id="Pagination" class="pagination"></div>

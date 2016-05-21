@@ -26,6 +26,7 @@ $(function(){
 	*/
 	//保存按钮
 	$("#editUserInfo").click(function(){
+		
 		var emailValue=$("#email").val();
 		if(emailValue!="")
 		{
@@ -36,6 +37,9 @@ $(function(){
 			  }
 		}
 		document.userEditForm.submit();
+	})
+	$("#editUserImgInfo").click(function(){
+		document.userEditImgForm.submit();
 	})
 })
 
@@ -51,7 +55,7 @@ function previewImage(file)
               var imgValue=fileValue.substring(indexSrc);
               if(imgValue.toUpperCase()=="GIF"||imgValue.toUpperCase()=="JPG"||imgValue.toUpperCase()=="PNG"||imgValue.toUpperCase()=="JPEG")
               {
-            	  div.innerHTML ='<a href="javascript:void(0);" style="cursor: default;"><img id=imghead></a>';
+            	  div.innerHTML ='<a href="javascript:void(0);" style="cursor: default;"><img id=imghead  style="width:160px;height:160px;"></a>';
                   var img = document.getElementById('imghead');
                   img.onload = function(){
                     var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
