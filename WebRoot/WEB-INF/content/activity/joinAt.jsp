@@ -72,52 +72,51 @@
 
 
 
-			<div class="container person-wrap">
+			<div class="container">
 
-					<div class="col-sm-12 col-md-10 col-md-8 ">
+					<div class="col-sm-12 col-md-10 col-lg-10 ">
 					<div class="row">
-										<div class="col-sm-12 col-md-4 col-md-4 thumImages">
-											<img alt="140x140" src="../images/22.jpg" />
-										</div>
-										<div class="col-sm-12 col-md-10 col-md-8">
-											<h3>
-												h3. 这是一套可视化布局系统.
-											</h3>
+						<div class="col-sm-12 col-md-8 col-lg-8">
+												<h3>. 这是一套可视化布局系统.</h3>
 											<p>
 												<em>Git</em>2016-04-12
 											</p>
+										
 										</div>
+										<div class="col-sm-12 col-md-2 col-lg-2 thumImages">
+											<img alt="140x140" src="../images/22.jpg" />
+										</div>
+									
 							</div>
 
 									<div class="row">
-										<div class="col-sm-12 col-md-4 col-md-4 thumImages">
-											<img alt="140x140" src="../images/22.jpg" />
-										</div>
-										<div class="col-sm-12 col-md-10 col-md-8">
+									<div class="col-sm-12 col-md-8 col-lg-8">
 											<h3>
 												h3. 这是一套可视化布局系统.
 											</h3>
 											<p>
-												<em>Git</em>是一个分布式的版本控制系统，最初由
-												<strong>Linus Torvalds</strong>编写，用作Linux内核代码的管理。
+												是一个分布式的版本控制系统，最初由
+												编写，用作Linux内核代码的管理。
 											</p>
 										</div>
+										<div class="col-sm-12 col-md-2 col-lg-2 thumImages">
+											<img alt="140x140" src="../images/22.jpg" />
+										</div>
+										
 									
 								</div>
 								</div>
 								
-											<div class="col-sm-8 col-md-4 col-md-4 bs-docs-sidebar">
+											<div class="col-sm-8 col-md-2 col-lg-2 bs-docs-sidebar">
 						<ul class="nav nav-list bs-docs-sidenav">
 							<li>
-								<a href="<%=path%>at/joinAt.action"><i
-									class="icon-chevron-right"></i> 已报名活动</a>
+								<a href="<%=path%>at/joinAt.action"> 已报名活动</a>
 							</li>
 							<li class="active">
-								<a href="<%=path%>at/organize.action"><i
-									class="icon-chevron-right"></i> 已组织活动</a>
+								<a href="<%=path%>at/organize.action"> 已组织活动</a>
 							</li>
 							<li>
-								<a href="#"><i class="icon-chevron-right"></i> 已发布话题</a>
+								<a href="#"> 已发布话题</a>
 							</li>
 
 						</ul>
@@ -125,11 +124,7 @@
 					
 					</div>
 					
-			
-		
 			</div>
-
-
 
 		<input type="hidden" id="totalPages" value="${totalPages}">
 
