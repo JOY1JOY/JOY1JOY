@@ -17,8 +17,8 @@ ITEM_TEMPLATE+='<div class="col-sm-12 col-md-3 col-lg-3 thumImages">';
 ITEM_TEMPLATE+='<img alt="140x140" src="{imgSrc}" />';
 ITEM_TEMPLATE+='</div>';
 ITEM_TEMPLATE+='<div class="col-sm-12 col-md-8 col-lg-8"><h3>';
-ITEM_TEMPLATE+='<a href="{link_Url}" target="blank" class="title">{name}</a>';
-ITEM_TEMPLATE+='</h3><p></p><p></p><p>发布时间：{stime}</p>';
+ITEM_TEMPLATE+='<a href="{link_url}" target="blank" class="title">{name}</a>';
+ITEM_TEMPLATE+='</h3><p></p><p></p><p>发布时间：{cdatetime} </br> </br> {statusName}</p>';
 ITEM_TEMPLATE+='</div>';
 ITEM_TEMPLATE+='</div>';
 
