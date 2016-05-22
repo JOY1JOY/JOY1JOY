@@ -32,10 +32,14 @@ import com.joy1joy.app.service.ITActivity;
 import com.joy1joy.app.service.ITAtUsersService;
 import com.opensymphony.xwork2.ActionContext;
 
-/*
- *
- *@author:xujun
+/**
+ * 
+ * @author DSY1029
+ * <p>Description: </p>
+ * @date 2016-5-22 上午10:01:49
+ * @version V1.0
  */
+
 @Namespace("/join")
 public class TAtUsersAction extends BaseAction {
 

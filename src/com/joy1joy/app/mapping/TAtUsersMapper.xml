@@ -68,7 +68,7 @@
 	
 	<select id="selectJoinAt" parameterType="page" resultType="join">
 		select
-		t1.at_id as atid,t2.name,t1.addtime from t_at_users
+		t1.at_id as atid,t2.name,t1.addtime,t2.poster as atthumb from t_at_users
 		t1
 		,t_activities t2
 		where

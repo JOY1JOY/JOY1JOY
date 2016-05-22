@@ -3,12 +3,24 @@ var page = {
 	psize : 5
 };
 var JOY_URL_ORG_AT_LIST_URL = joy.getContextPath() + "/at/orgAtList.action";
-var ITEM_TEMPLATE = '<li class="join-row"><div class="td td-1">'
-		+ '<a href="{link_url}" class="title">{name}</a>'
-		+ '<p class="gray">{stime}</p></div><div class="td td-2"></div>'
-		+ '<div class="td td-3">{statusName}（{partNum}/{pnum}）</div><div class="td td-4">'
-		+ '{opt}</li>';
+
+//var ITEM_TEMPLATE = '<li class="join-row"><div class="td td-1">'
+//		+ '<a href="{link_url}" class="title">{name}</a>'
+//		+ '<p class="gray">{stime}</p></div><div class="td td-2"></div>'
+//		+ '<div class="td td-3">{statusName}（{partNum}/{pnum}）</div><div class="td td-4">'
+//		+ '{opt}</li>';
+
 var ITEM_OPT_TEMPLATE = '<a href="{optUrl}">{optName}</a>';
+
+var ITEM_TEMPLATE= '<div class="row">';
+ITEM_TEMPLATE+='<div class="col-sm-12 col-md-3 col-lg-3 thumImages">';
+ITEM_TEMPLATE+='<img alt="140x140" src="{imgSrc}" />';
+ITEM_TEMPLATE+='</div>';
+ITEM_TEMPLATE+='<div class="col-sm-12 col-md-8 col-lg-8"><h3>';
+ITEM_TEMPLATE+='<a href="{link_Url}" target="blank" class="title">{name}</a>';
+ITEM_TEMPLATE+='</h3><p></p><p></p><p>发布时间：{stime}</p>';
+ITEM_TEMPLATE+='</div>';
+ITEM_TEMPLATE+='</div>';
 
 $(function() {
 	// 创建分页
@@ -43,18 +55,20 @@ $(function() {
 					if (JOY_ACTIVITY_STATUS[me.status]) {
 						me.statusName = JOY_ACTIVITY_STATUS[me.status];
 					}
+					me.imgSrc = joy.getContextPath() + me.poster;
 					// 处理链接
 					var link_url = joy.getContextPath()
 							+ "/at/detail.action?activity.id=" + me.id;
 					me.link_url = link_url;
 					// 处理操作
+					
 					var opt = "";
 					var opt_param = {
 						id : me.id,
 						optUrl : "#",
 						optName : ""
 					};
-
+                   
 					if (me.status == -2 || me.status == -1) {
 						opt_param.optName = "编辑";
 						opt_param.optUrl = joy.getContextPath()
@@ -68,9 +82,9 @@ $(function() {
 						opt += joy.template(ITEM_OPT_TEMPLATE, opt_param);
 					}
 					me.opt = opt;
-
+          
 					var content = joy.template(ITEM_TEMPLATE, me);
-					$(".join-list").append(content);
+					$("#join-list").append(content);
 				});
 
 			} else {

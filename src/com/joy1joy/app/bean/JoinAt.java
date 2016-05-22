@@ -6,16 +6,33 @@ import org.apache.ibatis.type.Alias;
 
 import com.alibaba.fastjson.annotation.JSONField;
 
-/*
- *
- *@author xujun
+/**
+ * @author DSY1029
+ * <p>Description: </p>
+ * @date 2016-5-22 上午10:25:43
+ * @version V1.0
  */
+
+
 @Alias("join")
 public class JoinAt {
 	private int atid;
 	private String name;
 	@JSONField(format = "yyyy-MM-dd HH:mm:ss")
 	private Date addtime;
+   
+	/**
+	 * 活动缩略图
+	 */
+	private String atthumb;
+
+	public String getAtthumb() {
+		return atthumb;
+	}
+
+	public void setAtthumb(String atthumb) {
+		this.atthumb = atthumb;
+	}
 
 	public int getAtid() {
 		return atid;
