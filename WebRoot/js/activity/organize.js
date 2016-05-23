@@ -10,7 +10,7 @@ var JOY_URL_ORG_AT_LIST_URL = joy.getContextPath() + "/at/orgAtList.action";
 //		+ '<div class="td td-3">{statusName}（{partNum}/{pnum}）</div><div class="td td-4">'
 //		+ '{opt}</li>';
 
-var ITEM_OPT_TEMPLATE = '<a href="{optUrl}">{optName}</a>';
+var ITEM_OPT_TEMPLATE = '<a href="{optUrl}"  class="btn btn-default" role="button">{optName}</a>';
 
 var ITEM_TEMPLATE= '<div class="row">';
 ITEM_TEMPLATE+='<div class="col-sm-12 col-md-3 col-lg-3 thumImages">';
@@ -18,7 +18,7 @@ ITEM_TEMPLATE+='<img alt="140x140" src="{imgSrc}" />';
 ITEM_TEMPLATE+='</div>';
 ITEM_TEMPLATE+='<div class="col-sm-12 col-md-8 col-lg-8"><h3>';
 ITEM_TEMPLATE+='<a href="{link_url}" target="blank" class="title">{name}</a>';
-ITEM_TEMPLATE+='</h3><p></p><p></p><p>发布时间：{cdatetime} </br> </br> {statusName}</p>';
+ITEM_TEMPLATE+='</h3><p></p><p></p><p>发布时间：{cdatetime}    &nbsp;&nbsp; 状态：{statusName} </br> </br>  {opt}</p>';
 ITEM_TEMPLATE+='</div>';
 ITEM_TEMPLATE+='</div>';
 
@@ -69,18 +69,25 @@ $(function() {
 						optName : ""
 					};
                    
-					if (me.status == -2 || me.status == -1) {
+					if (me.status == -2 || me.status == -1 ||me.status == 0 || me.status == 1) {
 						opt_param.optName = "编辑";
 						opt_param.optUrl = joy.getContextPath()
 								+ "/at/edit.action?activity.id=" + me.id;
 						opt += joy.template(ITEM_OPT_TEMPLATE, opt_param);
-					} else {
-						opt_param.optName = "成员管理";
-						opt_param.optType = 2;
+						opt +=' ';
+						opt_param.optName = "关闭";
 						opt_param.optUrl = joy.getContextPath()
-						+ "/at/partiList.action?activity.id=" + me.id;
+								+ "/at/close.action?activity.id=" + me.id;
 						opt += joy.template(ITEM_OPT_TEMPLATE, opt_param);
-					}
+					
+					} 
+//					else {
+//						opt_param.optName = "查看成员";
+//						opt_param.optType = 2;
+//						opt_param.optUrl = joy.getContextPath()
+//						+ "/at/partiList.action?activity.id=" + me.id;
+//						opt += joy.template(ITEM_OPT_TEMPLATE, opt_param);
+//					}
 					me.opt = opt;
           
 					var content = joy.template(ITEM_TEMPLATE, me);

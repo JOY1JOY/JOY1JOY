@@ -107,7 +107,23 @@ public class TActivityAction extends BaseAction {
 
 		return C_INPUT;
 	}
+    /**
+     * @author DSY1029
+     * 关闭活动
+     */
+	@Action(value = "close", results = { @Result(name = C_SUCCESS, location = "/WEB-INF/content/activity/organize.jsp") })
+	public String close(){
+		logger.debug("关闭活动");
+		TActivity at = new TActivity();
+		at.setId(activity.getId());
+		//设置为关闭状态
+		at.setStatus(3);
+		int flag = iTActivity.updateAtStatus(at);
+	
+		return C_SUCCESS;
 
+		
+	}
 	/**
 	 * 活动管理
 	 * 
