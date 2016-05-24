@@ -190,7 +190,6 @@
 								</h4>
 							</label>
 							<div class="col-sm-8 col-md-6">
-							<!--  
 								<div id="uploader">
 									<div class="queueList">
 										<div id="dndArea" class="placeholder">
@@ -212,13 +211,13 @@
 										</div>
 									</div>
 								</div>
-								-->
 								
+								<!-- 
 								<div id="uploader">
-    <!--用来存放item-->
     <div id="fileList" class="uploader-list"></div>
     <div id="filePicker">选择图片</div>
 </div>				
+-->
 							</div>
 							<input type="hidden" id="at_poster" value="${activity.poster}"
 								name="activity.poster">

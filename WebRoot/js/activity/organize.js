@@ -10,7 +10,7 @@ var JOY_URL_ORG_AT_LIST_URL = joy.getContextPath() + "/at/orgAtList.action";
 //		+ '<div class="td td-3">{statusName}（{partNum}/{pnum}）</div><div class="td td-4">'
 //		+ '{opt}</li>';
 
-var ITEM_OPT_TEMPLATE = '<a href="{optUrl}"  class="btn btn-default" role="button">{optName}</a>';
+var ITEM_OPT_TEMPLATE = '<a href="{optUrl}"  class="btn btn-default  buttonjo1joy" role="button">{optName}</a>';
 
 var ITEM_TEMPLATE= '<div class="row">';
 ITEM_TEMPLATE+='<div class="col-sm-12 col-md-3 col-lg-3 thumImages">';
