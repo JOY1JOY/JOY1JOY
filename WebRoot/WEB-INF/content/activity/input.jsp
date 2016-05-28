@@ -212,6 +212,14 @@
 									</div>
 								</div>
 								
+								<li class="ex_li">
+    <p class="imgWrap">
+        <img src="${activity.poster}">
+    </p>
+
+</li>
+
+								
 								<!-- 
 								<div id="uploader">
     <div id="fileList" class="uploader-list"></div>
