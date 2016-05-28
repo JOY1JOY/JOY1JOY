@@ -18,6 +18,8 @@
 <meta name="keywork" value="动一动,白领,户外活动,学习,周末无聊,周末干嘛,有趣">
 <meta name="description" content="网站描述">
 <link rel='icon' href="<%=path%>images/favcion.ico" type=‘image/x-ico’ />
+		<link href="<%=path%>resCss/list.css" rel="stylesheet">
+
 
 <jsp:include page="base/base_import_jquery1.11.2.jsp" />
 <script type="text/javascript"

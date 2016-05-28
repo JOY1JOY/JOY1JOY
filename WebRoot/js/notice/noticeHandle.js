@@ -12,8 +12,8 @@ var initPagination = function() {
 		num_display_entries : 8, // 主体页数
 		callback : pageselectCallback,
 		items_per_page : 6, // 每页显示8项
-		prev_text : "&laquo",
-		next_text : "&raquo"
+		prev_text : "PRE",
+		next_text : "NEXT"
 	});
 };
 
@@ -78,29 +78,18 @@ function pageselectCallback(page_index, jq) {
 	return false;
 }
 
-var notice ={
-		
-};
-notice.search_handler=function(o){
-	
-	alert('TEST');
-    var v = o.find('a').attr("data-value");
-    alert(v);
-    $.ajax({
-    	
-    	
-    	
-    });
-
-	
-	
-}
-
-
 $(function() {
 	$("#Pagination").hide();
 	initPagination();
-
+//	initKnowledge();
+	
+//	$("#activity").click(function() {
+//		initPagination();
+//	});
+	
+	
+	
+	
 	// 分类
 	$(".post-nav li").on("click", function(e){
 		
@@ -124,7 +113,7 @@ $(function() {
 		
 	//	var val=$self.parent().attr("data");
 		
-		notice.search_handler($self);
+		notice.search_handler(val, $self);
 		
 	});
 	

@@ -4,6 +4,8 @@
 	String path = request.getContextPath();
 	//System.out.println(path + "************");
 %>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
@@ -13,7 +15,6 @@
 		<jsp:include page="../base/base_import_jquery1.11.2.jsp" />
 
 
-		<link rel="stylesheet" href="<%=path%>/css/pagination.css" />
 
 		<link rel="stylesheet" type="text/css"
 			href="<%=path%>/resCss/info.css">
@@ -23,16 +24,15 @@
 		<script type="text/javascript" src="<%=path%>/js/jquery.pagination.js"></script>
 		<script type="text/javascript" src="<%=path%>/js/jquery.idTabs.min.js"></script>
 		<script type="text/javascript" src="<%=path%>/js/notice/noticeList.js"></script>
+		
 
 	</head>
 
-	<body>
+	<body id="top">
+	
 		<input type="hidden" id="PageNum" value="${PageNum}" />
 		<input type="hidden" id="noticeType" value="${noticeType}" />
 		<jsp:include page="../base/joy1joy_header.jsp" />
-
-
-
 
 
 		<div class="container info-wrap" >
@@ -40,15 +40,15 @@
 				<div class="col-sm-12 col-md-8 col-lg-8">
 					<ul class="post-nav" id="post-nav">
 						<li data-id="1" class="active">
-							<a href="/Pocket/Post" >所有</a>
+							<a href="#" data-value="ALL">所有</a>
 						</li>
-						<li data-id="2">
-							<a href="/Pocket/Post/Tag/2">爬山</a>
+						
+							<s:iterator var="t" value="dtypes">							
+								<li data-id="2">
+							<a href="#" data-value="${t.dkey}">${t.dvalue}</a>
 						</li>
-						<li data-id="6">
-							<a href="/Pocket/Post/Tag/6">摄影</a>
-						</li>
-
+						</s:iterator>
+						
 					</ul>
 				</div>
              </div>
@@ -56,7 +56,12 @@
              	<div class="container" id="topicList">
 			    </div>
                    	<div class="row">
-              <div id="Pagination" class="pagination"></div>
+              <nav>
+  <ul class="pagination pagination-sm" id="Pagination">
+
+
+  </ul>
+</nav>
               </div>
               
 		</div>

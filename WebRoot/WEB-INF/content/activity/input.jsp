@@ -212,12 +212,6 @@
 									</div>
 								</div>
 								
-								<li class="ex_li">
-    <p class="imgWrap">
-        <img src="${activity.poster}">
-    </p>
-
-</li>
 
 								
 								<!-- 

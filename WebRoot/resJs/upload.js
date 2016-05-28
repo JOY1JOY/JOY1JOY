@@ -153,9 +153,10 @@
             fileVal:'upload', //指明参数名称，后台也用这个参数接收文件
             chunkSize: 512 * 1024,
           //  server: '../../server/fileupload.php',
+            // duansy
             server: joy.getContextPath() + '/at/upload.action',
             // runtimeOrder: 'flash',
-
+            // end by duansy
              accept: {
                  title: 'Images',
                  extensions: 'gif,jpg,jpeg,bmp,png',
@@ -211,14 +212,13 @@
         // });
 
         // 添加“添加文件”的按钮，
-//        uploader.addButton({
-//            id: '#filePicker2',
-//            label: '继续添加'
-//        });
+        uploader.addButton({
+            id: '#filePicker2',
+            label: '继续添加'
+        });
 
         uploader.on('ready', function() {
             window.uploader = uploader;
-        });
 
         // 当有文件添加进来时执行，负责view的创建
         function addFile( file ) {

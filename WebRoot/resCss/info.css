@@ -91,5 +91,9 @@ ul {
 .post-nav {
     margin-bottom: -20px;
 }
-
+li.active a {
+    background-color: #40c8f4;
+    border: 1px solid #40c8f4;
+    color: #fff;
+}
 

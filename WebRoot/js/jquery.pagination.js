@@ -58,6 +58,7 @@ jQuery.fn.pagination = function(maxentries, opts){
 					evt.cancelBubble = true;
 				}
 			}
+			scrollTo(0,0);
 			return continuePropagation;
 		}
 		
@@ -76,15 +77,26 @@ jQuery.fn.pagination = function(maxentries, opts){
 			var appendItem = function(page_id, appendopts){
 				page_id = page_id<0?0:(page_id<np?page_id:np-1); // 规范page id值
 				appendopts = jQuery.extend({text:page_id+1, classes:""}, appendopts||{});
+				
+				var li=$("<li></li>");
+				
 				if(page_id == current_page){
-					var lnk = jQuery("<span class='current'>"+(appendopts.text)+"</span>");
+					var lnk = jQuery("<a href=\"#\">"+(appendopts.text)+"</a>");
+					li.addClass("active");
 				}else{
 					var lnk = jQuery("<a>"+(appendopts.text)+"</a>")
 						.bind("click", getClickHandler(page_id))
 						.attr('href', opts.link_to.replace(/__id__/,page_id));		
 				}
-				if(appendopts.classes){lnk.addClass(appendopts.classes);}
-				panel.append(lnk);
+				if(appendopts.classes){
+					/*lnk.addClass(appendopts.classes);*/
+					lnk.html("");
+					lnk.attr("aria-label","Previous");
+					lnk.append("<span aria-hidden=\"true\">"+appendopts.text+"</span>");
+					li.removeClass("active");
+				}
+				li.append(lnk);
+				panel.append(li);
 			}
 			// 产生"Previous"-链接
 			if(opts.prev_text && (current_page > 0 || opts.prev_show_always)){

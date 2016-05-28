@@ -51,6 +51,9 @@ import com.opensymphony.xwork2.ActionContext;
  * @author boyd
  * @version 1.0
  */
+
+
+
 @Results({
 		@Result(name = "success", location = "/WEB-INF/content/user/success.jsp"),
 		@Result(name = "success", location = "/WEB-INF/content/user/fail.jsp") })
@@ -92,6 +95,15 @@ public class TNoticesAction extends BaseAction {
 				noticeState = TNotices.NOTICE_STATUE_RELEASE;
 			}
 		}
+		
+		// add by duansy 20160528 for 
+		
+	   List<TDict> dicts = dictService.findDictByType(DICT_NOTICE);
+		
+		ActionContext.getContext().put("dtypes", dicts);
+		
+		//end by duansy
+		
 //		// 查询公告字典集合
 //		List<TDict> dicts = dictService.findDictByType("notice");
 //		for (TDict dict : dicts) {
@@ -103,6 +115,7 @@ public class TNoticesAction extends BaseAction {
 //			// System.out.println(dict.getDkey()+"PageNum");
 //			request.setAttribute(dict.getDkey() + "PageNum", pageNum);
 //		}
+		
 		int totalCount = noticeService.selectTNoticesCount(noticeType,
 				noticeState);
 		int pageNum = getPageNum(totalCount);
