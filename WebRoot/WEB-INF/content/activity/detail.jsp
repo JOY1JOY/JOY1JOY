@@ -34,11 +34,10 @@
             <!-- Main jumbotron for a primary marketing message or call to action -->
 
             <div class="fetature container">
-                <div class="detail">
-
-                    <div class="col-6 col-sm-6 col-lg-12">
-                        <a href="#" class="thumbnail">
-                            <img alt="Korean Bao Sliders " src="<%=path.substring(0, path.length() - 1)%><s:property value='activity.poster' />"></a>
+          
+                    <div class="col-10 col-sm-10 col-lg-8">
+                        <a href="#" >
+                            <img alt="Korean Bao Sliders " class="img-responsive" src="<%=path.substring(0, path.length() - 1)%><s:property value='activity.poster' />"></a>
                         <div class="recipe-title">
                             <h3>
                                 <a href="/recipes/korean-bao-sliders-with-gochujang-mayo-sweet-potato-tempura"><s:property value="activity.name" /></a>
@@ -72,16 +71,13 @@
 <!-- JiaThis Button END -->
     </div>
                         <div class="content">
-                            <h3 class="content-title"> 活动介绍</h3>
                             <div class="d-con">${activity.description}
                        </div>
                         </div>
                     </div>
 
 
-
-
-                </div>
+             
                 <!--/row--> </div>
         </div>
        

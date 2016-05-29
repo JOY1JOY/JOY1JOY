@@ -518,31 +518,38 @@ public class TActivityAction extends BaseAction {
 
 
 	@LoginAccess
-	@Action(value = "add", results = { @Result(name = C_SUCCESS, location = "/WEB-INF/content/base/JSON.jsp") })
+	@Action(value = "add", results = { @Result(name = C_SUCCESS, location = "/WEB-INF/content/base/JSON.jsp"),
+			@Result(name = "error", location = "/WEB-INF/content/base/JSON.jsp")
+	})
 	public String add() {
 		logger.debug("添加活动");
 		int code = -1;
 		String msg = MSG_FAILURE;
 
-		activity.setCuid(getLoginUserId());
-		activity.setCdatetime(DateTool.getCurrentDate());
-		
-		String thumbnailPath=processThumbnail(activity.getPoster());
-		
-		activity.setThumbnail(thumbnailPath);
-		//activity.setStatus(0);
-		int i = this.iTActivity.insertActivity(activity);
-		if (i > 0) {
-			code = 0;
-			msg = MSG_SUCCESS;
-
-			logger.debug("新建活动成功!id=" + activity.getId() + "--->" + i);
-		} else {
-			logger.error("新建活动失败!");
+		try {
+			activity.setCuid(getLoginUserId());
+			activity.setCdatetime(DateTool.getCurrentDate());
+			//生成缩略图
+			String thumbnailPath=processThumbnail(activity.getPoster());
+			activity.setThumbnail(thumbnailPath);
+			//activity.setStatus(0);
+			int i = this.iTActivity.insertActivity(activity);
+			if (i > 0) {
+				code = 0;
+				msg = MSG_SUCCESS;
+				logger.debug("新建活动成功!id=" + activity.getId() + "--->" + i);
+			} else {
+				logger.error("新建活动失败!");
+			}
+			ActionContext.getContext().put(JSON_DATA,
+					this.jsonData(code, msg, null));
+			return C_SUCCESS;
+		} catch (Exception e) {
+			e.printStackTrace();
+			ActionContext.getContext().put(JSON_DATA,
+					this.jsonData(code, msg, e.getMessage()));
+			return C_ERROR;
 		}
-		ActionContext.getContext().put(JSON_DATA,
-				this.jsonData(code, msg, null));
-		return C_SUCCESS;
 	}
 	
 	

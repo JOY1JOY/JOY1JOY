@@ -320,10 +320,10 @@
         minView: 2,
         forceParse: 0
     });
-    var toolbar = ['bold', 'italic', 'underline', 'strikethrough','image', 'hr','indent', 'outdent' ];
+    var toolbar = ['bold', 'italic', 'underline', 'strikethrough','fontScale','color','table','ol','ul','image', 'hr','indent', 'outdent' ];
     var editor = new Simditor({
-  textarea: $('#at_description'),
-  upload : {
+    textarea: $('#at_description'),
+    upload : {
             url : joy.getContextPath() + '/at/uploadEdit.action', //文件上传的接口地址
             params: null, //键值对,指定文件上传接口的额外参数,上传的时候随文件一起提交
             fileKey: 'upload', //服务器端获取文件数据的参数名
@@ -334,6 +334,7 @@
   //optional options
 });
 
+$("#at_name").focus();
 </script>
 	</body>
 </html>

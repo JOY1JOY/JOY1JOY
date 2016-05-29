@@ -264,8 +264,9 @@ function submit_handler(status) {
 		} else {
 			if (o && o.checkSession) {
 				joy.util.handle_not_login(window);
-			} else
-				joy.alert("对不起,保存失败,请稍后重试!");
+			} else {
+				joy.alert("对不起,保存失败:"+o.data);
+			}
 		}
 	}, "json");
 	return is_approved;
