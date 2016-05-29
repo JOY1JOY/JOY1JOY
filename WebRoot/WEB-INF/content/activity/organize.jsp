@@ -70,8 +70,14 @@
 				<div class="col-sm-12 col-md-10 col-lg-10" >
                    <div class="container" id="join-list">
                    </div>
+                   
 					<div class="row">
-						<div id="Pagination" class="pagination"></div>
+						<div class="row">
+							<nav>
+							<ul class="pagination pagination-sm" id="Pagination">
+							</ul>
+							</nav>
+						</div>
 						<div class="loading" style="display: none">
 							还没有数据……
 						</div>

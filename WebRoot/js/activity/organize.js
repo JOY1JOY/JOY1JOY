@@ -29,8 +29,8 @@ $(function() {
 		num_display_entries : 4, // 主体页数
 		callback : pageselectCallback,
 		items_per_page : page.psize, // 每页显示1项
-		prev_text : "上一页",
-		next_text : "下一页"
+		prev_text : "&laquo",
+		next_text : "&raquo"
 	});
 	
 	if($("#totalPages").val()==0){
