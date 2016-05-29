@@ -30,7 +30,6 @@
 		<meta name="keywork" value="动一动，白领，户外活动，学习，周末无聊，周末干嘛">
 		<link rel='icon' href="<%=path%>images/favcion.ico" type=‘image/x-ico’ />
 		<meta name="description" content="网站描述">
-		<link href="<%=path%>css/pagination.css" rel="stylesheet">
 		<link rel="stylesheet" type="text/css"
 			href="<%=path%>resCss/person.css">
 		<link rel="stylesheet" type="text/css"
@@ -71,23 +70,33 @@
 
 					    <div class="container" id="join-list">
                    </div>
-					<div class="row">
-						<div id="Pagination" class="pagination"></div>
+					
+					
+						<div class="row">
+						<div class="row">
+							<nav>
+							<ul class="pagination pagination-sm" id="Pagination">
+							</ul>
+							</nav>
+						</div>
 						<div class="loading" style="display: none">
 							还没有数据……
 						</div>
 					</div>
+					
 
 				</div>
 
 				<div class="col-sm-8 col-md-2 col-lg-2 bs-docs-sidebar">
-					<ul class="nav nav-list bs-docs-sidenav">
-						<li>
-							<a href="<%=path%>at/joinAt.action"> 已报名活动</a>
-						</li>
-						<li class="active">
+					<ul class="nav nav-list bs-docs-sidenav text-right">
+					<li>
 							<a href="<%=path%>at/organize.action"> 已发布活动</a>
 						</li>
+						
+						<li class="active">
+							<a href="<%=path%>at/joinAt.action"> 已报名活动</a>
+						</li>
+						
 						<li>
 							<a href="#"> 已发布话题</a>
 						</li>

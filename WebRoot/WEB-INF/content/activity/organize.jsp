@@ -30,7 +30,6 @@
 		<meta name="keywork" value="动一动，白领，户外活动，学习，周末无聊，周末干嘛">
 		<link rel='icon' href="<%=path%>images/favcion.ico" type=‘image/x-ico’ />
 		<meta name="description" content="网站描述">
-		<link href="<%=path%>css/pagination.css" rel="stylesheet">
 		<link rel="stylesheet" type="text/css"
 			href="<%=path%>resCss/person.css">
 		<link rel="stylesheet" type="text/css"
@@ -41,6 +40,8 @@
 
 	<body>
 		<jsp:include page="../base/joy1joy_header.jsp"></jsp:include>
+		<jsp:include page="../base/joy1joy_modal.jsp"></jsp:include>
+		
 
 
 		<div class="main wrap">
@@ -68,7 +69,7 @@
 			<div class="container" >
 
 				<div class="col-sm-12 col-md-10 col-lg-10" >
-                   <div class="container" id="join-list">
+                   <div  id="join-list">
                    </div>
                    
 					<div class="row">
@@ -86,13 +87,15 @@
 				</div>
 
 				<div class="col-sm-8 col-md-2 col-lg-2 bs-docs-sidebar">
-					<ul class="nav nav-list bs-docs-sidenav">
+					<ul class="nav nav-list bs-docs-sidenav text-right">
+					<li class="active">
+							<a href="<%=path%>at/organize.action"> 已发布活动</a>
+						</li>
+						
 						<li>
 							<a href="<%=path%>at/joinAt.action"> 已报名活动</a>
 						</li>
-						<li class="active">
-							<a href="<%=path%>at/organize.action"> 已发布活动</a>
-						</li>
+						
 						<li>
 							<a href="#"> 已发布话题</a>
 						</li>

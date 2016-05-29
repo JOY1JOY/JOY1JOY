@@ -216,7 +216,6 @@ $(function(){
 		});
 		$("#reg_btn").click(function(){
 			
-			alert("test");
 			var goRes=true;
 			var userId=$("#userId").val();
 
@@ -228,11 +227,9 @@ $(function(){
 			var twoPass=$("#twoPass").val();
 			var isMobile=/^(?:13\d|15\d|18\d)\d{5}(\d{3}|\*{3})$/;
 			
-			alert("test2");
 			
 			if(userId=="")
 				{
-				alert("test3");
 					$("#userIdSpan").html("用户名不能为空");
 					goRes=false;
 				}
@@ -246,7 +243,6 @@ $(function(){
 			{
 				if(!isMobile.test(userName))
 				{ 
-					alert("test4");
 					$("#phoneSpan").html("手机号格式不正确");
 					goRes=false;
 				}
@@ -274,7 +270,7 @@ $(function(){
 //				goRes=false;
 //			}
 			//alert(goRes);
-				alert("test05");
+
 			if(onePass=="")
 			{
 				$("#oneSpan").html("密码不能为空");
@@ -290,7 +286,7 @@ $(function(){
 				}
 			}
 			//alert(goRes);
-			alert("test07");
+
 			if(twoPass=="")
 			{
 				$("#twoSpan").html("重复密码不能为空");
@@ -311,13 +307,10 @@ $(function(){
 				}
 			}
 			//alert(goRes);
-			alert("test08");
 			if(goRes)
 			{
-				alert("test09");
 				if($("#agree").prop('checked'))
 				{
-					alert("test10");
 					$.ajax({
 						 url:joy.getContextPath() +'/user/findUser.action',
 						 type:'post',
@@ -327,7 +320,6 @@ $(function(){
 						 dataType:'json',
 						 success:function(re)
 						 {
-								alert("test11");
 								alert(re.result);
 							 if(re.result=="noExit")
 							 {
@@ -434,7 +426,6 @@ $(function(){
 		$("#log_btn").click(function(){
 			var loginName=$("#loginName").val();
 			var loginPass=$("#loginPass").val();
-			alert("test");
 			if(loginName=="")
 			{
 				joy.alert("用户名不能为空");

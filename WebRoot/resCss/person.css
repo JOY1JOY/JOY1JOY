@@ -64,13 +64,22 @@
     margin: 0 6px;
     color: #82b64a;
 }
-.thumImages{
-	max-width: 180px;
-	max-height: 180px;
-	margin: 20px;
-}
 
-.thumImages>img{
-	max-width: 180px;
-	max-height: 180px;
+
+
+#join-list{
+	margin-left:-25px;
+	}
+.item-c {
+    padding-right: 166px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e7ebed;
+    position: relative;
 }
+.item-c p{
+	font-size: 0.6rem;
+    color: #999999;
+    line-height: 0.9rem;
+	}
+	

@@ -385,6 +385,7 @@ public class TActivityAction extends BaseAction {
 		ActionContext.getContext().put("dstatus", dstatus);
 		ActionContext.getContext().put("dtime", dtime);
 		
+		
 		return C_INPUT;
 	}
 

@@ -469,7 +469,7 @@ Formatter = (function(superClass) {
     this.editor = this._module;
     this._allowedTags = $.merge(['br', 'span', 'a', 'img', 'b', 'strong', 'i', 'strike', 'u', 'font', 'p', 'ul', 'ol', 'li', 'blockquote', 'pre', 'code', 'h1', 'h2', 'h3', 'h4', 'hr'], this.opts.allowedTags);
     this._allowedAttributes = $.extend({
-      img: ['src', 'alt', 'width', 'height', 'data-non-image'],
+      img: ['src', 'alt', 'width', 'height', 'data-non-image','class'],
       a: ['href', 'target'],
       font: ['color'],
       code: ['class']
@@ -4577,6 +4577,7 @@ ImageButton = (function(superClass) {
     range.deleteContents();
     this.editor.selection.range(range);
     $img = $('<img/>').attr('alt', name);
+	$img.attr('class','img-responsive');
     range.insertNode($img[0]);
     this.editor.selection.setRangeAfter($img, range);
     this.editor.trigger('valuechanged');
@@ -4832,6 +4833,7 @@ ImagePopover = (function(superClass) {
     this.width = $img.width();
     this.height = $img.height();
     this.alt = $img.attr('alt');
+	this.class=$img.attr('class');
     if ($img.hasClass('uploading')) {
       return this.srcEl.val(this._t('uploading')).prop('disabled', true);
     } else {

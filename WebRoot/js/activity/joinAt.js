@@ -1,18 +1,17 @@
 var page = {
 	pno : 1,
-	psize : 5
+	psize : 2
 };
 var JOY_URL_ORG_AT_LIST_URL = joy.getContextPath() + "/join/joinList.action";
 // var ITEM_TEMPLATE = '<li class="join-row"><div class="td td-1"><a href="{linkUrl}" class="title">{name}</a></div><div class="td td-2"></div><div class="td td-3">{addtime}</div><div class="td td-4"></div></li>';
 
-
-var ITEM_TEMPLATE= '<div class="row">';
-ITEM_TEMPLATE+='<div class="col-sm-12 col-md-3 col-lg-3 thumImages">';
-ITEM_TEMPLATE+='<img alt="140x140" src="{imgSrc}" />';
+var ITEM_TEMPLATE= '<div class="row item-c">';
+ITEM_TEMPLATE+='<div class="col-sm-12 col-md-3 col-lg-4 thumImages">';
+ITEM_TEMPLATE+='<img class="img-responsive" src="{imgSrc}" />';
 ITEM_TEMPLATE+='</div>';
 ITEM_TEMPLATE+='<div class="col-sm-12 col-md-8 col-lg-8"><h3>';
-ITEM_TEMPLATE+='<a href="{linkUrl}" target="blank" class="title">{name}</a>';
-ITEM_TEMPLATE+='</h3><p></p><p></p><p>报名时间：{addtime}</p>';
+ITEM_TEMPLATE+='<a href="{linkUrl}" target="_blank" class="title">{name}</a>';
+ITEM_TEMPLATE+='</h3><p></p><p></p><p>{addtime}    &nbsp;&nbsp;</br> </br>  {opt}</p>';
 ITEM_TEMPLATE+='</div>';
 ITEM_TEMPLATE+='</div>';
 
@@ -23,8 +22,8 @@ $(function() {
 		num_display_entries : 4, // 主体页数
 		callback : pageselectCallback,
 		items_per_page : page.psize, // 每页显示1项
-		prev_text : "上一页",
-		next_text : "下一页"
+		prev_text : "&laquo",
+		next_text : "&raquo"
 	});
 	// alert($("#totalPages").val());
 	if($("#totalPages").val()==0){
@@ -49,6 +48,7 @@ $(function() {
 					me.linkUrl = joy.getContextPath()
 							+ "/at/detail.action?activity.id=" + me.atid;
 					me.imgSrc = joy.getContextPath() + me.atthumb;
+					me.addtime=me.addtime.substring(0,16);
 					var content = joy.template(ITEM_TEMPLATE, me);
 					$("#join-list").append(content);
 				});

@@ -108,17 +108,15 @@ function form_init() {
 	$("#activity_form")[0].reset();
 }
 function submit_handler(status) {
+	
 	var is_approved = true;
-    alert('1');
 	var name_val = $.trim($("#at_name").val());
-	alert(name_val);
 	if (name_val == "") {
 		tip("标题不能为空");
 		return false;
 	}
 
 	var stime_val = $.trim($("#at_stime").val());
-	alert(stime_val);
 	if (stime_val == "") {
 		tip("开始时间不能为空!");
 		return false;
@@ -182,7 +180,6 @@ function submit_handler(status) {
 //	var at_description_val = CKEDITOR.instances.at_description.getData();
 	var at_description_val = editor.getValue();
 //	var at_description_val=$(".simditor-body").html();
-	alert(at_description_val);
 	if (at_description_val == "") {
 		tip("活动内容不能为空");
 		return false;
@@ -232,10 +229,7 @@ function submit_handler(status) {
 	 var address = $("select[name='activity.address']").val();
 	// var address = 'zhengzhou';
 	
-	alert(address);
-	alert(stime_val);
 	var Aid=$("#at_id").val();
-	alert(Aid);
 	var data = {
 		'activity.id' : Aid,
 		"activity.name" : name_val,
@@ -247,7 +241,6 @@ function submit_handler(status) {
 		"activity.poster" : poster_val,
 		"activity.description" : at_description_val,
 	};
-   alert('777');
 	var url = JOY_URL_ACTIVITY_ADD;
 	var opt_type = $("#at_optType").val();
 	var isAdd = true;
@@ -259,7 +252,6 @@ function submit_handler(status) {
 			return false;
 		}
 	}
-	  alert(url);
 	$.post(url, data, function(o) {
 		if (o && o.code == 0) {
 			if (isAdd)

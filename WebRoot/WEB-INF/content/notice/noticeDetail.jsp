@@ -38,8 +38,7 @@ list-style: none;
 
     <div class="container">
     <div class="col-12 col-sm-10 col-lg-8">
-    	 <ul>
-                <li>
+    
                 <div class="author"><a href="#"> <img src="${tnotice.icon}"></img> ${tnotice.userid}</a>
                 </div>
                 <p></p>
@@ -47,9 +46,7 @@ list-style: none;
                 <a href="javascript:void(0);">${tnotice.title}</a>
                    
                   <p class="blank">${tnotice.content}</p>
-                </li>
-                
-     </ul>
+ 
     
     </div>
     

@@ -78,7 +78,7 @@
        href="#"><%=userID%><b class="caret"></b></a>
        <ul class="dropdown-menu">
        <li>
-                            <a href="<%=path%>at/joinAt.action">个人中心</a>
+                            <a href="<%=path%>at/organize.action">个人中心</a>
                                    <a href="<%=path%>user/jumpUserDetail.action">个人设置</a>
                                    <a href="<%=path%>user/exit.action">退出</a>
                         </li>

@@ -219,9 +219,17 @@
 
         uploader.on('ready', function() {
             window.uploader = uploader;
+        });
 
         // 当有文件添加进来时执行，负责view的创建
         function addFile( file ) {
+        	
+        	if("1"===isEdit){
+        		modifyImage();
+        	}
+        	
+        	
+        	
             var $li = $( '<li id="' + file.id + '">' +
                     '<p class="title">' + file.name + '</p>' +
                     '<p class="imgWrap"></p>'+
@@ -587,6 +595,52 @@
 
         $upload.addClass( 'state-' + state );
         updateTotalProgress();
+        
+        
+        function edit(poster){
+        	
+            $li = $( '<li id="editimage">' +
+                    '<p class="title">文件名</p>' +
+                    '<p class="imgWrap">'+
+                    '</p>'+
+                    '<p class="progress"><span></span></p>' +
+                    '</li>' );
+	
+		    $btns = $('<div class="file-panel">' +
+		        '<span class="cancel">删除</span>' +
+		        '<span class="rotateRight">向右旋转</span>' +
+		        '<span class="rotateLeft">向左旋转</span></div>').appendTo( $li );
+		    $prgress = $li.find('p.progress span');
+		    $imgwrap = $li.find( 'p.imgWrap' );
+		    $info = $('<p class="error"></p>');
+		    $imgwrap.append("<img width='100%' height='100%' src='"+poster+"'/>");
+		    
+		    
+	        $wrap.find(".placeholder").addClass("element-invisible");
+	        $wrap.find(".statusBar").show();
+	        $wrap.find(".filelist").append($li); 
+	        
+	        $(".webuploader-pick").html("重新上传");
+        	
+        }
+        
+
+        function modifyImage(){
+        	$("#editimage").remove();
+        }
+        
+        if("1"===isEdit){
+        	 edit(poster);  
+        }
+        
+            
+        
+
+        
+        
+        
+        
+        
     });
     
   

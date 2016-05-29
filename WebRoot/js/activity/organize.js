@@ -1,6 +1,6 @@
 var page = {
 	pno : 1,
-	psize : 5
+	psize : 6
 };
 var JOY_URL_ORG_AT_LIST_URL = joy.getContextPath() + "/at/orgAtList.action";
 
@@ -10,17 +10,33 @@ var JOY_URL_ORG_AT_LIST_URL = joy.getContextPath() + "/at/orgAtList.action";
 //		+ '<div class="td td-3">{statusName}（{partNum}/{pnum}）</div><div class="td td-4">'
 //		+ '{opt}</li>';
 
-var ITEM_OPT_TEMPLATE = '<a href="{optUrl}"  class="btn btn-default  buttonjo1joy" role="button">{optName}</a>';
+var ITEM_OPT_TEMPLATE = '<a href="{optUrl}" target="_blank" class="btn btn-default  buttonjo1joy" role="button">{optName}</a>';
+var ITEM_CLOSE_TEMPLATE = '<a href="#"  onclick="org.closeConfirm(\'{optUrl}\')" data-value="{id}" class="btn btn-default  buttonjo1joy" role="button">{optName}</a>';
 
-var ITEM_TEMPLATE= '<div class="row">';
-ITEM_TEMPLATE+='<div class="col-sm-12 col-md-3 col-lg-3 thumImages">';
-ITEM_TEMPLATE+='<img alt="140x140" src="{imgSrc}" />';
+var ITEM_TEMPLATE= '<div class="row item-c">';
+ITEM_TEMPLATE+='<div class="col-sm-4 col-md-3 col-lg-4 thumImages">';
+ITEM_TEMPLATE+='<img  class="img-responsive" src="{imgSrc}" />';
 ITEM_TEMPLATE+='</div>';
 ITEM_TEMPLATE+='<div class="col-sm-12 col-md-8 col-lg-8"><h3>';
-ITEM_TEMPLATE+='<a href="{link_url}" target="blank" class="title">{name}</a>';
-ITEM_TEMPLATE+='</h3><p></p><p></p><p>发布时间：{cdatetime}    &nbsp;&nbsp; 状态：{statusName} </br> </br>  {opt}</p>';
+ITEM_TEMPLATE+='<a href="{link_url}"  target="_blank">{name}</a>';
+ITEM_TEMPLATE+='</h3><p></p><p></p><p>{cdatetime}    &nbsp;&nbsp; 状态：{statusName} </br> </br>  {opt}</p>';
 ITEM_TEMPLATE+='</div>';
 ITEM_TEMPLATE+='</div>';
+
+var org = {
+		
+};
+
+org.closeConfirm=function(o){
+	alert(o);
+	$('#myModal').find('.modal-title').text('确认');
+	$('#myModal').find('.modal-body').text('确认关闭活动吗？');
+	$('#myModal').find('#Confirm').click(function(){
+		alert(o);
+	});
+    $('#myModal').modal();
+	
+}
 
 $(function() {
 	// 创建分页
@@ -48,7 +64,7 @@ $(function() {
 		$.getJSON(JOY_URL_ORG_AT_LIST_URL, page, function(o) {
 
 			if (o && o.data) {
-				$(".join-list").empty();
+				$("#join-list").empty();
 				$.each(o.data, function(i) {
 					var me = this;
 					me.statusName = "";
@@ -78,7 +94,7 @@ $(function() {
 						opt_param.optName = "关闭";
 						opt_param.optUrl = joy.getContextPath()
 								+ "/at/close.action?activity.id=" + me.id;
-						opt += joy.template(ITEM_OPT_TEMPLATE, opt_param);
+						opt += joy.template(ITEM_CLOSE_TEMPLATE, opt_param);
 					
 					} 
 //					else {
@@ -89,7 +105,7 @@ $(function() {
 //						opt += joy.template(ITEM_OPT_TEMPLATE, opt_param);
 //					}
 					me.opt = opt;
-          
+					me.cdatetime=me.cdatetime.substring(0,16);
 					var content = joy.template(ITEM_TEMPLATE, me);
 					$("#join-list").append(content);
 				});
