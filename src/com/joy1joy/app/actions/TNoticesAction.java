@@ -1,5 +1,6 @@
 package com.joy1joy.app.actions;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Timestamp;
 import java.util.HashMap;
@@ -66,7 +67,7 @@ public class TNoticesAction extends BaseAction {
 
 	private String noticeTitle;
 	private String noticeContent;
-	private String noticeType = "knowledge";
+	private String noticeType = "";
 	private int noticeState = 0;
 	private String type = "";
 	private int start;
@@ -120,9 +121,30 @@ public class TNoticesAction extends BaseAction {
 				noticeState);
 		int pageNum = getPageNum(totalCount);
 		request.setAttribute("PageNum", totalCount);
-
 		return C_SUCCESS;
 	}
+	
+	/**
+	 * get The total num
+	 * 
+	 */
+	@Action(value= "findTotalNum",results = { @Result(name = C_SUCCESS, location = "/WEB-INF/content/base/JSON.jsp") })
+	public String findTotalNum(){
+		
+		int code = -1;
+		String msg = MSG_FAILURE;
+		int data = 0;
+		try {
+		data = noticeService.selectTNoticesCount(noticeType,noticeState);
+		msg = MSG_SUCCESS;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ActionContext.getContext().put(JSON_DATA, jsonData(code, msg, data));		
+		return C_SUCCESS;
+	}
+	
 
 	@Action(value = "noticeList")
 	public void noticeList() {
@@ -164,7 +186,7 @@ public class TNoticesAction extends BaseAction {
 
 	@LoginAccess
 	@Action(value = "saveNotice", results = {
-			@Result(name = "success", location = "/WEB-INF/content/notice/noticeList.jsp"),
+			@Result(type="redirect",name = "success", location = "/notice/findNoticeList.action"),
 			@Result(name = "error", location = "/WEB-INF/content/notice/success.jsp"),
 			@Result(name = "input", location = "/WEB-INF/content/notice/noticeInput.jsp") })
 	public String save() {

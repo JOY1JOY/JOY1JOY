@@ -22,20 +22,8 @@
 <link href="<%=path%>css/style.css" rel="stylesheet"/>
 <link href="<%=path%>css/notice.css" rel="stylesheet"/>
 <style type="text/css">
-.m-input-text {
-	display:block;
-	padding:7px 0;
-	width:100%;
-	height:35px;
-	border:1px solid #e7e5e4;
-	font-size:14px;
-	line-height:20px;
-	text-indent:10px;
-	background-color:#fff;
-	border-radius:4px;
-	color:#737069
-}
-ul li{
+
+ ul li{
 list-style: none;
 }
 </style>
@@ -48,14 +36,9 @@ list-style: none;
 	
 	<div class="main wrap">
 
-<div class="notice_bar">
-    <div class="notice_inner">
-    <div id="usual2" class="usual"> 
-   
-      <div class="clear"></div>
-  
-            <h3 id="hType"></h3>
-            <ul>
+    <div class="container">
+    <div class="col-12 col-sm-10 col-lg-8">
+    	 <ul>
                 <li>
                 <div class="author"><a href="#"> <img src="${tnotice.icon}"></img> ${tnotice.userid}</a>
                 </div>
@@ -66,11 +49,12 @@ list-style: none;
                   <p class="blank">${tnotice.content}</p>
                 </li>
                 
-            </ul>
-      </div> 
-    </div> 
- 
-  </div>
+     </ul>
+    
+    </div>
+    
+    
+    </div>
 
   </div>
 <div class="footer-placeholder"></div>

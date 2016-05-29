@@ -85,7 +85,7 @@
 								<!-- Multiple Checkboxes -->
 									<s:iterator var="t" value="#request.dcits">
 								<label class="checkbox-inline">
-									<input type="checkbox" name="type" id="inlineCheckbox1" value=value="${t.dkey}">
+									<input type="checkbox" name="noticeType" id="inlineCheckbox1" value="${t.dkey}">
 									${t.dvalue}
 								</label>
 								
@@ -123,7 +123,8 @@
 								</button>
 							</div>
   -->
-							<div class=" col-sm-4 col-md-2">
+ <!--  			
+                               <div class=" col-sm-4 col-md-2">
 								<button type="submit" class="btn btn-default btn-info btn-block" id="at_submit2">
 									保存草稿
 								</button>
@@ -134,7 +135,8 @@
 									预览
 								</button>
 							</div>
-
+                           -->
+                           
 						</div>
 					</form>
 				</div>

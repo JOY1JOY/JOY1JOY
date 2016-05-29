@@ -23,7 +23,7 @@
 			and status= #{status,jdbcType=INTEGER}
 		</if>
 		<if test="type!=null and type!=''">
-		and type=#{type,jdbcType=VARCHAR}
+		and m.type like CONCAT('%',#{type},'%')
 		</if>
 		ORDER BY id DESC LIMIT
 		#{offset},#{limit}
