@@ -19,11 +19,12 @@ var initPagination = function() {
 
 function pageselectCallback(page_index, jq) {
 	page_index += 1;
+	var v = $("#noticeType").attr("value");
 	$.ajax({
 		url : joy.getContextPath() +'/notice/noticeList.action',
 		type : 'post',
 		data : {
-			noticeType : "",
+			noticeType : v,
 			pageIndex : page_index
 		},
 		cache : false,
@@ -65,7 +66,12 @@ function pageselectCallback(page_index, jq) {
 					html +='<label class="lab-good">赞&nbsp;165</label>';
 					html +='<label class="lab-discuss">评论&nbsp;14</label>';
 					html +='</div>';
-					html +='<img src="../images/22.jpg">';
+					var content = obj.content;
+					var ele=$(content).find("img:first").attr("src");
+					if("undefined" == typeof ele){
+					ele="../images/22.jpg";	
+					}
+					html +='<img src="'+ele+'">';
 				    html +='</div>';
 				    html +='</div>';
 					$("#topicList").append(html);
@@ -83,17 +89,36 @@ var notice ={
 };
 notice.search_handler=function(o){
 	
-	alert('TEST');
     var v = o.find('a').attr("data-value");
-    alert(v);
-    $.ajax({
-    	
-    	
-    	
+    // set the total num
+    $.ajax({	
+    	url : joy.getContextPath() +'/notice/findTotalNum.action',
+		type : 'post',
+		data : {
+			noticeType : v,
+		},
+		cache : false,
+		dataType : 'json',
+		success : function(re) {
+			
+      			//set the total num
+				$("#PageNum").attr("value",re.data);
+				$("#noticeType").attr("value",v);
+				
+			   //get the Init page data
+				$("#Pagination").pagination(re.data, {
+					num_edge_entries : 1, // 边缘页数
+					num_display_entries : 8, // 主体页数
+					callback : pageselectCallback,
+					items_per_page : 6, // 每页显示6项
+					prev_text : "&laquo",
+					next_text : "&raquo"
+				});
+				
+				},
     });
-
-	
-	
+//  get the first page data
+//	initPagination();
 }
 
 
@@ -103,14 +128,12 @@ $(function() {
 
 	// 分类
 	$(".post-nav li").on("click", function(e){
-		
 		var $self = $(this);
-		
 		e.preventDefault();
 		
 		$self.addClass("active");
 	//	$self.removeClass(JOY_CLASS_ITEM_UNSELECTED);
-		
+	
 		var fobj = this;
 		
 		var $all= $self.siblings();
