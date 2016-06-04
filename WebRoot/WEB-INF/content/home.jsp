@@ -13,7 +13,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<title>动一动，户外心生活</title>
+<title>动一动-周边优质趣味户外活动分享者</title>
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
 <meta name="keywork" value="动一动,白领,户外活动,学习,周末无聊,周末干嘛,有趣">
 <meta name="description" content="网站描述">
