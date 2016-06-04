@@ -68,7 +68,7 @@
 
 			<div class="container" >
 
-				<div class="col-sm-12 col-md-10 col-lg-10" >
+				<div class="col-sm-12 col-md-8 col-lg-10" >
                    <div  id="join-list">
                    </div>
                    
@@ -86,7 +86,7 @@
 
 				</div>
 
-				<div class="col-sm-8 col-md-2 col-lg-2 bs-docs-sidebar">
+				<div class="col-sm-12 col-md-12 col-lg-2 bs-docs-sidebar">
 					<ul class="nav nav-list bs-docs-sidenav text-right">
 					<li class="active">
 							<a href="<%=path%>at/organize.action"> 已发布活动</a>

@@ -14,10 +14,10 @@ var ITEM_OPT_TEMPLATE = '<a href="{optUrl}" target="_blank" class="btn btn-defau
 var ITEM_CLOSE_TEMPLATE = '<a href="#"  onclick="org.closeConfirm(\'{optUrl}\')" data-value="{id}" class="btn btn-default  buttonjo1joy" role="button">{optName}</a>';
 
 var ITEM_TEMPLATE= '<div class="row item-c">';
-ITEM_TEMPLATE+='<div class="col-sm-4 col-md-3 col-lg-4 thumImages">';
+ITEM_TEMPLATE+='<div class="col-sm-12 col-md-12 col-lg-4 thumImages">';
 ITEM_TEMPLATE+='<img  class="img-responsive" src="{imgSrc}" />';
 ITEM_TEMPLATE+='</div>';
-ITEM_TEMPLATE+='<div class="col-sm-12 col-md-8 col-lg-8"><h3>';
+ITEM_TEMPLATE+='<div class="col-sm-12 col-md-12 col-lg-8"><h3>';
 ITEM_TEMPLATE+='<a href="{link_url}"  target="_blank">{name}</a>';
 ITEM_TEMPLATE+='</h3><p></p><p></p><p>{cdatetime}    &nbsp;&nbsp; 状态：{statusName} </br> </br>  {opt}</p>';
 ITEM_TEMPLATE+='</div>';

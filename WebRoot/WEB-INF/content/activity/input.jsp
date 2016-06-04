@@ -146,7 +146,7 @@
 									data-date-format="yyyy MM dd" data-link-field="dtp_input2"
 									data-link-format="yyyy-mm-dd">
 									<input class="form-control" size="50" type="text" value="<s:date name='activity.stime' format='yyyy-MM-dd' />"
-									id="at_stime" name="activity.stime">
+									id="at_stime" name="activity.stime" placeholder="开始时间">
 
 									<span class="input-group-addon"><span
 										class="glyphicon glyphicon-calendar"></span> </span>
