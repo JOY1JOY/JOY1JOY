@@ -16,11 +16,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
 <title>动一动</title>
+
 <jsp:include page="../base/base_import_jquery1.11.2.jsp" />
 <link rel='icon' href="<%=path%>images/favcion.ico" type=‘image/x-ico’ />
-<script type="text/javascript" src="<%=path%>js/jquery.cookie.js"></script>
-<script type="text/javascript" src="<%=path%>js/user/user.js"></script>
 <link href="<%=path%>resCss/regedit.css" type="text/css" rel="stylesheet" />
+<link href="<%=path%>resCss/bootstrapVa.css" type="text/css" rel="stylesheet" />
+<link href="<%=path%>resCss/bootstrapValidator.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="<%=path%>js/jquery.cookie.js"></script>
+<script type="text/javascript" src="<%=path%>js/user/regedit.js"></script>
+<script type="text/javascript" src="<%=path%>resJs/bootstrapValidator.min.js"></script>
 
 </head>
 
@@ -34,37 +38,37 @@
     <div class="span12 reg-title">
     <h3>注册动一动</h3>
     </div>
-          <form class="form-horizontal ">
+          <form class="form-horizontal" id="register">
   <div class="form-group">
   <label for="inputEmail3" class="col-sm-4 control-label"><h4>用户名：</h4></label>
     <div class="col-sm-8">
-      <input type="text" class="form-control" id="userId" placeholder="用户名">
+      <input type="text" class="form-control" id="userId" placeholder="用户名" name="userId">
     </div>
   </div>
   <div class="form-group">
     <label for="inputPassword3" class="col-sm-4 control-label"><h4>密码：</h4></label>
     <div class="col-sm-8">
-      <input type="password" class="form-control" id="onePass" placeholder="输入6~18位字符">
+      <input type="password" class="form-control" id="onePass" placeholder="输入6~18位字符" name="password">
     </div>
   </div>
     <div class="form-group">
     <label for="inputPassword3" class="col-sm-4 control-label"><h4>重复密码：</h4></label>
     <div class="col-sm-8">
-      <input type="password" class="form-control" id="twoPass" placeholder="输入6~18位字符">
+      <input type="password" class="form-control" id="twoPass" placeholder="输入6~18位字符" name="twoPass">
     </div>
   </div>
 
     <div class="form-group">
     <label for="exampleInputEmail1" class="col-sm-4 control-label"><h4>邮箱：</h4></label>
      <div class="col-sm-8">
-    <input type="email" class="form-control" id="userEmail" placeholder="邮箱">
+    <input type="email" class="form-control" id="userEmail" placeholder="邮箱" name="email">
         </div>
   </div>
 
       <div class="form-group">
     <label for="exampleInputphone" class="col-sm-4 control-label"><h4>手机号：</h4></label>
      <div class="col-sm-8">
-    <input type="text" class="form-control" id="userName" placeholder="手机号">
+    <input type="text" class="form-control" id="userPhone" placeholder="手机号" name="userPhone">
         </div>
   </div>
 
@@ -73,7 +77,7 @@
     <div class="col-sm-offset-4 col-sm-8">
       <div class="checkbox">
         <label>
-          <input type="checkbox" id="agree"> 我已阅读并同意 《动一动用户条例》
+          <input type="checkbox" id="agree" name="acceptTerms"> 我已阅读并同意 《动一动用户条例》
         </label>
       </div>
     
@@ -82,13 +86,13 @@
   </div>
   <div class="form-group">
     <div class="col-sm-offset-4 col-sm-8">
-     <a href="javascript:void(0);" class="log_btn m-btn m-btn-primary" id="reg_btn">
-注册</a>
+     <button  type="submit" class="log_btn m-btn m-btn-primary" id="reg_btn">
+注册</button>
     </div>
   </div>
 </form>
 </div>
-    <div class="col-md-offset-2  col-md-4">
+    <div class="col-md-offset-2  col-md-4  reg_right">
       <ul>
           <li>已有动一动账户</li>
             <li><a href="javascript:void(0);" class="flatLogin">立即登录>></a></li>

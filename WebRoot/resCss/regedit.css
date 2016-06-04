@@ -1,3 +1,10 @@
 .reg-title{
 	margin-bottom: 30px;
 }
+.reg_right{
+	margin-top: 70px;
+	}
+	
+.reg_right ul{
+list-style:none
+			}

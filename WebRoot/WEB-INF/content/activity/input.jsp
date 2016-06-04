@@ -260,19 +260,19 @@
 
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-4 col-md-2">
-								<button type="button" class="btn btn-default btn-info btn-block" id="at_submit1">
+								<button type="button" class="btn m-btn m-btn-primary" id="at_submit1">
 									发布
 								</button>
 							</div>
 
 							<div class=" col-sm-4 col-md-2">
-								<button type="button" class="btn btn-default btn-info btn-block" id="at_submit2">
+								<button type="button" class="btn m-btn m-btn-primary" id="at_submit2">
 									保存草稿
 								</button>
 							</div>
 
 							<div class=" col-sm-4 col-md-2">
-								<button type="button" class="btn btn-default btn-info btn-block" id="at_submit3">
+								<button type="button" class="btn m-btn m-btn-primary" id="at_submit3">
 									预览
 								</button>
 							</div>

@@ -374,14 +374,12 @@ public class TUsersAction extends BaseAction {
 		//	TUsers users = this.userService.findUserByPhone(userPhone);
 			TUsers users = this.userService.findUserByName(userId);
 			if (null != users) {
-
-				jsonObject.put("result", "exit");
-
+				jsonObject.put("valid", "false");
 			} else {
-				jsonObject.put("result", "noExit");
+				jsonObject.put("valid", "true");
 			}
 		} catch (Exception e) {
-			jsonObject.put("result", "fail");
+			jsonObject.put("valid", "false");
 			logger.error("查询用户失败!");
 			e.printStackTrace();
 		}

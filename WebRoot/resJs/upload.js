@@ -214,7 +214,7 @@
         // 添加“添加文件”的按钮，
         uploader.addButton({
             id: '#filePicker2',
-            label: '继续添加'
+            label: '重新选择'
         });
 
         uploader.on('ready', function() {
@@ -620,7 +620,7 @@
 	        $wrap.find(".statusBar").show();
 	        $wrap.find(".filelist").append($li); 
 	        
-	        $(".webuploader-pick").html("重新上传");
+	        $(".webuploader-pick").html("重新选择");
         	
         }
         
@@ -632,13 +632,6 @@
         if("1"===isEdit){
         	 edit(poster);  
         }
-        
-            
-        
-
-        
-        
-        
         
         
     });

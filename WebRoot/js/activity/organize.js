@@ -28,17 +28,19 @@ var org = {
 };
 
 org.closeConfirm=function(o){
-	alert(o);
+
 	$('#myModal').find('.modal-title').text('确认');
 	$('#myModal').find('.modal-body').text('确认关闭活动吗？');
 	$('#myModal').find('#Confirm').click(function(){
-		alert(o);
+		window.location.href=joy.getContextPath()+o;
 	});
     $('#myModal').modal();
 	
 }
 
 $(function() {
+	
+	//
 	// 创建分页
 	$(".pagination").pagination($("#totalPages").val(), {
 		num_edge_entries : 3, // 边缘页数

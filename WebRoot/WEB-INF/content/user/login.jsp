@@ -24,7 +24,10 @@
 		<link href="<%=path%>resCss/login.css" type="text/css"
 			rel="stylesheet" />
 		<script type="text/javascript" src="<%=path%>js/jquery.cookie.js"></script>
-		<script type="text/javascript" src="<%=path%>js/user/user.js"></script>
+		<script type="text/javascript" src="<%=path%>js/user/login.js"></script>
+		<link href="<%=path%>resCss/bootstrapVa.css" type="text/css" rel="stylesheet" />
+        <link href="<%=path%>resCss/bootstrapValidator.css" type="text/css" rel="stylesheet" />
+		<script type="text/javascript" src="<%=path%>resJs/bootstrapValidator.min.js"></script>
 	</head>
 
 
@@ -41,7 +44,7 @@
 				</h4>
 			</div>
 			<hr>
-			<form class="form-horizontal ">
+			<form class="form-horizontal" id="login">
 				<div class="form-group">
 					<label for="inputEmail3" class="col-sm-4 control-label">
 						<h4>
@@ -49,7 +52,7 @@
 						</h4>
 					</label>
 					<div class="col-sm-8">
-						<input type="text" class="form-control" id="loginName"
+						<input type="text" class="form-control" id="loginName" name="userId"
 							placeholder="用户名">
 					</div>
 				</div>
@@ -60,7 +63,7 @@
 						</h4>
 					</label>
 					<div class="col-sm-8">
-						<input type="password" class="form-control" id="loginPass"
+						<input type="password" class="form-control" id="loginPass" name="password"
 							placeholder="密码">
 					</div>
 				</div>
@@ -68,7 +71,7 @@
 					<div class="col-sm-offset-4 col-sm-8">
 						<div class="checkbox">
 							<label>
-								<input type="checkbox" id="rememberMe">
+								<input type="checkbox" id="rememberMe" name="rememberMe">
 								记住我
 							</label>
 						</div>
@@ -79,9 +82,9 @@
 				</div>
 				<div class="form-group">
 					<div class="col-sm-offset-4 col-sm-8">
-						 <a href="javascript:void(0);" class="log_btn m-btn m-btn-primary" id="log_btn">
+						 <button type="submit" class="log_btn m-btn m-btn-primary" id="log_btn">
 							登陆
-					</a>
+					
 					</div>
 				</div>
 			</form>

@@ -71,7 +71,9 @@
 							</div> 
 							</div>
 					</div>
-
+					
+					
+					
                   
 					<div class="swiper-slide">
 						<a href="#"
@@ -85,13 +87,6 @@
 							style="background: #ffffff url(images/banners/3.jpg) no-repeat center center; display: block; height: 300px; width: 100%">
 
 						 </a>
-					</div>
-					
-							<div class="swiper-slide">
-						<a href="#"
-							style="background: #ffffff url(images/banners/5.jpg) no-repeat center center; display: block; height: 300px; width: 100%">
-
-							 </a>
 					</div>
 					
 
