@@ -115,4 +115,44 @@ span.cate-items {
     color: #999;
     fill: #999;
 }
+.zuix{
+	padding:10px;
+	}
+.zuix span{
+	
+	overflow: hidden;
+    padding-bottom: 10px;
+    font-weight: 200;
+    font-size: 24px;
+    color: #737069;
+	}
+.zuix  a {
+    font-size: 14px;
+    color: #aca8a7;
+}
+.zuix  a:visited {
+    font-size: 14px;
+    color: #aca8a7;
+}
+
+.swiper-container {
+        width: 100%;
+        height: 300px;
+        
+    }
+.swiper-slide {
+        font-size: 18px;
+        background: #fff;
+
+    }
+    
+ .swiper-button-next{
+    dispaly:none;
+    }
+    
+.swiper-button-prev{
+    dispaly:none;
+    }
+    
+    
 

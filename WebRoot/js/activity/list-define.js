@@ -19,7 +19,8 @@ at.get_activities = function() {
 
 		if (o && o.list) {
 			var finished = true;
-
+            
+			
 			var ik=1;
 			objtemp=$("<div class='row'></div>");		
 			

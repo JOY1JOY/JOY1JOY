@@ -553,11 +553,33 @@ a.travis {
     text-align: center;
 }
 
+.m-btn-home {
+    font-size: 14px;
+    width: 110px;
+    line-height: 18px;
+    padding: 8px 16px;
+    vertical-align: middle;
+    display: inline-block;
+    text-align: center;
+
+}
+
 .m-btn-primary {
     width: 130px;
     color: #fff;
     background-color: #5dc6f5;
     border-color: #5dc6f5;
+}
+
+.m-btn-yellow {
+    width: 110px;
+    color: #fff;
+    background-color: #e38d13;
+    border-color: ##e38d13;
+}
+.swiper-slide a:hover{
+        color: #fff;
+    text-decoration: none;
 }
 
 .log_btn {
@@ -567,6 +589,9 @@ a.travis {
   padding-top: 20px;
 }
 
+.navbar{
+	margin-bottom:8px;
+	}
 
 .nav>li>a:hover, .nav>li>a:focus {
     text-decoration: none;
