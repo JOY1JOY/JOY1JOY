@@ -109,6 +109,7 @@ function form_init() {
 }
 function submit_handler(status) {
 	
+	if(status="4")
 	var is_approved = true;
 	var name_val = $.trim($("#at_name").val());
 	if (name_val == "") {
