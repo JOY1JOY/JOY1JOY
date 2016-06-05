@@ -35,11 +35,11 @@ JOY_TEMPLATE_ACTIVITY_OLD = '<li>'
 		+ '</li>';
 
 JOY_TEMPLATE_ACTIVITY = '<div class="col-6 col-sm-6 col-lg-4">'
-  	+ '<a href="{url}" target="blank" class="thumbnail">'
+  	+ '<a href="{url}" target="_blank" class="thumbnail">'
   	+ '<img alt="{name}" src="{poster}"></a>'
   	+ ' <div class="recipe-title">'
   	+ '<h3>'
-  	+ '<a href="{url}" target="blank">{name}</a>'
+  	+ '<a href="{url}" target="_blank">{name}</a>'
   	+ '</h3>'
  	+ '<div class="m-time"> <i></i>'
  	+ '<span>{time}</span>'

@@ -45,8 +45,7 @@
                             </h3>
                             </div>
                             <div class="m-time"> <i></i>
-                                <span><s:date name="activity.stime" format="yyyy-MM-dd" />~<s:date
-							name="activity.stime" format="yyyy-MM-dd" /></span>
+                                <span><s:date name="activity.stime" format="yyyy-MM-dd" />
                             </div>
                             <div class="m-place"> <i></i>
                                 <span><s:property value="activity.addressName" /></span>
