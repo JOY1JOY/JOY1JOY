@@ -89,7 +89,7 @@
 				<div class="col-sm-12 col-md-12 col-lg-2 bs-docs-sidebar">
 					<ul class="nav nav-list bs-docs-sidenav text-right">
 					<li class="active">
-							<a href="<%=path%>at/organize.action"> 已发布活动</a>
+							<a href="<%=path%>at/organize.action"> 已分享活动</a>
 						</li>
 						
 						<li>

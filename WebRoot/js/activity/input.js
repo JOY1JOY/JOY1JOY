@@ -16,12 +16,12 @@ $(function() {
 		e.preventDefault();
 		submit_handler(-1);
 	});
+	
+	/*
 	$("#at_submit3").on("click", function(e) {
 		alert("存草稿");
-		e.preventDefault();
-		submit_handler(4);
 	});	
-	/*
+
 	$("#at_address").on("change", function() {
 		var v=$(this).val();
 		handleSubDict(v);

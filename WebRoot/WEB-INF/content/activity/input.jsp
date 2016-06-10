@@ -270,12 +270,13 @@
 									保存草稿
 								</button>
 							</div>
-
+                            <!--  
 							<div class=" col-sm-4 col-md-2">
 								<button type="button" class="btn m-btn m-btn-primary" id="at_submit3">
 									预览
 								</button>
 							</div>
+							-->
 
 						</div>
 					</form>

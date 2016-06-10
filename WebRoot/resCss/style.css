@@ -81,8 +81,14 @@ body {
 margin-bottom:10px;
 
 }
-.recipe-title{
-  padding-bottom: 15px;
+.recipe-title {
+  padding-bottom: 10px;
+}
+
+.recipe-title h3{
+      color: #534540;
+    font-size: 20px;
+    padding-left: 13px;
 }
 .detail{
   max-width: 600px;
@@ -574,8 +580,8 @@ a.travis {
 .m-btn-yellow {
     width: 110px;
     color: #fff;
-    background-color: #e38d13;
-    border-color: ##e38d13;
+    background-color: #f4aa0b;
+    border-color: #f4aa0b;
 }
 .swiper-slide a:hover{
         color: #fff;
@@ -623,4 +629,23 @@ a.travis {
     min-width: 54px;
     padding: 0 16px;
     text-align: center;
+}
+
+
+@media screen and (min-width:1200px){ /*大于等于1200*/
+    /*这里是特定的样式表*/
+    .thumbnail>img, .thumbnail a>img {
+    display: block;
+    height: auto;
+    max-width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    width: 360px;
+    height: 228px;
+}
+}
+
+
+.thumbnail { 
+	border-radius: 0px;
 }

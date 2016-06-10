@@ -35,6 +35,38 @@ JOY_TEMPLATE_ACTIVITY_OLD = '<li>'
 		+ '</li>';
 
 JOY_TEMPLATE_ACTIVITY = '<div class="col-6 col-sm-6 col-lg-4">'
+ 	+ '<a href="{url}" target="_blank" class="thumbnail">'
+ 	+ '<img alt="{name}" src="{poster}"></a>'
+ 	+ ' <div class="recipe-title">'
+ 	+ '<h3>'
+ 	+ '<a href="{url}" target="_blank">{name}</a>'
+ 	+ '</h3>'
+
+ 	
+ 
+
+ 	+ '<a class="button smallSize secondaryText subtleVariant simpleVariant" href="#">'
+ 	+ '<div class="buttonContainer" ><div class="postVoteArrow" ></div><span >&nbsp;</span><span class="subtleVariant">521</span></div>'
+ 	+ '</a>'
+ 	+ '<a class="button smallSize secondaryText subtleVariant simpleVariant " href="#" >'
+ 	+ ' <div class="buttonContainer"><span data-reactid=".q.1.1.1.0.0.1.0:$0.1.1.1.$64071.0.1.0.1.0.0"><svg width="12" height="11" viewBox="0 0 12 11" xmlns="http://www.w3.org/2000/svg"><path d="M10.0124802,16.8320558 C9.21033653,16.0515289 8.72727273,15.044941 8.72727273,13.9462121 C8.72727273,11.4655331 11.1897066,9.45454545 14.2272727,9.45454545 C17.2648389,9.45454545 19.7272727,11.4655331 19.7272727,13.9462121 C19.7272727,16.4268911 17.2648389,18.4378788 14.2272727,18.4378788 C13.4722764,18.4378788 12.752811,18.3136428 12.0978565,18.0888377 C11.026169,18.7087928 8.93104025,19.527919 8.93104025,19.527919 C8.93104025,19.527919 9.63175021,17.8427438 10.0124802,16.8320558 Z" transform="translate(-8 -9)" fill="#FFF" fill-rule="evenodd"></path></svg></span><span >&nbsp;</span><span >25</span></div>'
+ 	+ ' </a>'		
+ 	
+ 	
+    + '<a class="button smallSize secondaryText greySolidColor solidVariant" href="#" >'	
+ 	+ '<div class="buttonContainer" >{statusName}</div>'
+ 	+ '</a>'
+ 	
+	+ '<div class="button smallSize secondaryText simpleVariant">'
+	+ '<div class="buttonContainer"><div class="posttime" ></div><span >&nbsp;</span><span class="subtleVariant">{time}</span></div>'
+	+ '</div>'
+	
+	
+ 	+ '</div>'
+ 	+ '</div>'
+ 	+ '</div>';
+
+JOY_TEMPLATE_ACTIVITY_BAK= '<div class="col-6 col-sm-6 col-lg-4">'
   	+ '<a href="{url}" target="_blank" class="thumbnail">'
   	+ '<img alt="{name}" src="{poster}"></a>'
   	+ ' <div class="recipe-title">'

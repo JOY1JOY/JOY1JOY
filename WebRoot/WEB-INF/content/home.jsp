@@ -65,9 +65,7 @@
 								</h2>
 								<p>
 								<p>
-									<a class="m-btn-home m-btn-yellow"
-										href="<%=path%>at/input.action" role="button">发布活动</a>
-									&nbsp;&nbsp;
+									<a class="m-btn-home m-btn-yellow" href="<%=path%>at/input.action">分享活动</a>
 							</div> 
 							</div>
 					</div>
@@ -77,7 +75,7 @@
                   
 					<div class="swiper-slide">
 						<a href="#"
-							style="background: #0080ff url(images/banners/2.jpg) no-repeat center center; display: block; height: 300px; width: 100%">
+							style="background: #ffffff url(images/banners/2.jpg) no-repeat center center; display: block; height: 300px; width: 100%">
 
 					 </a>
 					</div>

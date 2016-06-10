@@ -25,13 +25,14 @@ if (!"".equals(path)) {
                         <!-- <p>友情链接</p>
                     -->
                     <ul class="friends-links">
+                    <!--  
                         <li>
-                            <a href="#" title="前端集成解决方案">MOUNTAIN</a>
+                            <a href="#" title=">MOUNTAIN</a>
                         </li>
                         <li>
-                            <a href="#" title="基于zepto的mobile UI组件库">HIKING</a>
+                            <a href="#" title="">HIKING</a>
                         </li>
-                     
+                     -->
                     </ul>
                 </div>
                 <div class="col-md-4">

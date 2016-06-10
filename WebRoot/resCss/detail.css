@@ -1,0 +1,30 @@
+.author img {
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 15px;
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+}
+
+
+.m-upvote >i {
+    overflow: hidden;
+    display: inline-block;
+    width: 14px;
+    height: 17px;
+    background: url(../images/icon-static-sign.png) no-repeat;
+    background-position: 0 -118px;
+}
+
+
+
+.m-upvote>span {
+    font-size: 12px;
+}
+
+.media-object{
+	
+	width:34px;
+	height:34px;
+	}

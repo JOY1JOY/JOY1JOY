@@ -90,16 +90,16 @@
 				<div class="col-sm-8 col-md-2 col-lg-2 bs-docs-sidebar">
 					<ul class="nav nav-list bs-docs-sidenav text-right">
 					<li>
-							<a href="<%=path%>at/organize.action"> 已发布活动</a>
+							<a href="<%=path%>at/organize.action"> 已分享活动</a>
 						</li>
 						
 						<li class="active">
 							<a href="<%=path%>at/joinAt.action"> 已报名活动</a>
 						</li>
-						
 						<li>
 							<a href="#"> 已发布话题</a>
 						</li>
+
 
 					</ul>
 				</div>
