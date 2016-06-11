@@ -45,6 +45,4 @@ public class TAtUpvoteImpl implements ITAtUpvoteService{
 	}
 
 
-
-
 }
