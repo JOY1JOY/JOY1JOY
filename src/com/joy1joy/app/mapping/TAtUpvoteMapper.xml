@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.joy1joy.app.dao.TUpvoteMapper">
+	<insert id="insertTAtUpvote" parameterType="TAtUpvote">
+		insert into
+		t_upvote(upvoteid,termId,uid,UpvoteType,remark,createTime)values(null,#{atid},#{uid},'','',#{collectTime})
+	</insert>
+	<delete id="deleteTAtUpvote">
+		delete from t_upvote where upvoteid=#{id}
+	</delete>
+	<select id="selectTAtUpovte" parameterType="TAtUpvote"
+		resultType="TAtUpvote">
+		select upvoteId,termId as atid,uid from t_upvote where 1=1 and
+		termId=#{termId}
+		and uid=#{uid}
+	</select>
+
+	<select id="selectByUserid" parameterType="java.lang.Integer"
+		resultType="CollectAtResult">
+		select t1.id,t1.at_id as
+		atid,t2.name,t1.uid,t1.collect_time as collectTime from t_at_collect
+		t1,t_activities t2 where 1=1 and t1.at_id=t2.id and
+		uid=#{uid}
+	</select>
+</mapper>
