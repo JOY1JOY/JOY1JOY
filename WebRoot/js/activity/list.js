@@ -31,7 +31,7 @@ $(function() {
 		at.search_handler(2, this);
 	});
 	
-	
+
 	// 分类
 	$(".cate-items a").on("click", function(e){
 		
@@ -52,12 +52,16 @@ $(function() {
 				$(this).addClass(JOY_CLASS_ITEM_UNSELECTED);
 			}
 		});
-		
 		var val=$self.parent().attr("data");
-		
 		at.search_handler(val, $self);
-		
 	});
+	
+	
+	//赞 
+//	$(".upvote").click(function(){
+//     alert("uu");
+//	});
+//	
 	
 
 });

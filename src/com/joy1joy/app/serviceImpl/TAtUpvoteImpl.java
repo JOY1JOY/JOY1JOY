@@ -3,6 +3,7 @@ package com.joy1joy.app.serviceImpl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 
 import com.joy1joy.app.bean.TAtUpvote;
@@ -16,6 +17,7 @@ import com.joy1joy.app.service.ITAtUpvoteService;
  * @date 2016-6-11 下午10:34:09
  * @version V1.0
  */
+@Service
 public class TAtUpvoteImpl implements ITAtUpvoteService{
 	
 	@Autowired
@@ -43,6 +45,14 @@ public class TAtUpvoteImpl implements ITAtUpvoteService{
 		// TODO Auto-generated method stub
 		return mapper.selectByUserid(uid);
 	}
+	
+	@Override
+	public int updateTAtUpvote(TAtUpvote upvote){
+		
+		return mapper.updateTAtUpvote(upvote);
+
+	}
+
 
 
 }

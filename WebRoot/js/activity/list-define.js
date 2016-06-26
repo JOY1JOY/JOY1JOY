@@ -36,7 +36,6 @@ at.get_activities = function() {
 				me.statusName = JOY_ACTIVITY_STATUS[me.status];
 				var content = joy.template(JOY_TEMPLATE_ACTIVITY, me);
 				
-				
 				objtemp.append(content);
 				
 				if(ik%3==0){
@@ -61,6 +60,25 @@ at.get_activities = function() {
 
 	});
 };
+
+at.upvote = function(obj,id) {
+
+	var $t=$(obj);
+
+	var upvoteUrl=joy.getContextPath()+"/upvote/upvote.action";
+	var data={
+			termId:id,
+			UpvoteType:0
+	};
+	$.getJSON(upvoteUrl,data,function(o){
+
+		if(o.code=="0"){
+			$t.context.innerText=parseInt($t.context.innerText)+1;
+		}
+	})
+};
+
+
 // 加载更多
 at.get_more = function() {
 	at.pno = at.pno + 1;

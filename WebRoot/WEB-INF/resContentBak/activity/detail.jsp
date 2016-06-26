@@ -35,6 +35,7 @@
 							<s:property value="activity.name" />
 						</h3></li>
 						 -->
+			<input name="id" id="activityId" type="hidden" value="{activity.id}">
 			<div class="con_left">
 				<div class="box01">
 					<img style="width:592px;" 

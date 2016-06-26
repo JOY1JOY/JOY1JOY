@@ -10,7 +10,7 @@ import org.apache.ibatis.type.Alias;
  * @date 2016-6-11 下午10:13:13
  * @version V1.0
  */
-@Alias("TAtCollect")
+@Alias("TAtUpvote")
 public class TAtUpvote {
 
 
@@ -23,7 +23,9 @@ public class TAtUpvote {
 	private String createBy;
 	private String lastUpdateBy; 
 	private Date lastUpdateTime;
+	private int upvoteStatus;
 	
+
 	public int getUpvoteid() {
 		return upvoteid;
 	}
@@ -79,4 +81,10 @@ public class TAtUpvote {
 		this.lastUpdateTime = lastUpdateTime;
 	}
 	
+	public int getUpvoteStatus() {
+		return upvoteStatus;
+	}
+	public void setUpvoteStatus(int upvoteStatus) {
+		this.upvoteStatus = upvoteStatus;
+	}
 }

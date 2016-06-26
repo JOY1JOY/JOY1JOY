@@ -46,6 +46,16 @@ public class TActivity {
 	private String cuserIcon;
 	
 	private String thumbnail;
+	
+	private int commentPageNum;
+
+	public int getCommentPageNum() {
+		return commentPageNum;
+	}
+
+	public void setCommentPageNum(int commentPageNum) {
+		this.commentPageNum = commentPageNum;
+	}
 
 	public int getId() {
 		return id;

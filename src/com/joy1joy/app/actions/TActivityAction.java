@@ -28,10 +28,12 @@ import com.joy1joy.app.actions.base.BaseAction;
 import com.joy1joy.app.bean.ActivityPage;
 import com.joy1joy.app.bean.PartiUserInfo;
 import com.joy1joy.app.bean.TActivity;
+import com.joy1joy.app.bean.TComment;
 import com.joy1joy.app.bean.TDict;
 import com.joy1joy.app.core.annotation.AdminAccess;
 import com.joy1joy.app.core.annotation.LoginAccess;
 import com.joy1joy.app.service.ITActivity;
+import com.joy1joy.app.service.ITAtCommentService;
 import com.joy1joy.app.service.ITAtUsersService;
 import com.joy1joy.app.service.ITDictService;
 import com.joy1joy.utils.DateTool;
@@ -67,10 +69,14 @@ public class TActivityAction extends BaseAction {
 
 	@Autowired
 	private ITActivity iTActivity;
+	
 	@Autowired
 	private ITDictService iDict;
 	@Autowired
 	private ITAtUsersService atUserService;
+	
+	@Autowired
+	private ITAtCommentService atCommentService;
 
 	private Logger logger = Logger.getLogger(TActivityAction.class);
 
@@ -602,8 +608,12 @@ public class TActivityAction extends BaseAction {
 	public String detail() {
 		logger.debug("查看活动详细!activity id=" + activity.getId());
 		TActivity at = null;
+		TComment comment = new TComment();
 		try {
 			at = iTActivity.getActivityById(activity.getId());
+			//获取评论数量
+			comment.setTermId(activity.getId());
+			at.setCommentPageNum(atCommentService.getCommentsCount(comment));
 		} catch (Exception e) {
 			e.printStackTrace();
 			at = null;

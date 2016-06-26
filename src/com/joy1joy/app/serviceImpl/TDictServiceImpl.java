@@ -92,7 +92,12 @@ public class TDictServiceImpl implements ITDictService {
 	@Override
 	public List<TDict> selectAllSubOptions(String dtype) {
 		// TODO Auto-generated method stub
-		return dictMapper.selectAllSubOptions(dtype);
+		try{
+			return  dictMapper.selectAllSubOptions(dtype);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

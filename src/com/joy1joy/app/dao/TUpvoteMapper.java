@@ -14,6 +14,8 @@ public interface TUpvoteMapper {
 	public int deleteTAtUpvote(int id);
 
 	public TAtUpvote selectTAtUpvote(TAtUpvote upvote);
+	
+	public int updateTAtUpvote(TAtUpvote upvote);
 
 	public List<TAtUpvote> selectByUserid(int uid);
 }

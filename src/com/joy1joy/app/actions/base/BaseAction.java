@@ -125,13 +125,32 @@ public class BaseAction extends ActionSupport implements IAction,
 		return json.toString();
 
 	}
-
+	 /**
+	  * getUserId
+	  * @return
+	  */
 	protected int getLoginUserId() {
 		int id = -1;
 		Object o = ActionContext.getContext().getSession().get("users");
 		if (null != o) {
 			TUsers user = (TUsers) o;
 			id = user.getUid();
+		}
+		// for test
+		// id = 1;
+		logger.debug("登录用户id:" + id);
+		return id;
+	}
+	/**
+	 * getUserIcon
+	 * @return
+	 */
+	protected String getLoginUserIcon() {
+		String id = "";
+		Object o = ActionContext.getContext().getSession().get("users");
+		if (null != o) {
+			TUsers user = (TUsers) o;
+			id = user.getIcon();
 		}
 		// for test
 		// id = 1;

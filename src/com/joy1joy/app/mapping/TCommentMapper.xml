@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.joy1joy.app.dao.TCommentMapper">
+
+
+	<select id="selectTCommentByLimit"  parameterType="map" resultType="TComment">
+		select m.*, n.userid, n.icon from t_comment m left join t_users n on
+		m.uid=n.uid where 1=1
+			and m.termId= #{termId}
+	
+		ORDER BY id DESC LIMIT
+		#{offset},#{limit}
+	</select>
+	
+	<select id="getCommentsCount" parameterType="TComment" resultType="java.lang.Integer">
+		select
+		count(*)
+		from t_comment where 1=1
+		<if test="termId!=null">
+		and termId=#{termId}
+		</if>
+		order by id desc
+	</select>
+	
+	
+	
+	<insert id="insertTComment" parameterType="TComment">
+		insert into
+		t_comment(id,termId,uid,commentType,comment,createTime,lastUpdateTime)values(null,#{termId},#{uid},#{commentType},#{comment},NOW(),NOW())
+	</insert>
+	<delete id="deleteTComment">
+		delete from t_comments where id=#{id}
+	</delete>
+	<select id="selectTComment" parameterType="TComment"
+		resultType="TComment">
+		select id,termId as atid,uid from t_comment where 1=1
+		and
+		termId=#{termId}
+		and uid=#{uid}
+	</select>
+
+	<update id="updateTComment" parameterType="TComment">
+		update t_comment set
+		commentStatus=#{commentStatus} where 1=1 and
+		termId=#{termId}
+		and uid=#{uid}
+	    </update>
+
+	<select id="selectByUserid" parameterType="java.lang.Integer"
+		resultType="TComment">
+		select t1.id,t1.at_id as
+		atid,t2.name,t1.uid,t1.collect_time as collectTime from t_at_collect
+		t1,t_activities t2 where 1=1 and t1.at_id=t2.id and
+		uid=#{uid}
+	</select>
+</mapper>

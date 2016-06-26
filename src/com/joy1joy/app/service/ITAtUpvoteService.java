@@ -18,7 +18,10 @@ public interface ITAtUpvoteService {
 
 	public int deleteTAtUpvote(int id);
 
-	public TAtUpvote selectTAtUpvote(TAtUpvote collect);
+	public TAtUpvote selectTAtUpvote(TAtUpvote upvote);
+	
+	public int updateTAtUpvote(TAtUpvote upvote);
+
 
 	public List<TAtUpvote> selectByUserid(int id);
 
