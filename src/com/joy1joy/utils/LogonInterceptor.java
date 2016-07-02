@@ -30,11 +30,7 @@ public class LogonInterceptor extends AbstractInterceptor {
 	private static Logger log = Logger.getLogger(LogonInterceptor.class);
 
 	public LogonInterceptor() {
-		// actionList.add("findNoticeList");
-		// actionList.add("noticeList");
-		// actionList.add("jumpSaveNotice");
-		// actionList.add("saveNotice");
-		// actionList.add("detailNotice");
+
 	}
 
 	@SuppressWarnings("unchecked")
@@ -72,7 +68,7 @@ public class LogonInterceptor extends AbstractInterceptor {
 			if (!login_approved) {//
 
 				if (isResult) {
-					getReturnJSON(ac, "checkSession", "noSession");
+					 getReturnJSON(ac, "checkSession", "noSession");
 				}
 				return "login";
 			} else {// 登录过了

@@ -25,6 +25,8 @@
 <link href="<%=path%>resCss/detail.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css"
 	href="<%=path%>resCss/simditor.css" />
+<link rel="stylesheet" type="text/css"
+	href="<%=path%>resCss/jquery.toast.min.css" />
 
 <jsp:include page="../base/base_import_jquery1.11.2.jsp"></jsp:include>
 
@@ -70,18 +72,17 @@
 						<i></i> <span><s:property value="activity.joyFee" /></span>
 					</div>
 
-					<div class="m-upvote">
-						<i></i> <span>55</span>
+					<div class="m-upvote" data-value="${activity.id}">
+						<i></i> <span>${activity.upvoteCount}</span>
 					</div>
 
 					<div class="share">
 
 						<!-- JiaThis Button BEGIN -->
 						<div class="jiathis_style">
-							<span class="jiathis_txt">分享到：</span> <a
-								class="jiathis_button_tools_1"></a> <a
-								class="jiathis_button_tools_2"></a> <a
-								class="jiathis_button_tools_4"></a>
+							<span class="jiathis_txt">分享到：</span> </a>
+							<a class="jiathis_button_weixin"></a>
+							<a class="jiathis_button_tsina"></a>
 
 						</div>
 
@@ -110,8 +111,7 @@
 					<p></p>
 					增加评论
 					<p>
-						<textarea placeholder="" id="at_comment" name="activity.comment"
-							autofocus></textarea>
+						<textarea placeholder="" id="at_comment" name="activity.comment"></textarea>
 				</div>
 			</div>
 
@@ -137,18 +137,6 @@
 			<div class="row">
 				<div class="col-10 col-sm-10 col-lg-6">
 					<ul class="media-list" id="commentList">
-						<li class="media">
-							<div class="media-left pull-left">
-								<a href="#"> <img class="media-object"
-									src="/images/userHeadImg/1464400448943.jpg" alt="...">
-								</a>
-							</div>
-							<div class="media-body">
-								<h4 class="media-heading">Media heading</h4>
-								...
-							</div>
-						</li>
-
 					
 					</ul>
 				</div>
@@ -171,17 +159,31 @@
 	</div>
 
 	<jsp:include page="../base/joy1joy_footer.jsp"></jsp:include>
-	<!--  
+ 
 <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
--->
+
 	<script type="text/javascript" src="<%=path%>js/jquery.pagination.js"></script>
+	<script type="text/javascript" src="<%=path%>resJs/jquery.toast.min.js"></script>
 	<script type="text/javascript" src="<%=path%>resJs/module.js"></script>
 	<script type="text/javascript" src="<%=path%>resJs/hotkeys.js"></script>
 	<script type="text/javascript" src="<%=path%>resJs/uploader.js"></script>
 	<script type="text/javascript" src="<%=path%>resJs/simditor.js"></script>
 
 	<script type="text/javascript">
-
+    //绑定发表评论框
+    var toolbar = [ 'italic', 'underline', 'ol', 'ul', 'image' ];
+    var editor = new Simditor({
+	textarea : $('#at_comment'),
+	upload : {
+		url : joy.getContextPath() + '/at/uploadEdit.action', // 文件上传的接口地址
+		params : null, // 键值对,指定文件上传接口的额外参数,上传的时候随文件一起提交
+		fileKey : 'upload', // 服务器端获取文件数据的参数名
+		connectionCount : 3,
+		leaveConfirm : '正在上传文件'
+	},
+	toolbar : toolbar, // 工具栏
+// optional options
+});
 </script>
 </body>
 </html>

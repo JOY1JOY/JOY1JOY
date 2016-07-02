@@ -17,11 +17,13 @@ import org.jfree.util.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.joy1joy.app.actions.base.BaseAction;
+import com.joy1joy.app.bean.TComment;
 import com.joy1joy.app.bean.TDict;
 import com.joy1joy.app.bean.TNotices;
 import com.joy1joy.app.bean.TUsers;
 import com.joy1joy.app.core.annotation.AdminAccess;
 import com.joy1joy.app.core.annotation.LoginAccess;
+import com.joy1joy.app.service.ITAtCommentService;
 import com.joy1joy.app.service.ITDictService;
 import com.joy1joy.app.service.ITNoticeService;
 import com.joy1joy.utils.DateJsonValueProcessor;
@@ -72,6 +74,9 @@ public class TNoticesAction extends BaseAction {
 	private String type = "";
 	private int start;
 	private int end;
+	
+	@Autowired
+	private ITAtCommentService atCommentService;
 
 	public TNoticesAction() {
 		setShowCount(6);
@@ -216,6 +221,11 @@ public class TNoticesAction extends BaseAction {
 			@Result(name = "error", location = "/WEB-INF/content/notice/success.jsp") })
 	public String findNoticeDetail() {
 		TNotices tnotice = this.noticeService.selectTNoticesById(noticeId);
+		TComment comment = new TComment();
+
+		comment.setTermId(noticeId);
+		tnotice.setCommentPageNum(atCommentService.getCommentsCount(comment));
+		
 		if (null != tnotice) {
 			// request.setAttribute("tnotice", tnotice);
 			ActionContext.getContext().put("tnotice", tnotice);

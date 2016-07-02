@@ -165,7 +165,7 @@
 
             // 禁掉全局的拖拽功能。这样不会出现图片拖进页面的时候，把图片打开。
             disableGlobalDnd: true,
-            fileNumLimit: 2,
+            fileNumLimit: 1,
             fileSizeLimit: 200 * 1024 * 1024,    // 200 M
             fileSingleSizeLimit: 50 * 1024 * 1024,    // 50 M
             thumb:{
@@ -212,10 +212,10 @@
         // });
 
         // 添加“添加文件”的按钮，
-        uploader.addButton({
-            id: '#filePicker2',
-            label: '重新选择'
-        });
+//        uploader.addButton({
+//            id: '#filePicker2',
+//            label: '重新选择'
+//        });
 
         uploader.on('ready', function() {
             window.uploader = uploader;
@@ -450,7 +450,6 @@
             $upload.removeClass( 'state-' + state );
             $upload.addClass( 'state-' + val );
             state = val;
-
             switch ( state ) {
                 case 'pedding':
                     $placeHolder.removeClass( 'element-invisible' );
@@ -465,6 +464,9 @@
                     $queue.show();
                     $statusBar.removeClass('element-invisible');
                     uploader.refresh();
+                    // add by duansy
+                    $( '#filePicker2' ).addClass( 'element-invisible');
+                    //
                     break;
 
                 case 'uploading':
@@ -620,7 +622,12 @@
 	        $wrap.find(".statusBar").show();
 	        $wrap.find(".filelist").append($li); 
 	        
-	        $(".webuploader-pick").html("重新选择");
+	        uploader.addButton({
+	            id: '#filePicker2',
+	            label: '重新选择'
+	        });
+	        
+	//        $(".webuploader-pick").html("重新选择");
         	
         }
         

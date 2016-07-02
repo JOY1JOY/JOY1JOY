@@ -1,94 +1,12 @@
-var JOY_AT_JOIN_URL = joy.getContextPath() + "/join/add.action";
-var JOY_AT_COLLECT_URL = joy.getContextPath() + "/collect/add.action";
 var JOY_AT_COMMENT_URL = joy.getContextPath() + "/comment/add.action";
-
-function opt_handler(t, id) {
-
-	switch (t) {
-	case 0:// 报名
-		var pnum = $("#at_joiin_pnum").val();
-		var premark = $("#at_joiin_remark").val();
-		var piphone = $("#at_joiin_iphone").val();
-		var pidcard = $("#at_joiin_idcard").val();
-		if (!/[0-9]+/.test(pnum) || pnum < 1) {
-			joy.alert('请正确输入报名人数!');
-			break;
-		}
-		if (!/[0-9]+/.test(piphone) || piphone ==null) {
-			joy.alert('请输入手机号码，以便联系!');
-			break;
-		}
-		var param = {
-			"atUser.pnum" : pnum,
-			"atUser.atid" : id,
-			"atUser.remark" : encodeURI(premark),
-			"atUser.iphone" : piphone,
-			"atUser.idcard" : pidcard
-		};
-		at_join(param);
-		break;
-	case 1:// 加入群组
-		var qr = $("#at_gqr").val();
-		if (qr && qr != "") {
-			$("#at_qr_area").fadeToggle("slow");
-		} else {
-			joy.alert("对不起,该活动还没有创建群组!");
-		}
-		break;
-	case 2:// 收藏
-		var data = {
-			"collect.atid" : id
-		};
-		at_collect(data);
-		break;
-	default:
-		break;
-	}
-}
-function at_join(data) {
-	$.getJSON(JOY_AT_JOIN_URL, data, function(o) {
-		if (o) {
-			var code = o.code;
-			if (code == 0) {
-				joy.alert("恭喜您，报名成功!");
-			} else if (code == 1) {
-				joy.alert("您已报名此活动!");
-			} else if (code == 2) {
-				joy.alert("活动不存在，报名失败!");
-
-			} else if (code == 3) {
-				joy.alert("活动状态不正确，报名失败!");
-			} else if (code == 4) {
-				joy.alert("活动状态不正确，报名失败!");
-			} else {
-				if (o && o.checkSession) {
-					joy.util.handle_not_login(window);
-				} else
-					joy.alert("对不起,报名失败!");
-			}
-		}
-	});
-}
-function at_collect(data) {
-	$.getJSON(JOY_AT_COLLECT_URL, data, function(o) {
-		if (o && o.code == 0) {
-			joy.alert("恭喜您，收藏成功!")
-		} else {
-			if (o && o.checkSession) {
-				joy.util.handle_not_login(window);
-			} else
-				joy.alert("对不起，收藏失败!");
-		}
-	});
-}
 
 
 var detail={};
 
 // 发表评论提交处理
 detail.submitComment=function(){
-	var id = $.trim($("#activityId").val());
-	
+	var id = $.trim($("#noticeId").val());
+	alert(id);
 	var at_comment = editor.getValue();
 	if (at_comment == "") {
 		alert("评论内容不能为空");
@@ -97,7 +15,7 @@ detail.submitComment=function(){
 	var data = {
 		'termId' : id,
 		"comments. comment" : at_comment,
-		'commentType': 0,
+		'commentType': 1,
 	};
 	var url  = JOY_AT_COMMENT_URL;
 	$.post(url,data, function(o){
@@ -145,6 +63,28 @@ detail.getComment=function(){
 	});
 }
 
+
+//赞
+detail.upvote = function(obj,num,id) {
+
+	var upvoteUrl=joy.getContextPath()+"/upvote/upvote.action";
+	var data={
+			termId:id,
+			UpvoteType:1
+	};
+	$.getJSON(upvoteUrl,data,function(o){
+
+		if(o.code=="0"){
+			//$t.context.innerText=parseInt($t.context.innerText)+1;
+			obj.html(parseInt(num)+1);
+		} else {
+			if (o && o.checkSession) {
+				joy.util.handle_not_login(window);
+			}
+		}
+	});
+};
+
 //评论显示模板
 var JOY_TEMPLATE_COMMENT='<li class="media">'
 	                    +'<div class="media-left pull-left">'
@@ -161,13 +101,14 @@ var JOY_TEMPLATE_COMMENT='<li class="media">'
 //获取评论 分页回调函数
 function pageselectCallback(page_index, jq) {
 	page_index += 1;
-	var id = $("#activityId").val();
+	var id = $("#noticeId").val();
 	$.ajax({
 		url : joy.getContextPath() +'/comment/commentList.action',
 		type : 'post',
 		data : {
 			termId : id,
-			pageIndex : page_index
+			pageIndex : page_index,
+			commentType : 1
 		},
 		cache : false,
 		dataType : 'json',
@@ -187,26 +128,7 @@ function pageselectCallback(page_index, jq) {
 	return false;
 }
 
-//赞
-detail.upvote = function(obj,num,id) {
 
-	var upvoteUrl=joy.getContextPath()+"/upvote/upvote.action";
-	var data={
-			termId:id,
-			UpvoteType:0
-	};
-	$.getJSON(upvoteUrl,data,function(o){
-
-		if(o.code=="0"){
-			//$t.context.innerText=parseInt($t.context.innerText)+1;
-			obj.html(parseInt(num)+1);
-		} else {
-			if (o && o.checkSession) {
-				joy.util.handle_not_login(window);
-			}
-		}
-	});
-};
 
 $(function() {
 	
@@ -217,18 +139,18 @@ $(function() {
 		detail.submitComment();
 	});
 	
-
 	//绑定点赞按钮
-	$(".m-upvote").on("click",function(){
-		var obj=$(this).find("span");
-		var num = $(obj).html();
+	$("#file-good-link").on("click",function(){
+		var obj=$(this);
+		var num = $(this).html();
 		var data_value=$(this).attr("data-value");
 		detail.upvote(obj,num,data_value);
 	});
 	
 	
-	//加载评论
-	detail.getComment();
+	// 获取评论
+	
+	    detail.getComment();
 	    
 
 });

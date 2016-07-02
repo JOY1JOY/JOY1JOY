@@ -3,6 +3,7 @@ package com.joy1joy.app.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.joy1joy.app.bean.TActivity;
 import com.joy1joy.app.bean.TNotices;
 
 public interface TNoticesMapper {
@@ -47,4 +48,9 @@ public interface TNoticesMapper {
 	TNotices selectTNoticesById(Integer id);
 
 	public List<TNotices> selectRecentNotices(Map map);
+	
+    public int updateTNoticesUpvoteCount(TNotices notices);
+	
+    public int updateTNoticesCommentCount(TNotices notices);
+	
 }

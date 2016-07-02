@@ -10,7 +10,8 @@
 		attention, caution, fee, joy_fee as joyFee, gqr,
 		autoSMS,
 		smsContent,
-		cuid, cdatetime, audi_datetime as audiDatetime
+		cuid, cdatetime, audi_datetime as audiDatetime,thumbnail,
+		upvoteCount,commentCount
 	</sql>
 	<sql id="activityColumnWithAs2">
 		t1.id, t1.name, t1.status, t1.address,
@@ -31,10 +32,13 @@
 		t1.autoSMS,
 		t1.smsContent,
 		t1.cuid,
+		t1.thumbnail,
 		t3.userid as cuserName,
 		t3.icon as cuserIcon,
 		t1.cdatetime,
 		t1.audi_datetime as audiDatetime,
+		t1.upvoteCount,
+		t1.commentCount,
 		(select count(*) from
 		t_at_users t2
 		where t2.at_id=t1.id) as partNum
@@ -45,7 +49,7 @@
 		description,
 		attention, caution, fee, joy_fee, gqr, autoSMS,
 		smsContent, cuid,
-		cdatetime, audi_datetime, thumbnail
+		cdatetime, audi_datetime, thumbnail,upvoteCount,commentCount
 	</sql>
 	<insert id="insertActivity" useGeneratedKeys="true" keyProperty="id"
 		parameterType="TActiviity">
@@ -62,7 +66,9 @@
 		#{cuid},
 		#{cdatetime},
 		#{audiDatetime},
-		#{thumbnail}
+		#{thumbnail},
+		#{upvoteCount},
+		#{commentCount}
 		)
 	</insert>
 	<update id="updateActivity">
@@ -77,12 +83,25 @@
 		fee=#{fee},
 		joy_fee=#{joyFee}, gqr=#{gqr},
 		autoSMS=#{autoSMS},
-		smsContent=#{smsContent} where id=#{id}
+		smsContent=#{smsContent},
+		upvoteCount=#{upvoteCount},
+		commentCount=#{commentCount}
+		where id=#{id}
 	</update>
 	<update id="updateActivityStatus">
 		update t_activities set status=#{status} where
 		id=#{id}
 	</update>
+	<update id="updateActivityUpvoteCount">
+		update t_activities set upvoteCount=upvoteCount+1 where 1=1 and 
+		id=#{id}
+	</update>
+	
+	<update id="updateActivityCommentCount">
+		update t_activities set commentCount=commentCount+1 where 1=1 and 
+		id=#{id}
+	</update>
+	
 	<update id="updateAtStatus" parameterType="TActiviity">
 		update t_activities
 		set status=#{status} where 1=1

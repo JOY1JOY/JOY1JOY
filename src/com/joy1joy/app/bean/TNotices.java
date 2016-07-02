@@ -58,6 +58,35 @@ public class TNotices implements java.io.Serializable{
 	 */
 	private String icon;
 	
+	//文章评论页数目
+	private int commentPageNum;
+	
+	//文章赞数目
+	private int upvoteCount;
+	
+	//文章评论数目
+    private int commentCount;
+    
+    
+    public int getCommentPageNum() {
+		return commentPageNum;
+	}
+	public void setCommentPageNum(int commentPageNum) {
+		this.commentPageNum = commentPageNum;
+	}
+	public int getUpvoteCount() {
+		return upvoteCount;
+	}
+	public void setUpvoteCount(int upvoteCount) {
+		this.upvoteCount = upvoteCount;
+	}
+	public int getCommentCount() {
+		return commentCount;
+	}
+	public void setCommentCount(int commentCount) {
+		this.commentCount = commentCount;
+	}
+
 	public String getUserid() {
 		return userid;
 	}

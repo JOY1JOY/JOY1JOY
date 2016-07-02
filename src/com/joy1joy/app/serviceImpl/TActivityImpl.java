@@ -43,6 +43,18 @@ public class TActivityImpl implements ITActivity {
 		// TODO Auto-generated method stub
 		return mapper.updateActivity(activity);
 	}
+	
+	@Override
+	public int updateActivityUpvoteCount(TActivity activity) {
+		// TODO Auto-generated method stub
+		return mapper.updateActivityUpvoteCount(activity);
+	}
+
+	@Override
+	public int updateActivityCommentCount(TActivity activity) {
+		// TODO Auto-generated method stub
+		return mapper.updateActivityCommentCount(activity);
+	}
 
 	@Override
 	public int getOrgActivitiesWithPagesCount(int cuid) {

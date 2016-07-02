@@ -157,4 +157,20 @@ public class BaseAction extends ActionSupport implements IAction,
 		logger.debug("登录用户id:" + id);
 		return id;
 	}
+	/**
+	 * getUserId
+	 * @return
+	 */
+	protected String getLoginUserFullId() {
+		String id = "";
+		Object o = ActionContext.getContext().getSession().get("users");
+		if (null != o) {
+			TUsers user = (TUsers) o;
+			id = user.getUserid();
+		}
+		// for test
+		// id = 1;
+		logger.debug("登录用户id:" + id);
+		return id;
+	}
 }

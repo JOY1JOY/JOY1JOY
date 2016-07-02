@@ -91,11 +91,11 @@
 					<li class="active">
 							<a href="<%=path%>at/organize.action"> 已分享活动</a>
 						</li>
-						
+						<!--  
 						<li>
 							<a href="<%=path%>at/joinAt.action"> 已报名活动</a>
 						</li>
-						
+						-->
 						<li>
 							<a href="#"> 已发布话题</a>
 						</li>

@@ -15,7 +15,7 @@
 		select
 		*
 		from t_dict
-		where pdkey='np' and dtype =
+		where  dtype =
 		#{dtype,jdbcType=VARCHAR}
 	</select>
 	<select id="selectOptions" parameterType="java.lang.String"

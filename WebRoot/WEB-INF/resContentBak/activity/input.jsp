@@ -66,8 +66,9 @@
 							<s:iterator value="address" var="a">
 								<option value="${a.dkey}">${a.dvalue}</option>
 							</s:iterator>
-
-						</select> <select id="type" id="saddress" name="activity.address"
+						</select> 
+						
+						<select id="type" id="saddress" name="activity.address"
 							value="${activity.address}" class="m-select-text" name="type">
 							<option value="zhengzhou">郑州市</option>
 						</select> <span class="tips tips-error"><i></i><em

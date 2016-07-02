@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.joy1joy.app.bean.TActivity;
 import com.joy1joy.app.bean.TNotices;
 import com.joy1joy.app.dao.TNoticesMapper;
 import com.joy1joy.app.service.ITNoticeService;
@@ -121,11 +122,16 @@ public class TNoticeServiceImpl  implements ITNoticeService {
 	}
 
 
-	
-	
-	
-	
-	
-	
+	@Override
+	public int updateTNoticesUpvoteCount(TNotices notices) {
+		// TODO Auto-generated method stub
+		return noticeMapper.updateTNoticesUpvoteCount(notices);
+	}
 
+	@Override
+	public int updateTNoticesCommentCount(TNotices notices) {
+		// TODO Auto-generated method stub
+		return noticeMapper.updateTNoticesCommentCount(notices);
+	}
+	
 }

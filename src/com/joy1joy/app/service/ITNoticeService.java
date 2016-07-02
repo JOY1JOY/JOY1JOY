@@ -3,6 +3,7 @@ package com.joy1joy.app.service;
 import java.util.List;
 import java.util.Map;
 
+import com.joy1joy.app.bean.TActivity;
 import com.joy1joy.app.bean.TNotices;
 
 /** 
@@ -38,4 +39,9 @@ public interface ITNoticeService{
 	
 	public TNotices selectTNoticesById(Integer id);
 	public List<TNotices> selectRecentNotices(Map map);
+	
+	public int updateTNoticesUpvoteCount(TNotices notice);
+	
+	public int updateTNoticesCommentCount(TNotices notice);
+	
 }

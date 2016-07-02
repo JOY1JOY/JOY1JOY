@@ -48,7 +48,15 @@ public class TActivity {
 	private String thumbnail;
 	
 	private int commentPageNum;
-
+	
+	
+	//活动赞数目
+	private int upvoteCount;
+	
+	//活动评论数目
+    private int commentCount;
+    
+    
 	public int getCommentPageNum() {
 		return commentPageNum;
 	}
@@ -273,5 +281,22 @@ public class TActivity {
 	public String getThumbnail() {
 		return thumbnail;
 	}
+	
+	public int getUpvoteCount() {
+		return upvoteCount;
+	}
+
+	public void setUpvoteCount(int upvoteCount) {
+		this.upvoteCount = upvoteCount;
+	}
+
+	public int getCommentCount() {
+		return commentCount;
+	}
+
+	public void setCommentCount(int commentCount) {
+		this.commentCount = commentCount;
+	}
+
 
 }

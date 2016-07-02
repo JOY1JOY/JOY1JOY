@@ -62,20 +62,31 @@ function pageselectCallback(page_index, jq) {
 					+ obj.id + '" target="_blank">'+obj.title+'</a>';
 					html +='</h3>';
                     html +='<div class="partakes">';
-					html +='<label class="lab-read">阅读&nbsp;2125</label>';
-					html +='<label class="lab-good">赞&nbsp;165</label>';
-					html +='<label class="lab-discuss">评论&nbsp;14</label>';
+					
+					html +='<a href="#"><label class="lab-good" data-value='+obj.id+'>赞&nbsp;<span>'+obj.upvoteCount+'</span></label></a>';
+					html +='<a href="#"><label class="lab-discuss" data-value='+obj.id+'>评论&nbsp;'+obj.commentCount+'</label></a>';
 					html +='</div>';
 					var content = obj.content;
 					var ele=$(content).find("img:first").attr("src");
+					var thumbsrc=ele.replace("/images/at","/images/thumbnail");
 					if("undefined" == typeof ele){
-					ele="../images/22.jpg";	
+					ele="../images/thumbnail/default.jpg";	
 					}
-					html +='<img src="'+ele+'">';
+					html +='<img src="'+thumbsrc+'">';
 				    html +='</div>';
 				    html +='</div>';
 					$("#topicList").append(html);
+					
 				});
+				
+				var obj = $("#topicList").find(".lab-good");
+				obj.click(function(){
+					var subtleVariant=$(this).find("span");
+					var num = subtleVariant.html();
+					var data_value=$(this).attr("data-value");
+					notice.upvote(subtleVariant,num,data_value);
+				});
+				
 				$("#Pagination").show();
 			}
 
@@ -87,6 +98,30 @@ function pageselectCallback(page_index, jq) {
 var notice ={
 		
 };
+
+notice.upvote = function(obj,num,id) {
+
+	var upvoteUrl=joy.getContextPath()+"/upvote/upvote.action";
+	var data={
+			termId:id,
+			UpvoteType:1
+	};
+	$.getJSON(upvoteUrl,data,function(o){
+
+		if(o.code=="0"){
+			//$t.context.innerText=parseInt($t.context.innerText)+1;
+			obj.html(parseInt(num)+1);
+		} else {
+			if (o && o.checkSession) {
+				joy.util.handle_not_login(window);
+			}
+		}
+	});
+};
+
+
+
+
 notice.search_handler=function(o){
 	
     var v = o.find('a').attr("data-value");

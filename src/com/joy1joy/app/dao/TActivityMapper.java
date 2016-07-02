@@ -18,7 +18,11 @@ public interface TActivityMapper {
 	public List<TActivity> getActivitiesWithPages(ActivityPage page);
 
 	public int updateActivity(TActivity activity);
-
+	
+	public int updateActivityUpvoteCount(TActivity activity);
+	
+	public int updateActivityCommentCount(TActivity activity);
+	
 	public int getOrgActivitiesWithPagesCount(int cuid);
 
 	public List<TActivity> getOrgActivitiesWithPages(ActivityPage page);

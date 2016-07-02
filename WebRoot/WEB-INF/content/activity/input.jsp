@@ -43,6 +43,11 @@
 			href="<%=path%>resCss/bootstrap-datetimepicker.min.css">
 		<link rel="stylesheet" type="text/css"
 			href="<%=path%>resCss/simditor.css" />
+			
+					<link rel="stylesheet" type="text/css"
+			href="<%=path%>resCss/bootstrap-spinner.css" />
+			
+			   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
 
 		<script type="text/javascript" src="<%=path%>js/jquery.Jcrop.min.js"></script>
@@ -114,21 +119,15 @@
     -->
 
 							<div class="col-sm-8 col-md-6">
-								<select  class="form-control" id="saddress" value="${activity.address}" name="activity.address">
-									<option value="zhengzhou">
-										郑州市
-									</option>
-									<option value="hangzhou">
-										杭州市
-									</option>
-									<option value="shanghai">
-										上海市
-									</option>
-									<option value="beijing">
-										北京市
-									</option>
+							
+							<select id="address" class="form-control"
+							name="activity.address"  value="${activity.address}">
+							<s:iterator value="address" var="a">
+								<option value="${a.dkey}">${a.dvalue}</option>
+							</s:iterator>
 
-								</select>
+						</select> 
+							
 							</div>
 
 						</div>
@@ -192,10 +191,20 @@
 									费用：
 								</h4>
 							</label>
-							<div class="col-sm-4 col-md-2">
-								<input type="fee" class="form-control" name="activity.joyFee" value="${activity.joyFee}" id="at_joyFee"
-									placeholder="活动费用">
+							<div class="col-sm-8 col-md-4">
+
+							<div class="input-group spinner" data-trigger="spinner">
+								<input type="text" class="form-control text-left" name="activity.joyFee" value="${activity.joyFee}" id="at_joyFee"
+									data-rule="quantity">
+								<div class="input-group-addon">
+									<a href="javascript:;" class="spin-up" data-spin="up"><i
+										class="fa fa-caret-up"></i></a> <a href="javascript:;"
+										class="spin-down" data-spin="down"><i
+										class="fa fa-caret-down"></i></a>
+								</div>
 							</div>
+
+						</div>
 						</div>
 
 						<div class="form-group">
@@ -219,7 +228,7 @@
 										</div>
 										<div class="info"></div>
 										<div class="btns">
-											<div id="filePicker2">继续添加</div>
+											<div id="filePicker2"></div>
 											<div class="uploadBtn">
 												开始上传
 											</div>
@@ -250,7 +259,7 @@
 							</label>
 							<div class="col-sm-12 col-md-9">
 								<textarea  placeholder="" id="at_description"
-							name="activity.description" autofocus>${activity.description}</textarea>
+							name="activity.description" >${activity.description}</textarea>
 							</div>
 						</div>
 
@@ -289,7 +298,7 @@
 
 
 		<jsp:include page="../base/joy1joy_footer.jsp"></jsp:include>
-
+		<script type="text/javascript" src="<%=path%>resJs/jquery.spinner.min.js"></script>
 		<script type="text/javascript"
 			src="<%=path%>resJs/bootstrap-datetimepicker.min.js"></script>
 		<script type="text/javascript"
@@ -301,6 +310,7 @@
 		<script type="text/javascript" src="<%=path%>resJs/uploader.js"></script>
 		<script type="text/javascript" src="<%=path%>resJs/simditor.js"></script>
 		<script type="text/javascript" src="<%=path%>resJs/global.js"></script>
+
 		<script type="text/javascript">
 		
 	var poster= '${activity.poster}';
@@ -334,8 +344,8 @@
   toolbar : toolbar,  //工具栏
   //optional options
 });
+$("#address option[value=${activity.address}]").prop("selected",true);
 
-$("#at_name").focus();
 </script>
 	</body>
 </html>

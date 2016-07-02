@@ -69,12 +69,12 @@ public class TActivityAction extends BaseAction {
 
 	@Autowired
 	private ITActivity iTActivity;
-	
+
 	@Autowired
 	private ITDictService iDict;
 	@Autowired
 	private ITAtUsersService atUserService;
-	
+
 	@Autowired
 	private ITAtCommentService atCommentService;
 
@@ -101,7 +101,10 @@ public class TActivityAction extends BaseAction {
 		logger.debug("编辑活动");
 		ActionContext.getContext().put("editOpt", 1);
 		List<TDict> dtypes = iDict.selectAllSubOptions(DICT_AT_TYPE);
+		List<TDict> address = iDict.findDictByType(DICT_ADDRESS);
+
 		ActionContext.getContext().put("dtypes", dtypes);
+		ActionContext.getContext().put("address", address);
 
 		TActivity at = iTActivity.getActivityById(activity.getId());
 		if (null != at) {
@@ -113,23 +116,23 @@ public class TActivityAction extends BaseAction {
 
 		return C_INPUT;
 	}
-    /**
-     * @author DSY1029
-     * 关闭活动
-     */
+
+	/**
+	 * @author DSY1029 关闭活动
+	 */
 	@Action(value = "close", results = { @Result(name = C_SUCCESS, location = "/WEB-INF/content/activity/organize.jsp") })
-	public String close(){
+	public String close() {
 		logger.debug("关闭活动");
 		TActivity at = new TActivity();
 		at.setId(activity.getId());
-		//设置为关闭状态
+		// 设置为关闭状态
 		at.setStatus(3);
 		int flag = iTActivity.updateAtStatus(at);
-	
+
 		return C_SUCCESS;
 
-		
 	}
+
 	/**
 	 * 活动管理
 	 * 
@@ -386,12 +389,11 @@ public class TActivityAction extends BaseAction {
 		List<TDict> dtypes = iDict.selectAllSubOptions(DICT_AT_TYPE);
 		List<TDict> dstatus = iDict.selectAllSubOptions(DICT_STATUS);
 		List<TDict> dtime = iDict.selectAllSubOptions(DICT_TIME);
-		
+
 		ActionContext.getContext().put("dtypes", dtypes);
 		ActionContext.getContext().put("dstatus", dstatus);
 		ActionContext.getContext().put("dtime", dtime);
-		
-		
+
 		return C_INPUT;
 	}
 
@@ -415,23 +417,25 @@ public class TActivityAction extends BaseAction {
 
 		String absolutePath = ServletActionContext.getServletContext()
 				.getRealPath("");
-		// add by duansy 
-		Random ra =new Random();
-		int randomInt=ra.nextInt();
-		String save_file_name = getCurDate("yyyyMMddHHmmssSSS") + "_"+randomInt
-				+ this.uploadFileName.substring(this.uploadFileName.indexOf("."));
-		
-		  String os = System.getProperty("os.name");  
-	        String uploadPath="/opt/";
-	        if(os.toLowerCase().startsWith("win")){  
-	        	uploadPath="D:/";
-	        } 
-		String save_file_path = PATH_ACTIVITY_POSTER_BASE + save_file_name;
-	
-	// 	String path = absolutePath + save_file_path;
-		String path = uploadPath + save_file_path;
-	//	String path =  save_file_path;
+		// add by duansy
+		Random ra = new Random();
+		int randomInt = ra.nextInt();
+		String save_file_name = getCurDate("yyyyMMddHHmmssSSS")
+				+ "_"
+				+ randomInt
+				+ this.uploadFileName.substring(this.uploadFileName
+						.indexOf("."));
 
+		String os = System.getProperty("os.name");
+		String uploadPath = "/opt/";
+		if (os.toLowerCase().startsWith("win")) {
+			uploadPath = "D:/";
+		}
+		String save_file_path = PATH_ACTIVITY_POSTER_BASE + save_file_name;
+
+		// String path = absolutePath + save_file_path;
+		String path = uploadPath + save_file_path;
+		// String path = save_file_path;
 
 		logger.debug("保存文件绝对路径:" + path);
 
@@ -455,7 +459,7 @@ public class TActivityAction extends BaseAction {
 				.put(JSON_DATA, jsonData(code, "上传失败!", null));
 		return C_SUCCESS;
 	}
-	
+
 	@LoginAccess
 	@Action(value = "uploadEdit", results = { @Result(name = C_SUCCESS, location = "/WEB-INF/content/base/JSON.jsp") })
 	public String uploadEdit() {
@@ -476,28 +480,30 @@ public class TActivityAction extends BaseAction {
 
 		String absolutePath = ServletActionContext.getServletContext()
 				.getRealPath("");
-		// add by duansy 
-		Random ra =new Random();
-		int randomInt=ra.nextInt();
-		String save_file_name = getCurDate("yyyyMMddHHmmssSSS") + "_"+randomInt
-				+ this.uploadFileName.substring(this.uploadFileName.indexOf("."));
-		
-		  String os = System.getProperty("os.name");  
-	        String uploadPath="/opt/";
-	        if(os.toLowerCase().startsWith("win")){  
-	        	uploadPath="D:/";
-	        } 
-		String save_file_path = PATH_ACTIVITY_POSTER_BASE + save_file_name;
-	
-	// 	String path = absolutePath + save_file_path;
-		String path = uploadPath + save_file_path;
-	//	String path =  save_file_path;
+		// add by duansy
+		Random ra = new Random();
+		int randomInt = ra.nextInt();
+		String save_file_name = getCurDate("yyyyMMddHHmmssSSS")
+				+ "_"
+				+ randomInt
+				+ this.uploadFileName.substring(this.uploadFileName
+						.indexOf("."));
 
+		String os = System.getProperty("os.name");
+		String uploadPath = "/opt/";
+		if (os.toLowerCase().startsWith("win")) {
+			uploadPath = "D:/";
+		}
+		String save_file_path = PATH_ACTIVITY_POSTER_BASE + save_file_name;
+
+		String path = uploadPath + save_file_path;
 
 		logger.debug("保存文件绝对路径:" + path);
-
 		// save
 		boolean save_result = saveFile(path, this.upload);
+		
+		// 生成缩略图
+		String thumbnailPath = processThumbnail(save_file_path);
 
 		if (save_result) {
 			code = R_SUCCESS;
@@ -506,27 +512,24 @@ public class TActivityAction extends BaseAction {
 			data.put(FILE_PATH, save_file_path);
 			data.put(CONTEXT_PATH, ServletActionContext.getRequest()
 					.getContextPath());
-			String msg = "{\"success\":\"" + true + "\",\"file_path\":\"" + save_file_path + "\"}";  
-	   
-//			ActionContext.getContext().put(JSON_DATA,
-//					jsonData(code, "上传图片成功!", data));
-			ActionContext.getContext().put(JSON_DATA,
-					msg);
+			String msg = "{\"success\":\"" + true + "\",\"file_path\":\""
+					+ save_file_path + "\"}";
+			// ActionContext.getContext().put(JSON_DATA,
+			// jsonData(code, "上传图片成功!", data));
+			ActionContext.getContext().put(JSON_DATA, msg);
 			return C_SUCCESS;
 		}
 
-		
 		logger.debug("上传文件失败!");
 		ActionContext.getContext()
 				.put(JSON_DATA, jsonData(code, "上传失败!", null));
 		return C_SUCCESS;
 	}
 
-
 	@LoginAccess
-	@Action(value = "add", results = { @Result(name = C_SUCCESS, location = "/WEB-INF/content/base/JSON.jsp"),
-			@Result(name = "error", location = "/WEB-INF/content/base/JSON.jsp")
-	})
+	@Action(value = "add", results = {
+			@Result(name = C_SUCCESS, location = "/WEB-INF/content/base/JSON.jsp"),
+			@Result(name = "error", location = "/WEB-INF/content/base/JSON.jsp") })
 	public String add() {
 		logger.debug("添加活动");
 		int code = -1;
@@ -535,10 +538,10 @@ public class TActivityAction extends BaseAction {
 		try {
 			activity.setCuid(getLoginUserId());
 			activity.setCdatetime(DateTool.getCurrentDate());
-			//生成缩略图
-			String thumbnailPath=processThumbnail(activity.getPoster());
+			// 生成缩略图
+			String thumbnailPath = processThumbnail(activity.getPoster());
 			activity.setThumbnail(thumbnailPath);
-			//activity.setStatus(0);
+			// activity.setStatus(0);
 			int i = this.iTActivity.insertActivity(activity);
 			if (i > 0) {
 				code = 0;
@@ -557,27 +560,28 @@ public class TActivityAction extends BaseAction {
 			return C_ERROR;
 		}
 	}
-	
-	
-	private String processThumbnail(String poster){
-		
-		String os = System.getProperty("os.name");  
-        String uploadPath="/opt/";
-        if(os.toLowerCase().startsWith("win")){  
-        	uploadPath="D:";
-        } 
-		
-		File originalFile=new File( uploadPath+poster );
-		String destFilePath=uploadPath+File.separator+"thumbnail"+File.separator+originalFile.getName();
+
+	private String processThumbnail(String poster) {
+
+		String os = System.getProperty("os.name");
+		String uploadPath = "/opt/";
+		if (os.toLowerCase().startsWith("win")) {
+			uploadPath = "D:";
+		}
+
+		File originalFile = new File(uploadPath + poster);
+		String relativePathString = File.separator + "images" + File.separator
+				+ "thumbnail" + File.separator + originalFile.getName();
+		String destFilePath = uploadPath + relativePathString;
 		File destFile = new File(destFilePath);
-		
+
 		try {
 			ImageUtil.resize(originalFile, destFile, 320, 0.7f);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		return destFilePath;
+
+		return relativePathString;
 	}
 
 	@LoginAccess
@@ -611,7 +615,7 @@ public class TActivityAction extends BaseAction {
 		TComment comment = new TComment();
 		try {
 			at = iTActivity.getActivityById(activity.getId());
-			//获取评论数量
+			// 获取评论数量
 			comment.setTermId(activity.getId());
 			at.setCommentPageNum(atCommentService.getCommentsCount(comment));
 		} catch (Exception e) {
@@ -620,7 +624,7 @@ public class TActivityAction extends BaseAction {
 		}
 		if (null != at) {
 			activity = at;
-			
+
 			logger.debug("查看详细成功!" + at.getName());
 
 		} else {

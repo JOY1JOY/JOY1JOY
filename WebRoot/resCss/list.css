@@ -165,5 +165,9 @@ span.cate-items {
     dispaly:none;
     }
     
-    
+ .title-over{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+ }
 

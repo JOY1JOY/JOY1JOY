@@ -22,7 +22,7 @@ public interface IAction {
 	final public static String JSON_DATA = "jsonData";
 
 	final public static String DICT_AT_TYPE = "at_type";
-	final public static String DICT_ADDRESS = "address";
+	final public static String DICT_ADDRESS = "address_admin";
 	final public static String DICT_STATUS = "at_status";
 	final public static String DICT_TIME = "at_time";
 	final public static String DICT_NOTICE = "notice";

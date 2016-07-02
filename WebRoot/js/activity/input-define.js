@@ -226,9 +226,8 @@ function submit_handler(status) {
 		at_gqr_val = "";
 	}
 */
-	 var address = $("select[name='activity.address']").val();
-	// var address = 'zhengzhou';
-	
+	var address = $("select[name='activity.address']").val();
+	alert(address);
 	var Aid=$("#at_id").val();
 	var data = {
 		'activity.id' : Aid,

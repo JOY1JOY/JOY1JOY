@@ -13,6 +13,7 @@
 		<meta name="viewport"
 			content="width=device-width,initial-scale=1,maximum-scale=1" />
 		<title>动一动</title>
+		<link rel='icon' href="<%=path%>/images/favcion.ico" type=‘image/x-ico’ />
 		<jsp:include page="../base/base_import_jquery1.11.2.jsp" />
 
 		<link rel="stylesheet" type="text/css"

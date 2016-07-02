@@ -74,6 +74,7 @@ public class TCommentServiceImpl implements ITAtCommentService{
 			Map<String,Object> m=new HashMap<String,Object>();
 			m.put("termId", comments.getTermId());
 			m.put("status", comments.getCommentStatus());
+			m.put("commentType", comments.getCommentType());
 			m.put("offset", offset);
 			m.put("limit", limit);
 			list= mapper.selectTCommentByLimit(m);

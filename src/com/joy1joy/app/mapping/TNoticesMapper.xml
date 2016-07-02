@@ -8,6 +8,9 @@
 		<result column="content" property="content" jdbcType="VARCHAR" />
 		<result column="status" property="status" jdbcType="INTEGER" />
 		<result column="cuid" property="cuid" jdbcType="INTEGER" />
+		<result column="upvoteCount" property="upvoteCount" jdbcType="INTEGER" />
+		<result column="commentCount" property="commentCount" jdbcType="INTEGER" />
+
 		<result column="cdatetime" property="cdatetime" jdbcType="TIMESTAMP"
 			javaType="java.sql.Timestamp" />
 		<result column="userid" property="userid" jdbcType="VARCHAR" />
@@ -69,6 +72,17 @@
 		#{cuid,jdbcType=INTEGER}
 		, #{cdatetime,jdbcType=TIMESTAMP})
 	</insert>
+	
+	
+		<update id="updateTNoticesUpvoteCount">
+		update t_notices set upvoteCount=upvoteCount+1 where 1=1 and 
+		id=#{id}
+	</update>
+	
+	<update id="updateTNoticesCommentCount">
+		update t_notices set commentCount=commentCount+1 where 1=1 and 
+		id=#{id}
+	</update>
 
 
 </mapper>
