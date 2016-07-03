@@ -13,8 +13,6 @@ import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 
-import net.sf.json.JSONObject;
-
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
@@ -26,6 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.joy1joy.app.actions.base.BaseAction;
 import com.joy1joy.app.bean.ActivityPage;
+import com.joy1joy.app.bean.FilePath;
 import com.joy1joy.app.bean.PartiUserInfo;
 import com.joy1joy.app.bean.TActivity;
 import com.joy1joy.app.bean.TComment;
@@ -37,8 +36,10 @@ import com.joy1joy.app.service.ITAtCommentService;
 import com.joy1joy.app.service.ITAtUsersService;
 import com.joy1joy.app.service.ITDictService;
 import com.joy1joy.utils.DateTool;
-import com.joy1joy.utils.ImageUtil;
 import com.opensymphony.xwork2.ActionContext;
+
+import net.coobird.thumbnailator.Thumbnails;
+import net.sf.json.JSONObject;
 
 /**
  * 活动action
@@ -439,14 +440,20 @@ public class TActivityAction extends BaseAction {
 
 		logger.debug("保存文件绝对路径:" + path);
 
+		/*直接生成一个文件名 由BASEACTION 提供的方法  */
+		FilePath filePath = getFilePath(this.uploadFileName);
 		// save
-		boolean save_result = saveFile(path, this.upload);
+		boolean save_result = saveFile(filePath.getAbsolutePath(), this.upload);
+		
+		processThumbnail(filePath.getAbsolutePath(),filePath.getThumbnailAbsolutePath());
 
 		if (save_result) {
 			code = R_SUCCESS;
 			logger.debug("上传文件成功!");
 			JSONObject data = new JSONObject();
-			data.put(FILE_PATH, save_file_path);
+			data.put(FILE_PATH, filePath.getWebPath());
+			
+			data.put("thumbnail", filePath.getThumbnailWebPath());
 			data.put(CONTEXT_PATH, ServletActionContext.getRequest()
 					.getContextPath());
 			ActionContext.getContext().put(JSON_DATA,
@@ -477,6 +484,8 @@ public class TActivityAction extends BaseAction {
 		logger.debug("上传的文件临时名称:" + tmp_name);
 
 		logger.debug("原始文件名称:" + this.uploadFileName);
+		
+
 
 		String absolutePath = ServletActionContext.getServletContext()
 				.getRealPath("");
@@ -499,11 +508,16 @@ public class TActivityAction extends BaseAction {
 		String path = uploadPath + save_file_path;
 
 		logger.debug("保存文件绝对路径:" + path);
-		// save
-		boolean save_result = saveFile(path, this.upload);
 		
+		/*直接生成一个文件名 由BASEACTION 提供的方法  */
+		FilePath filePath = getFilePath(this.uploadFileName);
+		
+		// save
+		boolean save_result = saveFile(filePath.getAbsolutePath(), this.upload);
+
+		processThumbnail(filePath.getAbsolutePath(),filePath.getThumbnailAbsolutePath());
 		// 生成缩略图
-		String thumbnailPath = processThumbnail(save_file_path);
+		//String thumbnailPath = 
 
 		if (save_result) {
 			code = R_SUCCESS;
@@ -513,7 +527,7 @@ public class TActivityAction extends BaseAction {
 			data.put(CONTEXT_PATH, ServletActionContext.getRequest()
 					.getContextPath());
 			String msg = "{\"success\":\"" + true + "\",\"file_path\":\""
-					+ save_file_path + "\"}";
+					+ filePath.getWebPath() + "\",\"thumbnail\":\""+filePath.getThumbnailWebPath()+"\"}";
 			// ActionContext.getContext().put(JSON_DATA,
 			// jsonData(code, "上传图片成功!", data));
 			ActionContext.getContext().put(JSON_DATA, msg);
@@ -538,9 +552,6 @@ public class TActivityAction extends BaseAction {
 		try {
 			activity.setCuid(getLoginUserId());
 			activity.setCdatetime(DateTool.getCurrentDate());
-			// 生成缩略图
-			String thumbnailPath = processThumbnail(activity.getPoster());
-			activity.setThumbnail(thumbnailPath);
 			// activity.setStatus(0);
 			int i = this.iTActivity.insertActivity(activity);
 			if (i > 0) {
@@ -560,29 +571,25 @@ public class TActivityAction extends BaseAction {
 			return C_ERROR;
 		}
 	}
-
-	private String processThumbnail(String poster) {
-
-		String os = System.getProperty("os.name");
-		String uploadPath = "/opt/";
-		if (os.toLowerCase().startsWith("win")) {
-			uploadPath = "D:";
-		}
-
-		File originalFile = new File(uploadPath + poster);
-		String relativePathString = File.separator + "images" + File.separator
-				+ "thumbnail" + File.separator + originalFile.getName();
-		String destFilePath = uploadPath + relativePathString;
-		File destFile = new File(destFilePath);
-
+	
+	/**
+	 * 生成缩略图
+	 * @param originalFile
+	 * @param destFile
+	 * @return
+	 */
+	private int processThumbnail(String originalFile,String destFile){
 		try {
-			ImageUtil.resize(originalFile, destFile, 320, 0.7f);
+			Thumbnails.of(originalFile) 
+	        .scale(1.10f)
+	        .toFile(destFile);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-		return relativePathString;
+		return 0;
 	}
+
+
 
 	@LoginAccess
 	@Action(value = "update", results = { @Result(name = C_SUCCESS, location = "/WEB-INF/content/base/JSON.jsp") })

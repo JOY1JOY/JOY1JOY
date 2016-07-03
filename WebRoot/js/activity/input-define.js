@@ -176,6 +176,8 @@ function submit_handler(status) {
 		tip("海报不能为空");
 		return false;
 	}
+	
+	var thumbnail_val = $.trim($("#at_thumbnail").val());
 
 //	var at_description_val = CKEDITOR.instances.at_description.getData();
 	var at_description_val = editor.getValue();
@@ -227,7 +229,6 @@ function submit_handler(status) {
 	}
 */
 	var address = $("select[name='activity.address']").val();
-	alert(address);
 	var Aid=$("#at_id").val();
 	var data = {
 		'activity.id' : Aid,
@@ -238,6 +239,7 @@ function submit_handler(status) {
 		"activity.type" : type,
 		"activity.joyFee" : at_joyFee_val,
 		"activity.poster" : poster_val,
+		"activity.thumbnail" : thumbnail_val,
 		"activity.description" : at_description_val,
 	};
 	var url = JOY_URL_ACTIVITY_ADD;

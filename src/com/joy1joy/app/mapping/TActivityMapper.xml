@@ -85,7 +85,8 @@
 		autoSMS=#{autoSMS},
 		smsContent=#{smsContent},
 		upvoteCount=#{upvoteCount},
-		commentCount=#{commentCount}
+		commentCount=#{commentCount},
+		thumbnail = #{thumbnail}
 		where id=#{id}
 	</update>
 	<update id="updateActivityStatus">

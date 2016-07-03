@@ -547,6 +547,8 @@
         uploader.on('uploadSuccess',function(file,response){
     //    alert(response.data.fpath);
     	$("#at_poster").val(response.data.fpath);
+    	$("#at_thumbnail").val(response.data.thumbnail);
+    	
         });
         // end by duansy
         

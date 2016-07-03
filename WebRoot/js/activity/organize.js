@@ -73,7 +73,7 @@ $(function() {
 					if (JOY_ACTIVITY_STATUS[me.status]) {
 						me.statusName = JOY_ACTIVITY_STATUS[me.status];
 					}
-					me.imgSrc = joy.getContextPath() + me.poster;
+					me.imgSrc = joy.getContextPath() + me.thumbnail;
 					// 处理链接
 					var link_url = joy.getContextPath()
 							+ "/at/detail.action?activity.id=" + me.id;

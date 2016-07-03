@@ -85,6 +85,11 @@ public class TUsers implements java.io.Serializable{
 	 * 备注说明
 	 */
 	private String remark;
+	
+	/*缩略图*/
+	private String thumbnails;
+	
+	
 	public Integer getUid() {
 		return uid;
 	}
@@ -173,5 +178,11 @@ public class TUsers implements java.io.Serializable{
 		this.icon = icon;
 	}
 	
+	public String getThumbnails() {
+		return thumbnails;
+	}
 	
+	public void setThumbnails(String thumbnails) {
+		this.thumbnails = thumbnails;
+	}
 }

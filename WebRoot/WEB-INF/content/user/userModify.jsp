@@ -210,7 +210,7 @@
 												<!--  <img alt="更换头像" src="<%=path%>/images/icon-edit.png" id="changeHead" />   -->
 												<input type="file" onchange="previewImage(this)"
 													name="myFile" id="imgOne" value="浏览"
-													style="position: absolute; right: -40px; top: 0; font-size: 30px; opacity: 0; filter: alpha(opacity =     0);" /></input>
+													style="position: absolute; right: -40px; top: 0; font-size: 30px; opacity: 0; filter: alpha(opacity =0);" /></input>
 												<button class="m-btn m-btn-primary" type="button">
 													浏览
 												</button> </a>

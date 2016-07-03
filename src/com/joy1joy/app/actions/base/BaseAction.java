@@ -1,6 +1,9 @@
 package com.joy1joy.app.actions.base;
 
+import java.io.File;
+import java.util.Calendar;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +16,7 @@ import org.apache.struts2.interceptor.ServletResponseAware;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.alibaba.fastjson.JSONObject;
+import com.joy1joy.app.bean.FilePath;
 import com.joy1joy.app.bean.TUsers;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -173,4 +177,67 @@ public class BaseAction extends ActionSupport implements IAction,
 		logger.debug("登录用户id:" + id);
 		return id;
 	}
+	
+	
+	/**
+	 * 生成一个路径
+	 * @param originalFileName
+	 * @param param
+	 * @return
+	 */
+	protected FilePath getFilePath(String originalFileName){
+		
+		
+		/*根据系统类型确定根路径*/
+		String os1 = System.getProperty("os.name");
+		String root = "/opt/";
+		if (os1.toLowerCase().startsWith("win")) {
+			root = "D:\\";
+		}
+		
+		
+		/*获取文件分隔符*/
+		String s= System.getProperties().getProperty("file.separator");
+		Calendar c = Calendar.getInstance();
+		
+		
+		String year=String.valueOf(c.get(Calendar.YEAR));
+		String month=String.valueOf(c.get(Calendar.MONTH)+1);
+		String day=String.valueOf(c.get(Calendar.DAY_OF_MONTH));
+		String fileName=UUID.randomUUID().toString().replace("-", "")+"_"+originalFileName;
+		
+		String path="images"+s+"org"+s+year+s+month+s+day;
+		String absolutePath=root+path+s+fileName;
+		String webPath="/"+(path+s+fileName).replace("\\", "/");
+		
+		String middlePath="images"+s+"thumbnail"+s+year+s+month+s+day;
+		String thumbnailAbsolutePath=root+middlePath+s+fileName;
+		String thumbnailWebPath="/"+(middlePath+s+fileName).replace("\\", "/");
+		
+		File file = new File(root+path);
+		if(!file.exists()){
+			file.mkdirs();
+		}
+		
+
+		
+		FilePath filePath = new FilePath();
+		filePath.setRoot(root);
+		filePath.setFileName(fileName);
+		filePath.setMiddlePath(path);
+		filePath.setAbsolutePath(absolutePath);
+		filePath.setWebPath(webPath);
+		
+		
+		File file1 = new File(root+middlePath);
+		if(!file1.exists()){
+			file1.mkdirs();
+		}		
+		
+		filePath.setThumbnailAbsolutePath(thumbnailAbsolutePath);
+		filePath.setMiddlePath(middlePath);
+		filePath.setThumbnailWebPath(thumbnailWebPath);
+		
+		return filePath;
+	}	
 }

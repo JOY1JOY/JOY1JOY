@@ -16,6 +16,7 @@ import java.util.Map;
 
 import javax.servlet.http.Cookie;
 
+import net.coobird.thumbnailator.Thumbnails;
 import net.sf.json.JSONObject;
 
 import org.apache.log4j.Logger;
@@ -31,6 +32,7 @@ import api.ucenter.Client;
 import api.ucenter.XMLHelper;
 
 import com.joy1joy.app.actions.base.BaseAction;
+import com.joy1joy.app.bean.FilePath;
 import com.joy1joy.app.bean.TUsers;
 import com.joy1joy.app.core.annotation.LoginAccess;
 import com.joy1joy.app.service.ITUserService;
@@ -421,9 +423,19 @@ public class TUsersAction extends BaseAction {
 				}
 				File imageFile = new File(uploadPath
 						+ "/" + imageFileName);
-				String filecopy = copy(myFile, imageFile);
+				
+				FilePath filePath = getFilePath(imageFileName);
+				
+				String filecopy = copy(myFile, new File(filePath.getAbsolutePath()));
+				
+				Thumbnails.of(filePath.getAbsolutePath()) 
+		        .scale(1.10f)
+		        .toFile(filePath.getThumbnailAbsolutePath());
+				
 				if (filecopy.equals("1")) {
 					user.setIcon("/images/userHeadImg/" + imageFileName);
+					user.setIcon(filePath.getWebPath());
+					user.setThumbnails(filePath.getThumbnailWebPath());
 				}
 			}
 

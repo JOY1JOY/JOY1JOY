@@ -248,6 +248,8 @@
 							</div>
 							<input type="hidden" id="at_poster" value="${activity.poster}"
 								name="activity.poster">
+							<input type="hidden" id="at_thumbnail" value="${activity.thumbnail}"
+								name="activity.thumbnail">								
 						</div>
 
 

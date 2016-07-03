@@ -68,7 +68,7 @@ function pageselectCallback(page_index, jq) {
 					html +='</div>';
 					var content = obj.content;
 					var ele=$(content).find("img:first").attr("src");
-					var thumbsrc=ele.replace("/images/at","/images/thumbnail");
+					var thumbsrc=ele.replace("/images/org","/images/thumbnail");
 					if("undefined" == typeof ele){
 					ele="../images/thumbnail/default.jpg";	
 					}
