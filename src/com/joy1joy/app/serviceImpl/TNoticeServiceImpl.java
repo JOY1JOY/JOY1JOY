@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.joy1joy.app.bean.ActivityPage;
 import com.joy1joy.app.bean.TActivity;
 import com.joy1joy.app.bean.TNotices;
 import com.joy1joy.app.dao.TNoticesMapper;
@@ -132,6 +133,16 @@ public class TNoticeServiceImpl  implements ITNoticeService {
 	public int updateTNoticesCommentCount(TNotices notices) {
 		// TODO Auto-generated method stub
 		return noticeMapper.updateTNoticesCommentCount(notices);
+	}
+	
+	@Override
+	public int getOrgNoticesWithPagesCount(Integer id){
+		return noticeMapper.getOrgNoticesWithPagesCount(id);
+	}
+	
+	@Override
+	public List<TNotices> getOrgNoticesWithPages (ActivityPage p){
+		return noticeMapper.getOrgNoticesWithPages(p);
 	}
 	
 }

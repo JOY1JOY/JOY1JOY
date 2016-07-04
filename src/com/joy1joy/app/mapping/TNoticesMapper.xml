@@ -15,18 +15,19 @@
 			javaType="java.sql.Timestamp" />
 		<result column="userid" property="userid" jdbcType="VARCHAR" />
 		<result column="icon" property="icon" jdbcType="VARCHAR" />
-		
-			
+
+
 	</resultMap>
 
 	<select id="selectTNoticesByLimit" resultMap="BaseResultMap"
 		parameterType="map">
-		select m.*, n.userid, n.thumbnail as icon from t_notices m left join t_users n on m.cuid=n.uid where 1=1
+		select m.*, n.userid, n.thumbnail as icon from t_notices m left join
+		t_users n on m.cuid=n.uid where 1=1
 		<if test="status == 2">
 			and status= #{status,jdbcType=INTEGER}
 		</if>
 		<if test="type!=null and type!=''">
-		and m.type like CONCAT('%',#{type},'%')
+			and m.type like CONCAT('%',#{type},'%')
 		</if>
 		ORDER BY id DESC LIMIT
 		#{offset},#{limit}
@@ -37,9 +38,9 @@
 		<if test="status == 2">
 			and status= #{status,jdbcType=INTEGER}
 		</if>
-			<if test="type!=null and type!=''">
-		and type=#{type,jdbcType=VARCHAR}
-			</if>
+		<if test="type!=null and type!=''">
+			and type=#{type,jdbcType=VARCHAR}
+		</if>
 	</select>
 	<select id="selectTNoticesList" resultMap="BaseResultMap">
 		select * from
@@ -55,7 +56,8 @@
 	</select>
 	<select id="selectTNoticesById" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
-		select m.*,n.userid, n.thumbnail as icon from t_notices  m left join t_users n on m.cuid=n.uid where m.id =
+		select m.*,n.userid, n.thumbnail as icon from t_notices
+		m left join t_users n on m.cuid=n.uid where m.id =
 		#{id,jdbcType=INTEGER}
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
@@ -72,17 +74,43 @@
 		#{cuid,jdbcType=INTEGER}
 		, #{cdatetime,jdbcType=TIMESTAMP})
 	</insert>
-	
-	
-		<update id="updateTNoticesUpvoteCount">
-		update t_notices set upvoteCount=upvoteCount+1 where 1=1 and 
-		id=#{id}
-	</update>
-	
-	<update id="updateTNoticesCommentCount">
-		update t_notices set commentCount=commentCount+1 where 1=1 and 
+
+
+	<update id="updateTNoticesUpvoteCount">
+		update t_notices set upvoteCount=upvoteCount+1 where
+		1=1 and
 		id=#{id}
 	</update>
 
+	<update id="updateTNoticesCommentCount">
+		update t_notices set commentCount=commentCount+1
+		where 1=1 and
+		id=#{id}
+	</update>
+
+
+
+	<select id="getOrgNoticesWithPages" parameterType="page"
+		resultType="TNotices">
+		select
+		t1.*,t3.userid, t3.thumbnail as icon
+		from t_notices t1,t_users t3
+		where 1=1 and
+		t1.cuid=t3.uid and
+		t1.cuid=#{uid}
+		order by
+		id
+		desc limit
+		#{start},#{size}
+	</select>
+	<select id="getOrgNoticeesWithPagesCount" parameterType="java.lang.Integer"
+		resultType="java.lang.Integer">
+		select count(*) from t_notices t2,t_users t3 where 1=1
+		and
+		t2.cuid=t3.uid and
+		t2.cuid=#{uid}
+		order by
+		id desc
+	</select>
 
 </mapper>

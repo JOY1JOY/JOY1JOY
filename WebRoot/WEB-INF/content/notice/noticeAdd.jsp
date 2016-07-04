@@ -89,47 +89,21 @@
 						</div>
 					</div>
 
-
-
 					<div class="form-group">
 						<label class="col-sm-4 col-md-2  control-label">
 							<h4>内容：</h4>
 						</label>
 						<div class="col-sm-12 col-md-9">
-							<textarea placeholder="" id="noticeContent" name="noticeContent"
-								autofocus>${activity.description}</textarea>
+							<textarea placeholder="" id="noticeContent" name="noticeContent">${activity.description}</textarea>
 						</div>
 					</div>
-
-
-
-
 
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-8">
 							<a href="javascript:void(0);" class="m-btn m-btn-primary"
 								id="at_submit1"> 发布</a>
 						</div>
-						<!--  
-							<div class="col-sm-offset-2 col-sm-4 col-md-2">
-								<button type="submit" class="btn btn-default btn-info btn-block" id="at_submit1">
-									发布
-								</button>
-							</div>
-  -->
-						<!--  			
-                               <div class=" col-sm-4 col-md-2">
-								<button type="submit" class="btn btn-default btn-info btn-block" id="at_submit2">
-									保存草稿
-								</button>
-							</div>
 
-							<div class=" col-sm-4 col-md-2">
-								<button type="submit" class="btn btn-default btn-info btn-block">
-									预览
-								</button>
-							</div>
-                           -->
 
 					</div>
 				</form>
@@ -168,8 +142,6 @@
   toolbar : toolbar,  //工具栏
   //optional options
 });
-$("#at_name").focus();
-
 </script>
 </body>
 </html>

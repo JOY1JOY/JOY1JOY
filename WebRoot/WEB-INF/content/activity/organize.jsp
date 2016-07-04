@@ -97,7 +97,7 @@
 						</li>
 						-->
 						<li>
-							<a href="#"> 已发布话题</a>
+							<a href="<%=path%>notice/shareNotice.action"> 已发布话题</a>
 						</li>
 
 					</ul>

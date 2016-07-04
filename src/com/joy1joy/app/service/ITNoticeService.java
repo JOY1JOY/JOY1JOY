@@ -3,6 +3,7 @@ package com.joy1joy.app.service;
 import java.util.List;
 import java.util.Map;
 
+import com.joy1joy.app.bean.ActivityPage;
 import com.joy1joy.app.bean.TActivity;
 import com.joy1joy.app.bean.TNotices;
 
@@ -43,5 +44,21 @@ public interface ITNoticeService{
 	public int updateTNoticesUpvoteCount(TNotices notice);
 	
 	public int updateTNoticesCommentCount(TNotices notice);
+	
+	/**
+	 * 根据用户ID分别查取所分享的话题
+	 * @param id
+	 * @return
+	 */
+	public int getOrgNoticesWithPagesCount(Integer id);
+	
+	
+	/**
+	 * 根据用户ID 及 分页 查取单页面的分享话题
+	 * @param Page
+	 * @return
+	 */
+	
+	public List<TNotices> getOrgNoticesWithPages (ActivityPage Page);
 	
 }

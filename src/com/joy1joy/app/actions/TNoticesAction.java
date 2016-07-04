@@ -17,6 +17,8 @@ import org.jfree.util.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.joy1joy.app.actions.base.BaseAction;
+import com.joy1joy.app.bean.ActivityPage;
+import com.joy1joy.app.bean.TActivity;
 import com.joy1joy.app.bean.TComment;
 import com.joy1joy.app.bean.TDict;
 import com.joy1joy.app.bean.TNotices;
@@ -28,32 +30,6 @@ import com.joy1joy.app.service.ITDictService;
 import com.joy1joy.app.service.ITNoticeService;
 import com.joy1joy.utils.DateJsonValueProcessor;
 import com.opensymphony.xwork2.ActionContext;
-
-/**
- * <p>
- * Title: TNoticesAction.java
- * </p>
- * 
- * <p>
- * Description: 公告控制层
- * </p>
- * 
- * <p>
- * Date: 2015-4-20
- * </p>
- * 
- * <p>
- * Time: 上午11:42:57
- * </p>
- * 
- * <p>
- * Copyright: 2015
- * </p>
- * 
- * 
- * @author boyd
- * @version 1.0
- */
 
 
 
@@ -74,6 +50,8 @@ public class TNoticesAction extends BaseAction {
 	private String type = "";
 	private int start;
 	private int end;
+	private int pno;
+	private int psize;
 	
 	@Autowired
 	private ITAtCommentService atCommentService;
@@ -236,6 +214,51 @@ public class TNoticesAction extends BaseAction {
 
 	}
 
+	
+
+	/**
+	 *  获取本人分享的话题 COUNT
+	 * @return
+	 */
+	@LoginAccess
+	@Action(value = "shareNotice", results = { @Result(name = C_INPUT, location = "/WEB-INF/content/notice/shareNotice.jsp") })
+	public String organize() {
+		int cuid = getLoginUserId();
+		int count = noticeService.getOrgNoticesWithPagesCount(cuid);
+		ActionContext.getContext().put("totalPages", count);
+		return C_INPUT;
+	}
+	
+	/**
+	 *   获取本人分享的话题 LIST
+	 * @return
+	 */
+
+	@LoginAccess
+	@Action(value = "shareNoticeList", results = { @Result(name = C_SUCCESS, location = "/WEB-INF/content/base/JSON.jsp") })
+	public String orgAtList() {
+		int code = -1;
+		String msg = MSG_FAILURE;
+		List<TNotices> data = null;
+
+		int cuid = getLoginUserId();
+		try {
+			ActivityPage p = new ActivityPage(pno, psize);
+			p.setUid(cuid);
+			data = noticeService.getOrgNoticesWithPages(p);
+			code = R_SUCCESS;
+			msg = MSG_SUCCESS;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		ActionContext.getContext().put(JSON_DATA, jsonData(code, msg, data));
+		return C_SUCCESS;
+	}
+	
+	
+	
+	
 	@Action(value = "recent", results = { @Result(name = C_SUCCESS, location = "/WEB-INF/content/base/JSON.jsp") })
 	public String update() {
 		Log.debug("获取最新发布的通知或公告");
