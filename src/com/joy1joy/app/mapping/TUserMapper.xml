@@ -16,6 +16,7 @@
 		<result column="qq" property="qq" jdbcType="VARCHAR" />
 		<result column="remark" property="remark" jdbcType="VARCHAR" />
 		<result column="icon" property="icon" jdbcType="VARCHAR" />
+		<result column="thumbnail" property="thumbnail" jdbcType="VARCHAR" />
 	</resultMap>
 	
 	<select id="selectUserByName" resultMap="BaseResultMap" parameterType="java.lang.String">
@@ -64,10 +65,11 @@
 		,state= #{state,jdbcType=VARCHAR}
 		, gender=#{gender,jdbcType=INTEGER}
 		, birthdate=#{birthdate,jdbcType=DATE}
-		,email=#{email,jdbcType=VARCHAR}
+		, email=#{email,jdbcType=VARCHAR}
 		, qq=#{qq,jdbcType=VARCHAR}
 		, icon=#{icon,jdbcType=VARCHAR}
-			, mobile=#{mobile,jdbcType=VARCHAR}
+		, mobile=#{mobile,jdbcType=VARCHAR}
+		, thumbnail= #{thumbnail}	
 		where uid = #{uid,jdbcType=INTEGER}
 	</update>
 </mapper>

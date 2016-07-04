@@ -34,7 +34,7 @@
 		t1.cuid,
 		t1.thumbnail,
 		t3.userid as cuserName,
-		t3.icon as cuserIcon,
+		t3.thumbnail as cuserIcon,
 		t1.cdatetime,
 		t1.audi_datetime as audiDatetime,
 		t1.upvoteCount,

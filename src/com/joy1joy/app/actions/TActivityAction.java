@@ -581,7 +581,7 @@ public class TActivityAction extends BaseAction {
 	private int processThumbnail(String originalFile,String destFile){
 		try {
 			Thumbnails.of(originalFile) 
-	        .scale(1.10f)
+	        .scale(0.5).outputQuality(0.2)
 	        .toFile(destFile);
 		} catch (IOException e) {
 			e.printStackTrace();

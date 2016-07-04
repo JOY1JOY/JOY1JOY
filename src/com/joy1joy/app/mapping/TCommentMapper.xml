@@ -6,7 +6,7 @@
 
 
 	<select id="selectTCommentByLimit"  parameterType="map" resultType="TComment">
-		select m.*, n.userid, n.icon from t_comment m left join t_users n on
+		select m.*, n.userid, n.thumbnail as icon from t_comment m left join t_users n on
 		m.uid=n.uid where 1=1
 			and m.termId= #{termId}
 			and m.commentType= #{commentType}

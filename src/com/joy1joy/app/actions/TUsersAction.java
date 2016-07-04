@@ -68,8 +68,8 @@ import com.opensymphony.xwork2.ActionContext;
  * @author boyd
  * @version 1.0
  * 
- *          <p>=
- *          ===========================================
+ *          <p>
+ *          = ===========================================
  *          </p>
  *          <p>
  *          Modification History
@@ -82,12 +82,11 @@ import com.opensymphony.xwork2.ActionContext;
  *          <p>
  *          Reason:
  *          </p>
- *          <p>=
- *          ===========================================
+ *          <p>
+ *          = ===========================================
  *          </p>
  */
-@Results({
-		@Result(name = "success", location = "/WEB-INF/content/user/success.jsp"),
+@Results({ @Result(name = "success", location = "/WEB-INF/content/user/success.jsp"),
 		@Result(name = "success", location = "/WEB-INF/content/user/fail.jsp") })
 @Namespace(value = "/user")
 public class TUsersAction extends BaseAction {
@@ -115,7 +114,6 @@ public class TUsersAction extends BaseAction {
 	private String phoneCode;
 	private String mobile;
 
-
 	// 引入业务层
 	@Autowired
 	ITUserService userService;
@@ -126,54 +124,56 @@ public class TUsersAction extends BaseAction {
 	}
 
 	@Action(value = "genericImage")
-	public void genericImage() throws Exception  {
-		getResponse().setHeader("Pragma", "No-cache");  
-		getResponse().setHeader("Cache-Control", "no-cache");  
-		getResponse().setDateHeader("Expires", 0);  
-		getResponse().setContentType("image/jpeg");  
-          
-        //生成随机字串  
-        String verifyCode = VerifyCodeUtils.generateVerifyCode(4);  
-        //存入会话session  
-        //System.out.println("-----verifyCode:"+verifyCode.toLowerCase());
-        session.put("imageCode","");
-        session.put("imageCode", verifyCode.toLowerCase());  
-        System.out.println("-------------"+session.get("imageCode"));
-        //生成图片  
-        int w = 200, h = 80;  
-        VerifyCodeUtils.outputImage(w, h, getResponse().getOutputStream(), verifyCode); 
-        //ActionContext.getContext().getSession().clear();
-       
+	public void genericImage() throws Exception {
+		getResponse().setHeader("Pragma", "No-cache");
+		getResponse().setHeader("Cache-Control", "no-cache");
+		getResponse().setDateHeader("Expires", 0);
+		getResponse().setContentType("image/jpeg");
+
+		// 生成随机字串
+		String verifyCode = VerifyCodeUtils.generateVerifyCode(4);
+		// 存入会话session
+		// System.out.println("-----verifyCode:"+verifyCode.toLowerCase());
+		session.put("imageCode", "");
+		session.put("imageCode", verifyCode.toLowerCase());
+		System.out.println("-------------" + session.get("imageCode"));
+		// 生成图片
+		int w = 200, h = 80;
+		VerifyCodeUtils.outputImage(w, h, getResponse().getOutputStream(), verifyCode);
+		// ActionContext.getContext().getSession().clear();
+
 	}
-	
+
 	@Action(value = "refreshCode")
 	public void refreshCode() throws Exception {
 		PrintWriter out = null;
 		JSONObject jsonObject = new JSONObject();
 		try {
 			out = getResponse().getWriter();
-			String code=(String)session.get("imageCode");
-			jsonObject.put("result",code);
+			String code = (String) session.get("imageCode");
+			jsonObject.put("result", code);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			//logger.error("新增用户失败!");
+			// logger.error("新增用户失败!");
 			jsonObject.put("result", "");
 		}
 
 		out.print(jsonObject.toString());
 	}
 
-	@Action(value = "register", results = { @Result(name = "success", location = "/WEB-INF/content/user/register.jsp") })
-	public String register(){
+	@Action(value = "register", results = {
+			@Result(name = "success", location = "/WEB-INF/content/user/register.jsp") })
+	public String register() {
 		return C_SUCCESS;
 	}
 
 	@LoginAccess
-	@Action(value = "jumpUserDetail", results = { @Result(name = "success", location = "/WEB-INF/content/user/userModify.jsp") })
+	@Action(value = "jumpUserDetail", results = {
+			@Result(name = "success", location = "/WEB-INF/content/user/userModify.jsp") })
 	public String toUserDetail() {
 		TUsers t_user = (TUsers) session.get("users");
-	//	t_user = this.userService.findUserByPhone(t_user.getMobile());
+		// t_user = this.userService.findUserByPhone(t_user.getMobile());
 		t_user = this.userService.findUserByName(t_user.getUserid());
 		ActionContext.getContext().put("tUsers", t_user);
 		return C_SUCCESS;
@@ -185,60 +185,50 @@ public class TUsersAction extends BaseAction {
 		JSONObject jsonObject = new JSONObject();
 		try {
 			out = getResponse().getWriter();
-//			String image_code=(String)session.get("imageCode");
-//			if(!imageNum.toLowerCase().equals(image_code))
-//			{
-//				jsonObject.put("result", "codeFail");
-//			}else
-//			{
-				TUsers users = new TUsers();
-				users.setUserid(userId);
-				users.setMobile(userPhone);
-				users.setEmail(email);
-				users.setPassword(PasswordMD5.createEncryptPSW(password));
-				users.setStatus(TUsers.USER_STATUE_NORMAL);
-				users.setType(TUsers.USER_COMMON);
-				users.setIcon("/images/userHeadImg/default.png");
-				boolean isResult = this.userService.addUsers(users);
-				Log.debug("BEGIN-SSO--------"+isResult);
-				if (isResult) {
-					// add by duansy 20150801
-					/*
-					Client uc = new Client();
-					Log.debug("BEGIN-SSO--------");
-					String $returns = uc.uc_user_register(userId, password, email);
-					Log.debug("BEGIN-SSO--------"+$returns);
-					int $uid = Integer. parseInt ($returns); 
-					Log.debug("BEGIN-SSO--------"+$uid);
-					if ($uid <= 0) { 
-					if ($uid == -1) { 
-					System.out.print("用户名不合法"); 
-					} else if ($uid == -2) { 
-					System.out.print("包含要允许注册的词语"); 
-					} else if ($uid == -3) { 
-					System.out.print("用户名已经存在"); 
-					} else if ($uid == -4) { 
-					System.out.print("Email 格式有误"); 
-					} else if ($uid == -5) { 
-					System.out.print("Email 不允许注册"); 
-					} else if ($uid == -6) { 
-					System.out.print("该 Email 已经被注册"); 
-					} else { 
-					System.out.print("未定义"); 
-					}
-					}
-					System.out.println("id:"+$uid);
-					System.out.println("添加成功！");
-					*/
-					// end by duansy 20150801
-					
-					jsonObject.put("result", "success");
-					
-				} else {
-					jsonObject.put("result", "fail");
-				}
-	//		}
-			
+			// String image_code=(String)session.get("imageCode");
+			// if(!imageNum.toLowerCase().equals(image_code))
+			// {
+			// jsonObject.put("result", "codeFail");
+			// }else
+			// {
+			TUsers users = new TUsers();
+			users.setUserid(userId);
+			users.setMobile(userPhone);
+			users.setEmail(email);
+			users.setPassword(PasswordMD5.createEncryptPSW(password));
+			users.setStatus(TUsers.USER_STATUE_NORMAL);
+			users.setType(TUsers.USER_COMMON);
+			users.setIcon("/images/userHeadImg/default.png");
+			users.setThumbnail("/images/userHeadImg/default.png");
+
+			boolean isResult = this.userService.addUsers(users);
+			Log.debug("BEGIN-SSO--------" + isResult);
+			if (isResult) {
+				// add by duansy 20150801
+				/*
+				 * Client uc = new Client(); Log.debug("BEGIN-SSO--------");
+				 * String $returns = uc.uc_user_register(userId, password,
+				 * email); Log.debug("BEGIN-SSO--------"+$returns); int $uid =
+				 * Integer. parseInt ($returns);
+				 * Log.debug("BEGIN-SSO--------"+$uid); if ($uid <= 0) { if
+				 * ($uid == -1) { System.out.print("用户名不合法"); } else if ($uid ==
+				 * -2) { System.out.print("包含要允许注册的词语"); } else if ($uid == -3)
+				 * { System.out.print("用户名已经存在"); } else if ($uid == -4) {
+				 * System.out.print("Email 格式有误"); } else if ($uid == -5) {
+				 * System.out.print("Email 不允许注册"); } else if ($uid == -6) {
+				 * System.out.print("该 Email 已经被注册"); } else {
+				 * System.out.print("未定义"); } } System.out.println("id:"+$uid);
+				 * System.out.println("添加成功！");
+				 */
+				// end by duansy 20150801
+
+				jsonObject.put("result", "success");
+
+			} else {
+				jsonObject.put("result", "fail");
+			}
+			// }
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -256,100 +246,103 @@ public class TUsersAction extends BaseAction {
 		JSONObject jsonObject = new JSONObject();
 		try {
 			out = getResponse().getWriter();
-			TUsers users = this.userService.findUserByNameOrPhone(userId,
-					userPhone);
+			TUsers users = this.userService.findUserByNameOrPhone(userId, userPhone);
 			Log.debug("BEGIN--SSO----LOGIN");
 			if (null != users) {
 				if (users.getPassword().equals(PasswordMD5.createEncryptPSW(password))) {
 
 					session.put("users", users);
-					
-					//add by duansy 20150801 ucenter login in
-//					Client uc = new Client();
-//					String $result = uc.uc_user_login(userId, password);
-//					Log.debug("BEGIN--SSO----$result"+$result);
-//					String $ucsynlogin = "";
-//					
-//					LinkedList<String> rs = XMLHelper. uc_unserialize ($result);
-//
-//					if (rs.size()>0){
-//
-//					int $uid = Integer. parseInt (rs.get(0));
-//
-//					String $username = rs.get(1);
-//
-//					String $password = rs.get(2);
-//
-//					String $email = rs.get(3);
-//					Log.debug("BEGIN--SSO----$$uid"+$uid);
-//					if ($uid > 0) {
-//
-//					$ucsynlogin = uc.uc_user_synlogin($uid);
-//
-//					} else if ($uid == -1) {
-//
-//					System. out .println("用户不存在,或者被删除");
-//
-//					} else if ($uid == -2) {
-//
-//					System. out .println("密码错");
-//
-//					} else {
-//
-//					System. out .println("未定义");
-//
-//					}
-//					session.put("synclogin", $ucsynlogin);
-//
-//					//设置本地 Discuz 登录的cookie信息，cookie存活时间
-//
-//					//直接访问论坛就有用户信息了
-//
-//					try {
-//
-//					response.setCharacterEncoding("UTF-8");
-//
-//					//同步Cookie信息
-//
-////					                response.addHeader("P3P"," CP=\"CURa ADMa DEVa PSAo PSDo OUR BUS UNI PUR INT DEM STA PRE COM NAV OTC NOI DSP COR\"");
-////
-////					              Cookie auth = new Cookie("auth", uc.uc_authcode($password+"\t"+$uid , "ENCODE"));
-////
-////				              auth.setMaxAge(31536000);
-////
-////				              //auth.setDomain(" localhost ");//设置本地cookie
-////
-////					              response.addCookie(auth);
-////
-////					              Cookie user = new Cookie("Discuz_loginuser", $username );
-////
-////					              response.addCookie(user);
-//
-//					//把返回过来的 js 文件直接输出在页面上，然后跳转到论坛网站首页就已经是登录之后的
-//
-//				//	PrintWriter ucout = response.getWriter();
-//
-//			//		out.write($ucsynlogin);
-//
-//			//		out.flush();         
-//                  } catch (Exception e) {
-//
-//					// TODO Auto-generated catch block
-//
-//					e.printStackTrace();
-//
-//					}
-//
-//					} else {
-//
-//					System. out .println("Login failed");
-//
-//					}
+
+					// add by duansy 20150801 ucenter login in
+					// Client uc = new Client();
+					// String $result = uc.uc_user_login(userId, password);
+					// Log.debug("BEGIN--SSO----$result"+$result);
+					// String $ucsynlogin = "";
+					//
+					// LinkedList<String> rs = XMLHelper. uc_unserialize
+					// ($result);
+					//
+					// if (rs.size()>0){
+					//
+					// int $uid = Integer. parseInt (rs.get(0));
+					//
+					// String $username = rs.get(1);
+					//
+					// String $password = rs.get(2);
+					//
+					// String $email = rs.get(3);
+					// Log.debug("BEGIN--SSO----$$uid"+$uid);
+					// if ($uid > 0) {
+					//
+					// $ucsynlogin = uc.uc_user_synlogin($uid);
+					//
+					// } else if ($uid == -1) {
+					//
+					// System. out .println("用户不存在,或者被删除");
+					//
+					// } else if ($uid == -2) {
+					//
+					// System. out .println("密码错");
+					//
+					// } else {
+					//
+					// System. out .println("未定义");
+					//
+					// }
+					// session.put("synclogin", $ucsynlogin);
+					//
+					// //设置本地 Discuz 登录的cookie信息，cookie存活时间
+					//
+					// //直接访问论坛就有用户信息了
+					//
+					// try {
+					//
+					// response.setCharacterEncoding("UTF-8");
+					//
+					// //同步Cookie信息
+					//
+					//// response.addHeader("P3P"," CP=\"CURa ADMa DEVa PSAo
+					// PSDo OUR BUS UNI PUR INT DEM STA PRE COM NAV OTC NOI DSP
+					// COR\"");
+					////
+					//// Cookie auth = new Cookie("auth",
+					// uc.uc_authcode($password+"\t"+$uid , "ENCODE"));
+					////
+					//// auth.setMaxAge(31536000);
+					////
+					//// //auth.setDomain(" localhost ");//设置本地cookie
+					////
+					//// response.addCookie(auth);
+					////
+					//// Cookie user = new Cookie("Discuz_loginuser", $username
+					// );
+					////
+					//// response.addCookie(user);
+					//
+					// //把返回过来的 js 文件直接输出在页面上，然后跳转到论坛网站首页就已经是登录之后的
+					//
+					// // PrintWriter ucout = response.getWriter();
+					//
+					// // out.write($ucsynlogin);
+					//
+					// // out.flush();
+					// } catch (Exception e) {
+					//
+					// // TODO Auto-generated catch block
+					//
+					// e.printStackTrace();
+					//
+					// }
+					//
+					// } else {
+					//
+					// System. out .println("Login failed");
+					//
+					// }
 					// end by duansy 20150801
-					
-					
+
 					jsonObject.put("result", "success");
-			//		jsonObject.put("syclogin", $ucsynlogin);
+					// jsonObject.put("syclogin", $ucsynlogin);
 
 				} else {
 					jsonObject.put("result", "passError");
@@ -373,7 +366,7 @@ public class TUsersAction extends BaseAction {
 		JSONObject jsonObject = new JSONObject();
 		try {
 			out = this.getResponse().getWriter();
-		//	TUsers users = this.userService.findUserByPhone(userPhone);
+			// TUsers users = this.userService.findUserByPhone(userPhone);
 			TUsers users = this.userService.findUserByName(userId);
 			if (null != users) {
 				jsonObject.put("valid", "false");
@@ -397,55 +390,50 @@ public class TUsersAction extends BaseAction {
 			TUsers user = (TUsers) session.get("users");
 			user.setUid(user.getUid());
 			user.setUserid(userId);
-			user.setBirthdate(DateTool.stringToDate(birthday,
-					DateTool.DATE_STYLE_SIMPLE));
+			user.setBirthdate(DateTool.stringToDate(birthday, DateTool.DATE_STYLE_SIMPLE));
 			user.setEmail(email);
 			user.setQq(qq);
 			user.setState(state);
 			user.setMobile(mobile);
-			//user.setUserid(userId);
+			// user.setUserid(userId);
 			user.setGender(Integer.valueOf(gender));
 			if (fileName != null && !fileName.equals("")) {
-				String imageFileName = new Date().getTime()
-						+ getExtention(fileName);
+				String imageFileName = new Date().getTime() + getExtention(fileName);
 				// add by duansy 20150913
-//				 String os = System.getProperty("os.name");  
-//			     String uploadPath="/opt/images/userHeadImg";
-//			     if(os.toLowerCase().startsWith("win")){  
-//			        	uploadPath="D:/images/userHeadImg";
-//			        } 
-			     // end by duansy 20150913
-				String uploadPath = ServletActionContext.getServletContext().getRealPath("images/userHeadImg");   //设置保存目录  
-		        File folder=new File(uploadPath);
-				if(!folder.exists()&& !folder .isDirectory())
-				{
+				// String os = System.getProperty("os.name");
+				// String uploadPath="/opt/images/userHeadImg";
+				// if(os.toLowerCase().startsWith("win")){
+				// uploadPath="D:/images/userHeadImg";
+				// }
+				// end by duansy 20150913
+				String uploadPath = ServletActionContext.getServletContext().getRealPath("images/userHeadImg"); // 设置保存目录
+				File folder = new File(uploadPath);
+				if (!folder.exists() && !folder.isDirectory()) {
 					folder.mkdir();
 				}
-				File imageFile = new File(uploadPath
-						+ "/" + imageFileName);
-				
+				File imageFile = new File(uploadPath + "/" + imageFileName);
+
 				FilePath filePath = getFilePath(imageFileName);
-				
+
 				String filecopy = copy(myFile, new File(filePath.getAbsolutePath()));
-				
-				Thumbnails.of(filePath.getAbsolutePath()) 
-		        .scale(1.10f)
-		        .toFile(filePath.getThumbnailAbsolutePath());
-				
+
+			//	Thumbnails.of(filePath.getAbsolutePath()).scale(1.10f).toFile(filePath.getThumbnailAbsolutePath());
+
 				if (filecopy.equals("1")) {
 					user.setIcon("/images/userHeadImg/" + imageFileName);
-					user.setIcon(filePath.getWebPath());
-					user.setThumbnails(filePath.getThumbnailWebPath());
+					// user.setIcon(filePath.getWebPath());
+					// user.setThumbnails(filePath.getThumbnailWebPath());
+					// 修改用户基本信息时，不编辑缩略图 还是默认的
+					user.setThumbnail("/images/userHeadImg/" + imageFileName);
 				}
 			}
 
-			boolean res=this.userService.updateUsers(user);
-			if(res)
-			{
+			boolean res = this.userService.updateUsers(user);
+			if (res) {
 				session.remove("users");
 				session.put("users", user);
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.error("更新用户失败!");
@@ -454,8 +442,6 @@ public class TUsersAction extends BaseAction {
 		return C_SUCCESS;
 	}
 
-	
-	
 	@LoginAccess
 	@Action(value = "updateUserImg", results = {
 			@Result(name = "success", type = "redirectAction", location = "jumpUserDetail.action"),
@@ -465,38 +451,45 @@ public class TUsersAction extends BaseAction {
 			TUsers user = (TUsers) session.get("users");
 			user.setUid(user.getUid());
 			user.setUserid(userId);
-		
+
 			if (fileName != null && !fileName.equals("")) {
-				String imageFileName = new Date().getTime()
-						+ getExtention(fileName);
+				String imageFileName = new Date().getTime() + getExtention(fileName);
 				// add by duansy 20150913
-				 String os = System.getProperty("os.name");  
-			     String uploadPath="/opt/images/userHeadImg";
-			     if(os.toLowerCase().startsWith("win")){  
-			        	uploadPath="D:/images/userHeadImg";
-			        } 
-			     // end by duansy 20150913
-			//	String uploadPath = ServletActionContext.getServletContext().getRealPath("images/userHeadImg");   //设置保存目录  
-		        File folder=new File(uploadPath);
-				if(!folder.exists()&& !folder .isDirectory())
-				{
+				String os = System.getProperty("os.name");
+				String uploadPath = "/opt/images/userHeadImg";
+				if (os.toLowerCase().startsWith("win")) {
+					uploadPath = "D:/images/userHeadImg";
+				}
+				// end by duansy 20150913
+				// String uploadPath =
+				// ServletActionContext.getServletContext().getRealPath("images/userHeadImg");
+				// //设置保存目录
+				File folder = new File(uploadPath);
+				if (!folder.exists() && !folder.isDirectory()) {
 					folder.mkdir();
 				}
-				File imageFile = new File(uploadPath
-						+ "/" + imageFileName);
-				String filecopy = copy(myFile, imageFile);
+				
+				//获取文件各个路径
+				FilePath filePath = getFilePath(imageFileName);
+
+				//保存原图
+				String filecopy = copy(myFile, new File(filePath.getAbsolutePath()));
+
+				// 生成缩略图
+				Thumbnails.of(filePath.getAbsolutePath()).scale(0.5).outputQuality(0.2).toFile(filePath.getThumbnailAbsolutePath());
+
 				if (filecopy.equals("1")) {
-					user.setIcon("/images/userHeadImg/" + imageFileName);
+					user.setIcon(filePath.getWebPath());
+					user.setThumbnail(filePath.getThumbnailWebPath());
 				}
 			}
 
-			boolean res=this.userService.updateUsers(user);
-			if(res)
-			{
+			boolean res = this.userService.updateUsers(user);
+			if (res) {
 				session.remove("users");
 				session.put("users", user);
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.error("更新用户失败!");
@@ -504,17 +497,14 @@ public class TUsersAction extends BaseAction {
 		}
 		return C_SUCCESS;
 	}
-	
-	
+
 	private String copy(File src, File dst) {
 		try {
 			InputStream in = null;
 			OutputStream out = null;
 			try {
-				in = new BufferedInputStream(new FileInputStream(src),
-						BUFFER_SIZE);
-				out = new BufferedOutputStream(new FileOutputStream(dst),
-						BUFFER_SIZE);
+				in = new BufferedInputStream(new FileInputStream(src), BUFFER_SIZE);
+				out = new BufferedOutputStream(new FileOutputStream(dst), BUFFER_SIZE);
 				byte[] buffer = new byte[BUFFER_SIZE];
 				while (in.read(buffer) > 0) {
 					out.write(buffer);
@@ -538,47 +528,38 @@ public class TUsersAction extends BaseAction {
 		return fileName.substring(pos);
 	}
 
-	
-	@Action(value = "protocol", results = {
-			@Result(name = "success",  location = "/WEB-INF/content/agreement.jsp")})
+	@Action(value = "protocol", results = { @Result(name = "success", location = "/WEB-INF/content/agreement.jsp") })
 	public String protocol() {
 		return C_SUCCESS;
 	}
-	
+
 	@Action(value = "exit", results = {
-			@Result(name = "success", type = "redirectAction", location = "../home.action")})
-	public String exit()
-	{
+			@Result(name = "success", type = "redirectAction", location = "../home.action") })
+	public String exit() {
 		session.remove("users");
-		/* add by duansy 20150801  for UCCENTER
-		Client uc = new Client();
-		String $ucsynlogout = uc.uc_user_synlogout();
-        session.put("synclogin", $ucsynlogout);
-		System.out.println("退出成功"+$ucsynlogout);
-		end  by duansy
+		/*
+		 * add by duansy 20150801 for UCCENTER Client uc = new Client(); String
+		 * $ucsynlogout = uc.uc_user_synlogout(); session.put("synclogin",
+		 * $ucsynlogout); System.out.println("退出成功"+$ucsynlogout); end by duansy
 		 */
 		return C_SUCCESS;
 	}
-	
+
 	@Action(value = "compareCode")
-	public void compareCode()
-	{
+	public void compareCode() {
 		PrintWriter out = null;
 		JSONObject jsonObject = new JSONObject();
 		try {
 			out = getResponse().getWriter();
 
 			Map userMap = (Map) session.get(userPhone);// 用户手机号
-			if(null==userMap)
-			{
+			if (null == userMap) {
 				jsonObject.put("result", "timeout");
-			}else
-			{
+			} else {
 				String userPhoneCode = (String) userMap.get("phoneCode");
 				String userCodeTime = (String) userMap.get("codeTime");
-				long timeDiff = DateTool.getTimeDiff(DateTool.formatDate(
-						new Date(), DateTool.DATE_STYLE_BASIC), DateTool
-						.stringToDate(userCodeTime, DateTool.DATE_STYLE_BASIC));
+				long timeDiff = DateTool.getTimeDiff(DateTool.formatDate(new Date(), DateTool.DATE_STYLE_BASIC),
+						DateTool.stringToDate(userCodeTime, DateTool.DATE_STYLE_BASIC));
 				if (timeDiff > 5) {
 					jsonObject.put("result", "timeout");
 				} else {
@@ -590,7 +571,6 @@ public class TUsersAction extends BaseAction {
 					}
 				}
 			}
-			
 
 		} catch (Exception e) {
 			jsonObject.put("result", "fail");
@@ -599,28 +579,24 @@ public class TUsersAction extends BaseAction {
 		}
 		out.print(jsonObject.toString());
 	}
+
 	@Action(value = "sendCode")
-	public void sendCode()
-	{
+	public void sendCode() {
 		PrintWriter out = null;
 		JSONObject jsonObject = new JSONObject();
 		try {
 			out = getResponse().getWriter();
-			String code=StringTool.createRandom(true, 6);
-			String resultValue=SendMobileCode.sendCode(userPhone, code, "5");
-			if("000000".equals(resultValue))
-			{
+			String code = StringTool.createRandom(true, 6);
+			String resultValue = SendMobileCode.sendCode(userPhone, code, "5");
+			if ("000000".equals(resultValue)) {
 				Map userMap = new HashMap();
-				userMap.put("phoneCode",code);
-				userMap.put("codeTime", DateTool.dateToString(new Date(),
-						DateTool.DATE_STYLE_BASIC));
+				userMap.put("phoneCode", code);
+				userMap.put("codeTime", DateTool.dateToString(new Date(), DateTool.DATE_STYLE_BASIC));
 				session.put(userPhone, userMap);
 				jsonObject.put("result", "success");
-			}else
-			{
+			} else {
 				jsonObject.put("result", "fail");
 			}
-			
 
 		} catch (Exception e) {
 			jsonObject.put("result", "fail");
@@ -629,6 +605,7 @@ public class TUsersAction extends BaseAction {
 		}
 		out.print(jsonObject.toString());
 	}
+
 	public String getUserId() {
 		return userId;
 	}
@@ -693,8 +670,6 @@ public class TUsersAction extends BaseAction {
 		this.birthday = birthday;
 	}
 
-
-
 	public String getIcon() {
 		return icon;
 	}
@@ -734,7 +709,7 @@ public class TUsersAction extends BaseAction {
 	public void setImageNum(String imageNum) {
 		this.imageNum = imageNum;
 	}
-	
+
 	public String getEmail() {
 		return email;
 	}
@@ -742,8 +717,7 @@ public class TUsersAction extends BaseAction {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	
+
 	public String getMobile() {
 		return mobile;
 	}
@@ -751,6 +725,5 @@ public class TUsersAction extends BaseAction {
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
-	
 
 }

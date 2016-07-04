@@ -87,7 +87,7 @@ public class TUsers implements java.io.Serializable{
 	private String remark;
 	
 	/*缩略图*/
-	private String thumbnails;
+	private String thumbnail;
 	
 	
 	public Integer getUid() {
@@ -178,11 +178,11 @@ public class TUsers implements java.io.Serializable{
 		this.icon = icon;
 	}
 	
-	public String getThumbnails() {
-		return thumbnails;
+	public String getThumbnail() {
+		return thumbnail;
 	}
 	
-	public void setThumbnails(String thumbnails) {
-		this.thumbnails = thumbnails;
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
 	}
 }
