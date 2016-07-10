@@ -61,11 +61,11 @@
 						    <div class="jumbotron" style="background: #0080ff url(images/banners/img0.jpg) no-repeat center center; display: block; height: 300px; width: 100%">
 							<div class="container" >
 								<h2 style="color:#fff;font-">
-									你的每一次分享，对自己与他人都是一种帮助
+									户外，心生活，发布趣味活动，一起玩翻天
 								</h2>
 								<p>
 								<p>
-									<a class="m-btn-home m-btn-yellow" href="<%=path%>at/input.action">分享活动</a>
+									<a class="m-btn-home m-btn-yellow" href="<%=path%>at/input.action">发布活动</a>
 							</div> 
 							</div>
 					</div>

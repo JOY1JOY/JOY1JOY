@@ -163,7 +163,7 @@ public class TNoticesAction extends BaseAction {
 	public String jumpSave() {
 		// 查询公告字典集合
 		List<TDict> dicts = dictService.findDictByType("notice");
-		request.setAttribute("dcits", dicts);
+		ActionContext.getContext().put("dicts", dicts);
 		return C_SUCCESS;
 	}
 

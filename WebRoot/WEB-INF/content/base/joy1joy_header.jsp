@@ -40,7 +40,7 @@
                             <a href="<%=path%>notice/findNoticeList.action">话题</a>
                         </li>
                         <li class="dropdown">
-                          <a class="dropdown-toggle" data-toggle="dropdown" href="#">分享<b class="caret"></b></a>
+                          <a class="dropdown-toggle" data-toggle="dropdown" href="#">发布<b class="caret"></b></a>
                               
                           <ul class="dropdown-menu">
                           <li>
