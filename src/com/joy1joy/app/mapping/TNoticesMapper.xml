@@ -90,6 +90,17 @@
 
 
 
+	<update id="updateTNotices" parameterType="com.joy1joy.app.bean.TNotices">
+		update t_notices set 
+               title=#{title},
+               type=#{type},
+               content=#{content},
+               upvoteCount=#{upvoteCount},
+               commentCount=#{commentCount}
+where 1=1 and  id=#{id}
+	</update>
+
+
 	<select id="getOrgNoticesWithPages" parameterType="page"
 		resultType="TNotices">
 		select
@@ -103,7 +114,8 @@
 		desc limit
 		#{start},#{size}
 	</select>
-	<select id="getOrgNoticeesWithPagesCount" parameterType="java.lang.Integer"
+	          
+	<select id="getOrgNoticesWithPagesCount" parameterType="java.lang.Integer"
 		resultType="java.lang.Integer">
 		select count(*) from t_notices t2,t_users t3 where 1=1
 		and

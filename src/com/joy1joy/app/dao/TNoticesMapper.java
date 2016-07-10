@@ -51,6 +51,9 @@ public interface TNoticesMapper {
 	public List<TNotices> selectRecentNotices(Map map);
 	
     public int updateTNoticesUpvoteCount(TNotices notices);
+    
+    public int updateTNotices(TNotices notices);
+    
 	
     public int updateTNoticesCommentCount(TNotices notices);
     

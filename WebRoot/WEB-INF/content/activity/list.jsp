@@ -83,10 +83,10 @@
 				</div>
 				
 					<div id="at-loading" class="loading" style="visibility: visible;">
-					<a href="javascript:at.get_more();">加载更多……</a>
+					<a href="javascript:at.get_more();"><span class="loading_more">获得更多</span></a>
 				</div>
 				<div style="display: none;" id="at-no-more-loading" class="loading"
-					style="visibility: visible;">没有更多数据了……</div>
+					style="visibility: visible;"><span class="loading_more">没有更多数据了</span></div>
 			</div>
 			
 				

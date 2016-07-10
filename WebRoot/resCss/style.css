@@ -611,7 +611,7 @@ a.travis {
     height: 36px;
     line-height: 27px;
 }
-#join-list .buttonjo1joy, .sbdd_a input, .gbqfba {
+.buttonjoy1joy, .sbdd_a input, .gbqfba {
     background-image: -webkit-gradient(linear,left top,left bottom,from(#f5f5f5),to(#f1f1f1));
     background-image: -webkit-linear-gradient(top,#f5f5f5,#f1f1f1);
     -webkit-border-radius: 2px;
@@ -626,8 +626,9 @@ a.travis {
     font-weight: bold;
     margin: 11px 4px;
     min-width: 54px;
-    padding: 0 16px;
+    padding: 5px 16px;
     text-align: center;
+    line-height:18px;
 }
 
 
@@ -658,4 +659,41 @@ a.travis {
 
 .thumbnail { 
 	border-radius: 0px;
+}
+
+ .navbar-nav>li>a {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    height: 60px;
+    line-height: 60px;
+    color: #383e43;
+    font-size: 18px;
+    padding: 0 19px;
+    margin: 0 1px;
+	}
+ .navbar-nav>li>a:hover {
+    border-bottom: 3px solid #00bffc;
+}
+
+.navbar-nav>li>a:active{
+ border-bottom: 3px solid #00bffc;
+}
+
+.loading{
+    width: 100%;
+    background-color: #dbe9ff;
+    color: #666;
+    text-align: center;
+    padding: .5rem 0;
+    font-size: .75rem;
+    margin-top: 1.5rem;
+}
+.loading_more {
+    width: 100%;
+    background-color: #dbe9ff;
+    color: #666;
+    text-align: center;
+    padding: .5rem 0;
+    font-size: .75rem;
+    margin-top: 1.5rem;
 }

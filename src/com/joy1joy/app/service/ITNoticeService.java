@@ -45,6 +45,9 @@ public interface ITNoticeService{
 	
 	public int updateTNoticesCommentCount(TNotices notice);
 	
+	public int updateTNotices(TNotices notice);
+
+	
 	/**
 	 * 根据用户ID分别查取所分享的话题
 	 * @param id

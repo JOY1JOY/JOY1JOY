@@ -173,7 +173,6 @@ public class TActivityAction extends BaseAction {
 	@LoginAccess
 	@Action(value = "myCollection", results = { @Result(name = C_INPUT, location = "/WEB-INF/content/activity/mycollect.jsp") })
 	public String mycollect() {
-
 		return C_INPUT;
 	}
 

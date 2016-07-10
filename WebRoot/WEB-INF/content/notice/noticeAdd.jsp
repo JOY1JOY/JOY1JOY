@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn"   uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
 	String path = request.getContextPath();
 	if (!"".equals(path)) {
@@ -61,13 +64,20 @@
 					action="<%=path%>notice/saveNotice.action" name="noticeForm"
 					method="post">
 
+                    <input type="hidden" id="at_optType" value="${editOpt}"> 
+					<input type="hidden" name="noticeId" id="at_id"
+						value="${notice.id}">
+						
+						
+						
+						
 					<div class="form-group">
 						<label for="inputEmail3" class="col-sm-4 col-md-2 control-label">
 							<h4>标题：</h4>
 						</label>
 						<div class="col-sm-8 col-md-6">
 							<input type="title" class="form-control" name="noticeTitle"
-								value="${activity.name}" id="at_name" placeholder="标题">
+								value="${notice.title}" id="at_name" placeholder="标题">
 						</div>
 					</div>
 
@@ -79,13 +89,25 @@
 						</label>
 						<div class="col-sm-5">
 							<!-- Multiple Checkboxes -->
-							<s:iterator var="t" value="#request.dcits">
-								<label class="checkbox-inline"> <input type="checkbox"
-									name="noticeType" id="inlineCheckbox1" value="${t.dkey}">
-									${t.dvalue}
-								</label>
+						
 
-							</s:iterator>
+
+	                             <c:forEach var="t" items="${dicts}">
+								
+									<label class="checkbox-inline">
+										
+										<c:if test="${ fn:contains(notice.type, t.dkey) }">
+											<input type="checkbox" name="noticeType" id="inlineCheckbox1" value="${t.dkey}" checked="checked">
+										</c:if>
+										
+										<c:if test="${! fn:contains(notice.type,t.dkey) }">
+											<input type="checkbox" name="noticeType" id="inlineCheckbox1" value="${t.dkey}">
+										</c:if>
+										
+										${t.dvalue}
+										
+									</label>	
+										</c:forEach>	
 						</div>
 					</div>
 
@@ -94,7 +116,7 @@
 							<h4>内容：</h4>
 						</label>
 						<div class="col-sm-12 col-md-9">
-							<textarea placeholder="" id="noticeContent" name="noticeContent">${activity.description}</textarea>
+							<textarea placeholder="" id="noticeContent" name="noticeContent">${notice.content}</textarea>
 						</div>
 					</div>
 

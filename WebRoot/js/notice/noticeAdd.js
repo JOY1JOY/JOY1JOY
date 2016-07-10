@@ -5,6 +5,9 @@
  * @description 公告
  */
 
+var JOY_URL_NOTICE_UPDATE = joy.getContextPath() + "/notice/update.action";
+
+
 $(function(){
 
 	//发布公告
@@ -31,6 +34,22 @@ $(function(){
 			return;
 		}else
 		{
+			
+			var opt_type = $("#at_optType").val();
+			var isAdd = true;
+			var Aid=$("#at_id").val();
+			if (1 == opt_type) {
+				isAdd = false;
+				url = JOY_URL_NOTICE_UPDATE;
+				if (Aid == "") {
+					tip("非法操作!");
+					return false;
+				}
+				else{
+				document.noticeForm.action=url;	
+				}
+			}
+			alert(document.noticeForm.action);
 			document.noticeForm.submit();
 		}
 		

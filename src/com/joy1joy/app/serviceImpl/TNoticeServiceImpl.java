@@ -128,6 +128,12 @@ public class TNoticeServiceImpl  implements ITNoticeService {
 		// TODO Auto-generated method stub
 		return noticeMapper.updateTNoticesUpvoteCount(notices);
 	}
+	
+	@Override
+	public int updateTNotices(TNotices notices) {
+		// TODO Auto-generated method stub
+		return noticeMapper.updateTNotices(notices);
+	}
 
 	@Override
 	public int updateTNoticesCommentCount(TNotices notices) {

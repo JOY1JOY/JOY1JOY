@@ -222,7 +222,7 @@ public class TNoticesAction extends BaseAction {
 	 */
 	@LoginAccess
 	@Action(value = "shareNotice", results = { @Result(name = C_INPUT, location = "/WEB-INF/content/notice/shareNotice.jsp") })
-	public String organize() {
+	public String shareNotice() {
 		int cuid = getLoginUserId();
 		int count = noticeService.getOrgNoticesWithPagesCount(cuid);
 		ActionContext.getContext().put("totalPages", count);
@@ -236,7 +236,7 @@ public class TNoticesAction extends BaseAction {
 
 	@LoginAccess
 	@Action(value = "shareNoticeList", results = { @Result(name = C_SUCCESS, location = "/WEB-INF/content/base/JSON.jsp") })
-	public String orgAtList() {
+	public String shareNoticeList() {
 		int code = -1;
 		String msg = MSG_FAILURE;
 		List<TNotices> data = null;
@@ -256,30 +256,61 @@ public class TNoticesAction extends BaseAction {
 		return C_SUCCESS;
 	}
 	
+	                      
+	/**
+	 * 打开编辑活动
+	 */
+	@Action(value = "edit", results = { @Result(name = C_INPUT, location = "/WEB-INF/content/notice/noticeAdd.jsp") })
+	public String edit() {
+		ActionContext.getContext().put("editOpt", 1);
+		List<TDict> dicts = dictService.findDictByType("notice");
+        
+		//设置编辑选项
+		ActionContext.getContext().put("editOpt", 1);
+		ActionContext.getContext().put("dicts", dicts);
+		TNotices noc = noticeService.selectTNoticesById(noticeId);
+		
+		ActionContext.getContext().put("notice", noc);
+
+		return C_INPUT;
+	}
 	
 	
-	
-	@Action(value = "recent", results = { @Result(name = C_SUCCESS, location = "/WEB-INF/content/base/JSON.jsp") })
+	/**
+	 * 更新活动
+	 * @return
+	 */
+
+	@LoginAccess
+	@Action(value = "update", results = { @Result(type="redirect", name = C_SUCCESS, location = "/notice/shareNotice.action") })
 	public String update() {
-		Log.debug("获取最新发布的通知或公告");
 		int code = -1;
 		String msg = MSG_FAILURE;
-		List<TNotices> data = null;
-		try {
-			Map map = new HashMap<String, Object>();
-			map.put("type", type);
-			map.put("start", start);
-			map.put("end", end);
-			data = noticeService.selectRecentNotices(map);
-			code = 1;
-			msg = MSG_SUCCESS;
-		} catch (Exception e) {
-			e.printStackTrace();
+
+		if (null != noticeId || noticeId != -1) {
+			try {
+				TNotices notice = new TNotices();
+				notice.setId(noticeId);
+				notice.setType(noticeType);
+				notice.setTitle(noticeTitle);
+				notice.setContent(noticeContent);
+				int i = noticeService.updateTNotices(notice);
+				if (i > 0) {
+					code = R_SUCCESS;
+					msg = MSG_SUCCESS;
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
-		ActionContext.getContext().put(JSON_DATA, jsonData(code, msg, data));
+		ActionContext.getContext().put(JSON_DATA, jsonData(code, msg, null));
 		return C_SUCCESS;
 	}
 
+	
+	
+	
+	
 	public Integer getNoticeId() {
 		return noticeId;
 	}

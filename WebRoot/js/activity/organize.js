@@ -10,8 +10,8 @@ var JOY_URL_ORG_AT_LIST_URL = joy.getContextPath() + "/at/orgAtList.action";
 //		+ '<div class="td td-3">{statusName}（{partNum}/{pnum}）</div><div class="td td-4">'
 //		+ '{opt}</li>';
 
-var ITEM_OPT_TEMPLATE = '<a href="{optUrl}" target="_blank" class="btn btn-default  buttonjo1joy" role="button">{optName}</a>';
-var ITEM_CLOSE_TEMPLATE = '<a href="#"  onclick="org.closeConfirm(\'{optUrl}\')" data-value="{id}" class="btn btn-default  buttonjo1joy" role="button">{optName}</a>';
+var ITEM_OPT_TEMPLATE = '<a href="{optUrl}" target="_blank" class="btn btn-default  buttonjoy1joy" role="button">{optName}</a>';
+var ITEM_CLOSE_TEMPLATE = '<a href="#"  onclick="org.closeConfirm(\'{optUrl}\')" data-value="{id}" class="btn btn-default  buttonjoy1joy" role="button">{optName}</a>';
 
 var ITEM_TEMPLATE= '<div class="row item-c">';
 ITEM_TEMPLATE+='<div class="col-sm-12 col-md-12 col-lg-4 thumImages">';

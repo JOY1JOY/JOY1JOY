@@ -1,6 +1,9 @@
 package com.joy1joy.app.bean;
 
 import java.sql.Timestamp;
+import java.util.Date;
+
+import com.alibaba.fastjson.annotation.JSONField;
 
 /**
  * 公告表
@@ -48,6 +51,8 @@ public class TNotices implements java.io.Serializable{
 	 * 创建时间
 	 */
 	
+	@JSONField(format = "yyyy-MM-dd")
+	private Date cdatetime;
 	/**
 	 * 发布人
 	 */
@@ -101,7 +106,7 @@ public class TNotices implements java.io.Serializable{
 	}
 	
 	
-	private Timestamp cdatetime;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -138,10 +143,10 @@ public class TNotices implements java.io.Serializable{
 	public void setCuid(Integer cuid) {
 		this.cuid = cuid;
 	}
-	public Timestamp getCdatetime() {
+	public Date getCdatetime() {
 		return cdatetime;
 	}
-	public void setCdatetime(Timestamp cdatetime) {
+	public void setCdatetime(Date cdatetime) {
 		this.cdatetime = cdatetime;
 	}
 	
