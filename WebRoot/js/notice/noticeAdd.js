@@ -49,7 +49,6 @@ $(function(){
 				document.noticeForm.action=url;	
 				}
 			}
-			alert(document.noticeForm.action);
 			document.noticeForm.submit();
 		}
 		

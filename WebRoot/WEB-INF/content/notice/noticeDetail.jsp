@@ -52,7 +52,7 @@
 				<p class="gray">
 					<s:date name="#tnotice.cdatetime" format="yyyy.MM.dd" />
 				</p>
-				<a href="javascript:void(0);">${tnotice.title}</a>
+				<h3><a href="javascript:void(0);">${tnotice.title}</a></h3>
 				<p class="blank">${tnotice.content}</p>
 			</div>
 		</div>

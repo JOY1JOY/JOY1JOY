@@ -29,13 +29,12 @@ function pageselectCallback(page_index, jq) {
 		},
 		cache : false,
 		dataType : 'json',
-		success : function(re) {
+		success : function(o) {
 	           
 				$("#topicList").empty();
-				var resMap = eval(re.rows);
 				// alert(resMap.id);
-				$.each(resMap, function(i) {
-					var obj = resMap[i];
+				$.each(o.data, function(i) {
+					var obj = this;
 //					var html = '<li>';
 //					html += '<a href="'+joy.getContextPath()+'/notice/detailNotice.action?noticeId='
 //							+ obj.id + '">' + obj.title + '</a>';

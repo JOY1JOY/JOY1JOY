@@ -129,8 +129,11 @@ public class TNoticesAction extends BaseAction {
 	}
 	
 
-	@Action(value = "noticeList")
-	public void noticeList() {
+	@Action(value = "noticeList" , results = { @Result(name = C_SUCCESS, location = "/WEB-INF/content/base/JSON.jsp") } )
+	public String noticeList() {
+		int code=0;
+		String msg="";
+		List<TNotices> noticeLists=null;
 		try {
 			// 根据登录人的角色信息，判断noticeState的取值。普通用户为0，管理员为所有 1
 			if (session.get("users") != null) {
@@ -143,19 +146,16 @@ public class TNoticesAction extends BaseAction {
 			response.setCharacterEncoding("utf-8");
 			out = response.getWriter();
 			int startIndex = getStartIndex();
-			List<TNotices> noticeLists = noticeService.findNoticeListByLimit(
-					noticeType, noticeState, startIndex, showCount);
-			JSONArray jsonArray = new JSONArray();
-			for (TNotices notice : noticeLists) {
-				jsonArray.add(DateJsonValueProcessor.beanToJson(notice,
-						dateFormat));
-			}
-			String json = "{\"rows\":" + jsonArray.toString() + "}";
-			out.print(json);
+			noticeLists = noticeService.findNoticeListByLimit(noticeType, noticeState, startIndex, showCount);
 
+			 code = R_SUCCESS;
+			 msg = MSG_SUCCESS;
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		ActionContext.getContext().put(JSON_DATA, jsonData(code, msg, noticeLists));
+		return C_SUCCESS;
 	}
 
 	@LoginAccess
