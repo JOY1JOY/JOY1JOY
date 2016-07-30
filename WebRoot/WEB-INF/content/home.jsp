@@ -58,35 +58,38 @@
 
 
 					<div class="swiper-slide">
-						    <div class="jumbotron" style="background: #0080ff url(images/banners/img0.jpg) no-repeat center center; display: block; height: 300px; width: 100%">
+						   <!--   <div class="jumbotron" style="background: #0080ff url(images/banners/banner003.jpg) no-repeat center center; display: block; height: 300px; width: 100%">
+							 --> <div class="jumbotron" style="background: #0080ff url(images/banners/banner001.jpg) no-repeat center center; display: block; height: 450px; width: 100%">
+							
 							<div class="container" >
-								<h2 style="color:#fff;font-">
-									户外，心生活，发布趣味活动，一起玩翻天
+								<h2 style="color:#fff;line-height:45px;">
+									</br>
+									户外，心生活
+									</br>
+								发现趣味活动，一起玩翻天
+                                    	</br>
 								</h2>
 								<p>
 								<p>
-									<a class="m-btn-home m-btn-yellow" href="<%=path%>at/input.action">发布活动</a>
+								<a class="m-btn-home m-btn-yellow" href="<%=path%>at/atlist.action">发现活动</a>
 							</div> 
 							</div>
 					</div>
 					
-					
-					
-                  
 					<div class="swiper-slide">
+					
 						<a href="#"
-							style="background: #ffffff url(images/banners/2.jpg) no-repeat center center; display: block; height: 300px; width: 100%">
-
+							style="background: #ffffff url(images/banners/2.jpg) no-repeat center center; display: block; height: 490px; width: 100%">
 					 </a>
+					
 					</div>
 					
 							<div class="swiper-slide">
 						<a href="#"
-							style="background: #ffffff url(images/banners/3.jpg) no-repeat center center; display: block; height: 300px; width: 100%">
+							style="background: #ffffff url(images/banners/3.jpg) no-repeat center center; display: block; height: 490px; width: 100%">
 
 						 </a>
 					</div>
-					
 
 				</div>
         <!-- Add Pagination -->
@@ -97,20 +100,43 @@
     </div>
     
     
-            
-               <div class="container zuix">
+    <section class="feature">
+    <div class="container">
+        <img class="screen not-retina" src="images/screen1.png">
+        <img class="screen retina" src="images/screen1.png">
 
+        <div class="info">
+            <h2>有的只是城市品质趣味活动</h2>
+            <p>户外，读书，展览，演出，约会，DIY.<br>
+                <strong>重点</strong>: 结识同城达人，培养优雅趣味，让生活多一些品质与美，美好周末，拒绝死宅</p>
+        </div>
+    </div>
+</section>
+
+<section class="feature second">
+    <div class="container">
+        <img class="screen not-retina" src="images/screen2.png">
+        <img class="screen retina" src="images/screen2.png">
+
+        <div class="info">
+            <h2>各种新奇特玩法!</h2>
+            <p>去体验，是一种态度，冒险与刺激，一次就好</p>
+        </div>
+    </div>
+</section>
+
+
+    <!--  
+               <div class="container zuix">
 
               <span>最新活动</span> &nbsp  <a href="<%=path%>at/atlist.action" target="_blank">查看全部</a>
             </div>
                  
-
-            <div class="fetature container" id="home_activities">
-
-
-
-            </div>
                  
+            <div class="fetature container" id="home_activities">
+            
+            </div>
+            -->
                  
     </div>
 

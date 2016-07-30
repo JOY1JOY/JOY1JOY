@@ -97,12 +97,15 @@
           <li>已有动一动账户</li>
             <li><a href="javascript:void(0);" class="flatLogin">立即登录>></a></li>
         </ul>
+        <!--  
       <ul >
    
           <li>使用第三方账户登录</li>
             <li><a href="javascript:void(0);"><img src="<%=path %>images/weibo_ico.jpg" /></a></li>
        
         </ul>
+        -->
+        
     </div>
 </div>
 </div>

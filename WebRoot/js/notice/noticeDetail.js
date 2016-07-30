@@ -6,7 +6,7 @@ var detail={};
 // 发表评论提交处理
 detail.submitComment=function(){
 	var id = $.trim($("#noticeId").val());
-	alert(id);
+//	alert(id);
 	var at_comment = editor.getValue();
 	if (at_comment == "") {
 		alert("评论内容不能为空");

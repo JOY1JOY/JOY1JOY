@@ -32,6 +32,11 @@
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
+                       <li>
+                            <a href="<%=path%>home.action">首页</a>
+                        
+                        </li>
+                        
                         <li>
                             <a href="<%=path%>at/atlist.action">活动</a>
                         
